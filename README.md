@@ -9,11 +9,11 @@ addition to viewing them on the blog, you can also load them up in
 The current list of dependencies for this collection of notebooks is:
 
 - [numpy](http://www.numpy.org/)
-- [netcdf4-python](https://github.com/Unidata/netcdf4-python)
+- [netcdf4-python](https://unidata.github.io/netcdf4-python/)
 - [matplotlib](http://matplotlib.org/)
 - [cartopy](http://scitools.org.uk/cartopy/)
-- [siphon](https://github.com/Unidata/siphon)
-- [MetPy](https://github.com/metpy/MetPy)
+- [siphon](http://siphon.readthedocs.org)
+- [MetPy](http://metpy.readthedocs.org)
 
 The easiest way to install these libraries is with [conda](http://conda.pydata.org/).
 
