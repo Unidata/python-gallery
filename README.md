@@ -1,5 +1,6 @@
 # Blog Notebooks
-This is a collection of notebooks and other resources published in the Unidata blogs. In
+This is a collection of notebooks and other resources published in the Unidata
+[blogs](https://www.unidata.ucar.edu/blogs/developer/). In
 addition to viewing them on the blog, you can also load them up in
 [nbviewer](http://nbviewer.jupyter.org/github/unidata/blog-notebooks/tree/master/).
 
