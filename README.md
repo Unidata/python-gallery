@@ -80,8 +80,9 @@ This starts the webserver for running jupyter notebooks. You should see some out
 ```
 
 This indicates that the server is ready to accept connections on your local machine at port 8888.
-Here's a link for convenience: http://localhost:8888/. If port 8888 is not available (say if you're running
-more than one server, you may get a few more messages and the server may end up accepting connections on
+Here's a link for convenience: [http://localhost:8888/](http://localhost:8888/).
+If port 8888 is not available (say if you're running more than one server, you
+may get a few more messages and the server may end up accepting connections on
 a different port. The messages in the terminal should tell you which port to try.
 
 Once you open up the main notebook page, if you click on the notebooks/ directory, you should
