@@ -1,5 +1,7 @@
 # Blog Notebooks
-This is a collection of notebooks and other resources published in the Unidata blogs.
+This is a collection of notebooks and other resources published in the Unidata blogs. In
+addition to viewing them on the blog, you can also load them up in
+[nbviewer](http://nbviewer.jupyter.org/github/unidata/blog-notebooks/tree/master/).
 
 ## Installation Instructions
 
@@ -28,9 +30,9 @@ conda env create -f environment.yml
 ```
 
 ### From a Unix command line (e.g., OS X terminal)
-If your default shell is NOT bash, first type =bash=.
-To activate or switch to a conda environment, you can =source activate
-<environment>=. For example,
+If your default shell is NOT bash, first type `bash`.
+To activate or switch to a conda environment, you can `source activate
+<environment>`. For example,
 
 ```sh
 source activate unidata-blog
@@ -58,3 +60,31 @@ To switch and/or deactivate environments:
 deactivate
 activate <environment>
 ```
+
+## Running the jupyter notebook server
+From the `blog-notebooks` directory and with the `unidata-blogs` environment active,
+run:
+
+```sh
+jupyter notebook
+```
+
+This starts the webserver for running jupyter notebooks. You should see some output like the following:
+
+```
+[I 11:59:31.409 NotebookApp] Serving notebooks from local directory: /Users/rmay/repos/blog-notebooks
+[I 11:59:31.409 NotebookApp] 0 active kernels
+[I 11:59:31.409 NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/
+[I 11:59:31.409 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+```
+
+This indicates that the server is ready to accept connections on your local machine at port 8888.
+Here's a link for convenience: http://localhost:8888/. If port 8888 is not available (say if you're running
+more than one server, you may get a few more messages and the server may end up accepting connections on
+a different port. The messages in the terminal should tell you which port to try.
+
+Once you open up the main notebook page, if you click on the notebooks/ directory, you should
+see the full collection of notebooks. Clicking on any of the notebooks will open them for running
+in an interactive python session. Clicking a cell and typing shift-enter will run the cell.
+The Jupyter Notebook [documentation](https://jupyter-notebook-beginner-guide.readthedocs.org)
+has more information on working with notebooks.
