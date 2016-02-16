@@ -14,4 +14,6 @@ into the blog post editor. On osx, it is even easier:
 jupyter nbconvert --config blog-post.py --to markdown --stdout notebooks/NOTEBOOK_FILE.ipynb | pbcopy
 ```
 
-This will convert the notebook and put the content into the paste buffer.
+This will convert the notebook and put the content into the paste buffer. Note
+that the non-stdout version needs to be run in order to extract images from the
+notebook.
