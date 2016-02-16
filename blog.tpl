@@ -7,15 +7,13 @@
 
 {% block stream %}
 {% if output.name == "stdout" %}
-<pre>
-{{ output.text.strip() | escape }}
+<pre><code class="language-">{{ output.text.strip() | escape }}</code>
 </pre>
 {% endif %}
 {% endblock stream %}
 
 {% block data_text scoped %}
-<pre>
-{{ output.data['text/plain'].strip() | escape }}
+<pre><code class="language-">{{ output.data['text/plain'].strip() | escape }}</code>
 </pre>
 {% endblock data_text %}
 
