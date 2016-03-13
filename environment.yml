@@ -1,14 +1,13 @@
  name: unidata-blog
  channels:
+   - https://conda.binstar.org/conda-forge
    - https://conda.binstar.org/scitools
-   - https://conda.binstar.org/Unidata
  dependencies:
-   - python=3.4
+   - python=3
    - numpy
    - matplotlib
    - cartopy
    - jupyter
-   - netcdf4
    - metpy
    - siphon
 
