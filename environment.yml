@@ -10,4 +10,6 @@
    - jupyter
    - metpy
    - siphon
+   # only until 4.2.2 is available on conda
+   - jupyter_client <4.2
 
