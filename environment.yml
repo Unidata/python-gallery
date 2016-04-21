@@ -1,7 +1,6 @@
  name: unidata-blog
  channels:
    - https://conda.binstar.org/conda-forge
-   - https://conda.binstar.org/scitools
  dependencies:
    - python=3
    - numpy
@@ -10,6 +9,4 @@
    - jupyter
    - metpy
    - siphon
-   # only until 4.2.2 is available on conda
-   - jupyter_client <4.2
 
