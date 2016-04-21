@@ -27,9 +27,10 @@ install:
     - cmd: conda env create -q -f environment.yml
     - cmd: activate unidata-blog
     - cmd: python --version
+    - cmd: python -m ipykernel install --user --name blog --display-name "Blog"
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - cmd: find notebooks\ -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=60 --inplace
+    - cmd: find notebooks\ -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=60 --ExecutePreprocessor.kernel_name=blog --inplace
