@@ -1,4 +1,4 @@
- name: unidata-blog
+ name: gallery
  channels:
    - https://conda.binstar.org/conda-forge
  dependencies:
@@ -9,4 +9,3 @@
    - jupyter
    - metpy
    - siphon
-

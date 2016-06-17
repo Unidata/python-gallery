@@ -1,3 +1,3 @@
 .ipynb_checkpoints/
-notebooks/*.md
-notebooks/*_files/
+blog-notebooks/*.md
+blog-notebooks/*_files/
