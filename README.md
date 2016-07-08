@@ -1,8 +1,9 @@
-# Blog Notebooks
-This is a collection of notebooks and other resources published in the Unidata
-[blogs](https://www.unidata.ucar.edu/blogs/developer/). In
-addition to viewing them on the blog, you can also load them up in
-[nbviewer](http://nbviewer.jupyter.org/github/unidata/blog-notebooks/tree/master/).
+# Notebook Gallery
+This is a collection of notebooks published in the Unidata
+[blogs](https://www.unidata.ucar.edu/blogs/developer/) or just collected as examples. In
+addition to viewing them on the blog, or at the [web gallery](http://unidata.github.io/notebook-gallery)
+you can also load them up in
+[nbviewer](http://nbviewer.jupyter.org/github/unidata/notebook-gallery/tree/master/).
 
 ## Installation Instructions
 
@@ -23,9 +24,9 @@ The easiest way to install these libraries is with [conda](http://conda.pydata.o
   cmd.exe), run these instructions to clone the repository and create the environment:
 
 ```sh
-git clone https://github.com/Unidata/blog-notebooks
+git clone https://github.com/Unidata/notebook-gallery
 
-cd blog-notebooks
+cd notebook-gallery
 
 conda env create -f environment.yml
 ```
@@ -36,7 +37,7 @@ To activate or switch to a conda environment, you can `source activate
 <environment>`. For example,
 
 ```sh
-source activate unidata-blog
+source activate gallery
 ```
 
 To switch and/or deactivate environments:
@@ -52,7 +53,7 @@ To activate or switch to a conda environment, you can `activate
 <environment>`. For example,
 
 ```sh
-activate unidata-blog
+activate gallery
 ```
 
 To switch and/or deactivate environments:
@@ -63,7 +64,7 @@ activate <environment>
 ```
 
 ## Running the jupyter notebook server
-From the `blog-notebooks` directory and with the `unidata-blogs` environment active,
+From the `notebook-gallery` directory and with the `gallery` environment active,
 run:
 
 ```sh
@@ -73,7 +74,7 @@ jupyter notebook
 This starts the webserver for running jupyter notebooks. You should see some output like the following:
 
 ```
-[I 11:59:31.409 NotebookApp] Serving notebooks from local directory: /Users/rmay/repos/blog-notebooks
+[I 11:59:31.409 NotebookApp] Serving notebooks from local directory: /Users/rmay/repos/notebook-gallery
 [I 11:59:31.409 NotebookApp] 0 active kernels
 [I 11:59:31.409 NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/
 [I 11:59:31.409 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
