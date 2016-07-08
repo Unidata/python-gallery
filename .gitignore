@@ -1,3 +1,6 @@
 .ipynb_checkpoints/
 notebooks/*.md
 notebooks/*_files/
+.idea/
+website/*.md
+*.png
