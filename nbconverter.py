@@ -52,6 +52,8 @@ if __name__ == '__main__':
             img_file = write_nb(notebook_source_dir, *nb_to_markdown(fname))
             filename = os.path.split(fname)[1]
             if not img_file:
-                img_file = 'website/images/placeholder.png'
-            test.write('<a href="notebooks/' + filename + '"><img alt="' + filename.replace('_', ' ').replace('.ipynb', '') +
-                       '"src="' + img_file + '" height="300" width="375"></a>\n')
+                img_file = 'images/placeholder.png'
+            else:
+                img_file = os.path.relpath(img_file, 'website')
+            test.write('<a href="' + filename.replace('ipynb', 'html') + '"><img alt="' + filename.replace('_', ' ').replace('.ipynb', '') +
+                       '" src="' + img_file + '" height="300" width="375"></a>\n')
