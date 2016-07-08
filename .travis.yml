@@ -1,33 +1,66 @@
-# After changing this file, check it on:
-#   http://lint.travis-ci.org/
-language: python
+# Since we really don't want any of Travis' Python
+language: generic
 sudo: false
 
 python:
-  - 3.4
-  - 3.5
+env:
+  global:
+    - MINICONDA_DIR="$HOME/miniconda"
+    - GH_PAGES_DIR="$HOME/site_build/"
+  matrix:
+    - Python=3.4
+    - Python=3.5
+
+matrix:
+  include:
+    - language: ruby
+      rvm: 2.2
+      env: Task=website
 
 before_install:
-  # Taken from: http://conda.pydata.org/docs/travis.html
-  # Need to make sure Travis' env isn't running, or Jupyter will pick it up
-  - deactivate
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-  - sed -i -e "s/python=3/python=$TRAVIS_PYTHON_VERSION/" environment.yml
+  - if [[ $Task == 'website' ]]; then
+      gem install github-pages jekyll-org-mode-converter;
+      pip install --user linkchecker pyopenssl ndg-httpsclient pyasn1 "requests<=2.9";
+    else
+      deactivate;
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      bash miniconda.sh -b -p $MINICONDA_DIR;
+      export PATH="$MINICONDA_DIR/bin:$PATH";
+      hash -r;
+      conda config --set always_yes yes --set changeps1 no;
+      conda update -q conda;
+      conda info -a;
+      sed -i -e "s/python=3/python=$Python/" environment.yml;
+    fi;
 
 install:
-  - conda env create -f environment.yml
-  - source activate unidata-blog
-  - python --version
-  - python -m ipykernel install --user --name blog --display-name "Blog"
+  - if [[ $Task != 'website' ]]; then
+      conda env create -f environment.yml;
+      source activate gallery;
+      python --version;
+      python -m ipykernel install --user --name gallery;
+      conda list;
+    fi
 
 script:
-  - find notebooks/ -name \*.ipynb -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=60 --ExecutePreprocessor.kernel_name=blog --to=notebook --stdout >| /dev/null;
+  - if [[ $Task == 'website' ]]; then
+      jekyll build -s website -d $GH_PAGES_DIR 2>build.log;
+      if [ -s build.log ]; then
+          echo Build produced errors:;
+          cat build.log;
+          false;
+      else
+        echo Checking links;
+        echo linkchecker --anchors --ignore mybinder --check-extern $GH_PAGES_DIR;
+      fi;
+    else
+      find notebooks/ -name \*.ipynb -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=gallery --to=notebook --stdout >| /dev/null;
+    fi
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: scripts/deploy.sh
+  on:
+    branch: master
+    condition: $Task == 'website'
