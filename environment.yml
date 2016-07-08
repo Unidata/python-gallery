@@ -1,6 +1,6 @@
- name: unidata-blog
+ name: gallery
  channels:
-   - https://conda.binstar.org/conda-forge
+   - conda-forge
  dependencies:
    - python=3
    - numpy
