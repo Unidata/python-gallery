@@ -30,7 +30,7 @@ def write_nb(dest, output, resources):
     md_file = os.path.join('website', resources['metadata']['basename'] + resources['output_extension'])
     name = resources['metadata']['name']
     with open(md_file, 'w') as md:
-        md.write('---\ntitle:\n--- \n#' + name + '\n')
+        md.write('---\ntitle:\n--- \n\n#' + name + '\n\n')
         md.write(output)
 
     imgdir = os.path.join('website', resources['metadata']['basename'])
@@ -55,5 +55,6 @@ if __name__ == '__main__':
                 img_file = 'images/placeholder.png'
             else:
                 img_file = os.path.relpath(img_file, 'website')
-            test.write('<a href="' + filename.replace('ipynb', 'html') + '"><img alt="' + filename.replace('_', ' ').replace('.ipynb', '') +
-                       '" src="' + img_file + '" height="300" width="375"></a>\n')
+            test.write('<a href="' + filename.replace('ipynb', 'html') + '"><img src="' + img_file +
+                       '" alt="' + filename.replace('_', ' ').replace('.ipynb', '') +
+                       '" style="width:375px;height:300px;"></a>\n')
