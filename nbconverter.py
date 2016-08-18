@@ -1,60 +1,36 @@
 import glob
 import os
 import os.path
-import warnings
 from nbconvert.exporters import markdown
 
-warnings.simplefilter('ignore')
+SITE_DIR = 'website'
+IMAGE_DIR = os.path.join(SITE_DIR, 'images')
 
-notebook_source_dir = 'notebooks'
-
-
-def nb_to_markdown(nb_path):
+def make_thumbnail(nb_path):
     """Convert notebook to markdown"""
     exporter = markdown.MarkdownExporter()
-    output, resources = exporter.from_file(open(nb_path))
-    basename = os.path.splitext(os.path.basename(nb_path))[0]
-    resources['metadata']['basename'] = basename
-    base_url = 'http://nbviewer.jupyter.org/github/unidata/notebook-gallery/tree/master/notebooks/'
-    out_lines = ['[Notebook](%s)' % (base_url + os.path.basename(nb_path))]
-    for line in output.split('\n'):
-        out_lines.append(line)
-    output = '\n'.join(out_lines)
+    output, resources = exporter.from_filename(nb_path)
+    images = sorted(resources['outputs'])
+    if images:
+        img_file = images[-1]
+        thumb_name = os.path.join(IMAGE_DIR, os.path.splitext(os.path.basename(nb_path))[0] +
+                os.path.splitext(img_file)[-1])
 
-    return output, resources
+        with open(thumb_name, 'wb') as thumb:
+            thumb.write(resources['outputs'][img_file])
 
-
-def write_nb(dest, output, resources):
-    if not os.path.exists(dest):
-        os.makedirs(dest)
-    md_file = os.path.join('website', resources['metadata']['basename'] + resources['output_extension'])
-    name = resources['metadata']['name']
-    with open(md_file, 'w') as md:
-        md.write('---\ntitle:\n--- \n\n#' + name + '\n\n')
-        md.write(output)
-
-    imgdir = os.path.join('website', resources['metadata']['basename'])
-    if not os.path.exists(imgdir):
-        os.makedirs(imgdir)
-    basename = resources['metadata']['basename']
-    img_file = ""
-    for filename in sorted(resources['outputs']):
-        img_file = os.path.join(imgdir, filename.replace('output_', basename))
-        with open(img_file, 'wb') as img:
-            img.write(resources['outputs'][filename])
-    return img_file
+        return os.path.relpath(thumb_name, SITE_DIR)
+    else:
+        return 'images/placeholder.png'
 
 
 if __name__ == '__main__':
-    with open(os.path.join('website', 'index.md'), 'w') as test:
-        test.write('---\ntitle: Unidata\'s Notebook Gallery\n--- \n#Notebook Gallery\n')
-        for fname in glob.glob(os.path.join(notebook_source_dir, '*.ipynb')):
-            img_file = write_nb(notebook_source_dir, *nb_to_markdown(fname))
-            filename = os.path.split(fname)[1]
-            if not img_file:
-                img_file = 'images/placeholder.png'
-            else:
-                img_file = os.path.relpath(img_file, 'website')
-            test.write('<a href="' + filename.replace('ipynb', 'html') + '"><img src="' + img_file +
-                       '" alt="' + filename.replace('_', ' ').replace('.ipynb', '') +
-                       '" style="width:375px;height:300px;"></a>\n')
+    with open(os.path.join(SITE_DIR, 'index.md'), 'w') as index:
+        index.write('---\ntitle: Unidata\'s Notebook Gallery\n--- \n#Notebook Gallery\n')
+        base_url = 'http://nbviewer.jupyter.org/github/unidata/notebook-gallery/blob/master/'
+        for fname in glob.glob(os.path.join('notebooks', '*.ipynb')):
+            print('Converting', fname, end=' -> ')
+            img_file = make_thumbnail(fname)
+            print(img_file)
+            index.write('<a href="{url}{nb_file}"><img src="{img}" height="300" width="375"></a>\n'.format(url=base_url,
+                nb_file=fname, img=img_file))
