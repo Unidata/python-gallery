@@ -4,3 +4,5 @@ notebooks/*_files/
 .idea/
 website/*.md
 *.png
+_site/
+drafts/
