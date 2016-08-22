@@ -448,15 +448,15 @@ a:hover {
 }
 
 header {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-family: 'Ubuntu', 'Helvetica Neue', Helvetica, Arial, serif;
   background: #0384A3 url(../images/header-bg-unidata.jpg) 0 0 repeat-x;
   border-bottom: solid 1px #275da1;
 }
 
 header h1 {
-  width: 540px;
+  width: 80%;
   margin-top: 0;
   margin-bottom: 0.2em;
   font-size: 72px;
@@ -467,7 +467,7 @@ header h1 {
 }
 
 header h2 {
-  width: 540px;
+  width: 70%;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 26px;
@@ -479,8 +479,8 @@ header h2 {
 
 .inner {
   position: relative;
-  width: 940px;
-  margin: 0 auto;
+  width: 95%;
+  margin: auto;
 }
 
 #content-wrapper {
@@ -490,7 +490,7 @@ header h2 {
 
 #main-content {
   float: left;
-  width: 690px;
+  width: 100%;
 }
 
 #main-content img {
