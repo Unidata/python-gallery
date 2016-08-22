@@ -19,7 +19,7 @@ matrix:
 
 before_install:
   - if [[ $Task == 'website' ]]; then
-      gem install github-pages jekyll-org-mode-converter;
+      gem install github-pages;
       pip install --user linkchecker pyopenssl ndg-httpsclient pyasn1 "requests<=2.9";
       pip install --user nbconvert;
     else
