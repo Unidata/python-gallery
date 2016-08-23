@@ -26,7 +26,7 @@ def make_thumbnail(nb_path):
 
 if __name__ == '__main__':
     with open(os.path.join(SITE_DIR, 'index.md'), 'w') as index:
-        index.write('---\ntitle: Unidata\'s Notebook Gallery\n---\n# Notebook Gallery\n\n')
+        index.write('---\ntitle: Unidata\'s Notebook Gallery\n---\n\n')
         base_url = 'http://nbviewer.jupyter.org/github/unidata/notebook-gallery/blob/master/'
         index.write('<div id="gallery">\n')
         for fname in sorted(glob.glob(os.path.join('notebooks', '*.ipynb'))):
