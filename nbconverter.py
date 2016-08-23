@@ -29,7 +29,7 @@ if __name__ == '__main__':
         index.write('---\ntitle: Unidata\'s Notebook Gallery\n---\n# Notebook Gallery\n\n')
         base_url = 'http://nbviewer.jupyter.org/github/unidata/notebook-gallery/blob/master/'
         index.write('<div id="gallery">\n')
-        for fname in glob.glob(os.path.join('notebooks', '*.ipynb')):
+        for fname in sorted(glob.glob(os.path.join('notebooks', '*.ipynb'))):
             print('Converting {0} -> '.format(fname), end='')
             img_file = make_thumbnail(fname)
             print(img_file)
