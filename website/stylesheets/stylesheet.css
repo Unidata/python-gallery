@@ -488,13 +488,27 @@ header h2 {
   border-top: solid 1px #fff;
 }
 
-#main-content {
-  float: left;
-  width: 100%;
+#gallery {
+  display: flex;
+  flex-flow: row wrap;
 }
 
-#main-content img {
-  max-width: 100%;
+#gallery div {
+  border: 2px solid black;
+  border-radius: 10px;
+  flex: 1 1 300px;
+  margin: 10px;
+  padding: 5px;
+}
+
+#gallery div:hover {
+  border-width: 5px;
+  margin: 7px;
+}
+
+#gallery div img {
+  width: 100%;
+  height: auto;
 }
 
 aside#sidebar {

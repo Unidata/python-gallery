@@ -26,11 +26,13 @@ def make_thumbnail(nb_path):
 
 if __name__ == '__main__':
     with open(os.path.join(SITE_DIR, 'index.md'), 'w') as index:
-        index.write('---\ntitle: Unidata\'s Notebook Gallery\n--- \n# Notebook Gallery\n')
+        index.write('---\ntitle: Unidata\'s Notebook Gallery\n---\n# Notebook Gallery\n\n')
         base_url = 'http://nbviewer.jupyter.org/github/unidata/notebook-gallery/blob/master/'
+        index.write('<div id="gallery">\n')
         for fname in glob.glob(os.path.join('notebooks', '*.ipynb')):
-            print('Converting %{0} -> '.format(fname))
+            print('Converting {0} -> '.format(fname), end='')
             img_file = make_thumbnail(fname)
             print(img_file)
-            index.write('<a href="{url}{nb_file}"><img src="{img}" height="300" width="375"></a>\n'.format(url=base_url,
+            index.write('<div><a href="{url}{nb_file}"><img src="{img}"></a></div>\n'.format(url=base_url,
                 nb_file=fname, img=img_file))
+        index.write('</div>\n')
