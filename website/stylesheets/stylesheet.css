@@ -503,6 +503,7 @@ header h2 {
 
 #gallery div:hover {
   border-width: 5px;
+  border-color: #FF7000;
   margin: 7px;
 }
 
