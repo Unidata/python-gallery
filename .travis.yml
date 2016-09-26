@@ -27,7 +27,7 @@ before_install:
 
 install:
   - if [[ $Task != 'website' ]]; then
-      conda env create -f environment.yml;
+      conda env create -q -f environment.yml;
       source activate gallery;
       $MINICONDA_DIR/envs/gallery/bin/python -m ipykernel install --user --name gallery;
       conda list -n gallery;
