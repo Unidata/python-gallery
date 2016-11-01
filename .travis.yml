@@ -20,7 +20,8 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda install nbconvert
+  # Need to manually install pyyaml manually until conda 4.2.12 released with new miniconda
+  - conda install nbconvert pyyaml
   - if [[ $Task != 'website' ]]; then
       sed -i -e "s/python=3/python=$Python/" environment.yml;
     fi;
@@ -29,8 +30,8 @@ install:
   - if [[ $Task != 'website' ]]; then
       conda env create -q -f environment.yml;
       source activate gallery;
-      $MINICONDA_DIR/envs/gallery/bin/python -m ipykernel install --user --name gallery;
-      conda list -n gallery;
+      conda list;
+      python -m ipykernel install --user --name gallery;
     fi
 
 script:
