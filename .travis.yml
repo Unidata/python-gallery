@@ -20,10 +20,10 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  # Need to manually install pyyaml manually until conda 4.2.12 released with new miniconda
-  - conda install nbconvert pyyaml
   - if [[ $Task != 'website' ]]; then
       sed -i -e "s/python=3/python=$Python/" environment.yml;
+    else
+      conda install nbconvert jupyter_client;
     fi;
 
 install:
