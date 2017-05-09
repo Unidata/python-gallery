@@ -7,41 +7,34 @@ Demonstrate how to smooth contour values from a higher resolution
 model field.
 
 By: Kevin Goebbert
- 
+
 Date: 13 April 2017
 """
 
 ##################################
 # Do the needed imports
-import numpy as np
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.io.shapereader as shpreader
-import cartopy.feature as cfeature
-from netCDF4 import num2date
-import scipy.ndimage as ndimage
-from scipy.interpolate import interp2d
 from datetime import datetime
-from siphon.ncss import NCSS
-from metpy.units import units
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
 from metpy.calc import get_wind_speed
+from metpy.units import units
+from netCDF4 import num2date
+import numpy as np
+import scipy.ndimage as ndimage
+from siphon.ncss import NCSS
 
 
 ##################################
-# Set up access to the data
-year = '2016'
-month = '04'
-day = '16'
-hour = '18'
-ym = year+month
-ymd = year+month+day
-
 # Set up netCDF Subset Service link
-ncss = NCSS('http://nomads.ncdc.noaa.gov/thredds/ncss/grid/namanl/'+ym+'/'+ymd+'/namanl_218_'+ymd+'_'+hour+'00_000.grb')
+dt = datetime(2016, 4, 16, 18)
+ncss = NCSS('http://nomads.ncdc.noaa.gov/thredds/ncss/grid/namanl/'
+            '{0:%Y%m}/{0:%Y%m%d}/namanl_218_{0:%Y%m%d}_{0:%H}00_000.grb'.format(dt))
 
 # Data Query
-hgt = ncss.query().time(datetime(int(year),int(month),int(day),int(hour)))
-hgt.variables('Geopotential_height','u_wind','v_wind').add_lonlat()
+hgt = ncss.query().time(dt)
+hgt.variables('Geopotential_height', 'u_wind', 'v_wind').add_lonlat()
 
 # Actually getting the data
 data = ncss.get_data(hgt)
@@ -52,26 +45,26 @@ data = ncss.get_data(hgt)
 
 # Get dimension names to pull appropriate variables
 dtime = data.variables['Geopotential_height'].dimensions[0]
-dlev  = data.variables['Geopotential_height'].dimensions[1]
-dlat  = data.variables['Geopotential_height'].dimensions[2]
-dlon  = data.variables['Geopotential_height'].dimensions[3]
+dlev = data.variables['Geopotential_height'].dimensions[1]
+dlat = data.variables['Geopotential_height'].dimensions[2]
+dlon = data.variables['Geopotential_height'].dimensions[3]
 
 # Get lat and lon data, as well as time data and metadata
 lats = data.variables['lat'][:]
 lons = data.variables['lon'][:]
-lons[lons>180] = lons[lons>180]-360
+lons[lons > 180] = lons[lons > 180] - 360
 
 # Need 2D lat/lons for plotting, do so if necessary
-if (lats.ndim < 2):
-    lons, lats = np.meshgrid(lons,lats)
+if lats.ndim < 2:
+    lons, lats = np.meshgrid(lons, lats)
 
 # Determine the level of 500 hPa
 levs = data.variables[dlev][:]
-lev_500 = np.where(levs==500)[0][0]
+lev_500 = np.where(levs == 500)[0][0]
 
 # Create more useable times for output
 times = data.variables[dtime]
-vtimes = num2date(times[:],times.units)
+vtimes = num2date(times[:], times.units)
 
 # Pull out the 500 hPa Heights
 hght = data.variables['Geopotential_height'][:].squeeze() * units.meter
@@ -111,32 +104,32 @@ Z_500 = ndimage.gaussian_filter(hght_500, sigma=5, order=0)
 # Plot the contours
 
 # Start plot with new figure and axis
-fig = plt.figure(1,figsize=(17.,11.))
-ax  = plt.subplot(111,projection=plotcrs)
+fig = plt.figure(figsize=(17., 11.))
+ax = plt.subplot(1, 1, 1, projection=plotcrs)
 
 # Add some titles to make the plot readable by someone else
-plt.title('500-hPa Geo Heights (m; black), Smoothed 500-hPa Geo. Heights (m; red)',loc='left')
-plt.title('VALID: %s' %(vtimes[0]),loc='right')
+plt.title('500-hPa Geo Heights (m; black), Smoothed 500-hPa Geo. Heights (m; red)',
+          loc='left')
+plt.title('VALID: %s'.format(vtimes[0]), loc='right')
 
 # Set GAREA and add map features
-ax.set_extent([-125.,-67.,22.,52.], ccrs.PlateCarree())
-ax.coastlines('50m',edgecolor='black',linewidth=0.75)
-ax.add_feature(states_provinces,edgecolor='black',linewidth=0.5)
+ax.set_extent([-125., -67., 22., 52.], ccrs.PlateCarree())
+ax.coastlines('50m', edgecolor='black', linewidth=0.75)
+ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
 
 # Set the CINT
-clev500 = np.arange(5100,6000,60)
+clev500 = np.arange(5100, 6000, 60)
 
 # Plot smoothed 500-hPa contours
 cs2 = ax.contour(lons, lats, Z_500, clev500, colors='red',
                  linewidths=3, linestyles='solid', transform=datacrs)
-c2 = plt.clabel(cs2, fontsize=12, colors='red',inline=1, inline_spacing=8, 
+c2 = plt.clabel(cs2, fontsize=12, colors='red', inline=1, inline_spacing=8,
                 fmt='%i', rightside_up=True, use_clabeltext=True)
 
 # Contour the 500 hPa heights with labels
 cs = ax.contour(lons, lats, hght_500, clev500, colors='black',
-                linewidths=2.5, linestyles='solid', alpha = 0.6, transform=datacrs)
-cl = plt.clabel(cs, fontsize=12, colors='k',inline=1, inline_spacing=8, 
+                linewidths=2.5, linestyles='solid', alpha=0.6, transform=datacrs)
+cl = plt.clabel(cs, fontsize=12, colors='k', inline=1, inline_spacing=8,
                 fmt='%i', rightside_up=True, use_clabeltext=True)
 
 plt.show()
-
