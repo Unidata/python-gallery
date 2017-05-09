@@ -1,8 +1,8 @@
 
 """
-=============================
+===============================
 Jupyter Notebook Widget Example
-=============================
+===============================
 
 An example of using widgets in a Jupyter Notebook.
 
@@ -12,7 +12,6 @@ The interactive plot has the ability to display three different variables, a cou
 of different times, and use four different color maps.
 """
 
-get_ipython().magic('matplotlib inline')
 import ipywidgets as widgets
 from IPython.display import display
 from ipywidgets import interactive, FloatSlider, RadioButtons, SelectionSlider, HBox, VBox, Layout

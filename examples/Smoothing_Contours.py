@@ -1,13 +1,18 @@
+"""
+==================
+Smoothing Contours
+==================
 
-# coding: utf-8
+Demonstrate how to smooth contour values from a higher resolution
+model field.
 
-# # Smoothing Contours
-# By: Kevin Goebbert
-# 
-# Date: 13 April 2017
+By: Kevin Goebbert
+ 
+Date: 13 April 2017
+"""
 
-# In[1]:
-
+##################################
+# Do the needed imports
 import numpy as np
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
@@ -22,8 +27,8 @@ from metpy.units import units
 from metpy.calc import get_wind_speed
 
 
-# In[2]:
-
+##################################
+# Set up access to the data
 year = '2016'
 month = '04'
 day = '16'
@@ -42,7 +47,8 @@ hgt.variables('Geopotential_height','u_wind','v_wind').add_lonlat()
 data = ncss.get_data(hgt)
 
 
-# In[3]:
+##################################
+# Pull apart the data
 
 # Get dimension names to pull appropriate variables
 dtime = data.variables['Geopotential_height'].dimensions[0]
@@ -63,8 +69,8 @@ if (lats.ndim < 2):
 levs = data.variables[dlev][:]
 lev_500 = np.where(levs==500)[0][0]
 
-times = data.variables[dtime]
 # Create more useable times for output
+times = data.variables[dtime]
 vtimes = num2date(times[:],times.units)
 
 # Pull out the 500 hPa Heights
@@ -76,8 +82,7 @@ vwnd = data.variables['v_wind'][:].squeeze() * units('m/s')
 sped = get_wind_speed(uwnd, vwnd).to('knots')
 
 
-# In[4]:
-
+##################################
 # Set up the projection for LCC
 plotcrs = ccrs.LambertConformal(central_longitude=-100.0, central_latitude=45.0)
 datacrs = ccrs.PlateCarree(central_longitude=0.)
@@ -89,7 +94,8 @@ states_provinces = cfeature.NaturalEarthFeature(
         facecolor='none')
 
 
-# In[5]:
+##################################
+# Subset and smooth
 
 # Subset the data arrays to grab only 500 hPa
 hght_500 = hght[lev_500]
@@ -101,9 +107,9 @@ vwnd_500 = vwnd[lev_500]
 Z_500 = ndimage.gaussian_filter(hght_500, sigma=5, order=0)
 
 
-# In[12]:
+##################################
+# Plot the contours
 
-get_ipython().magic('matplotlib inline')
 # Start plot with new figure and axis
 fig = plt.figure(1,figsize=(17.,11.))
 ax  = plt.subplot(111,projection=plotcrs)
@@ -117,9 +123,9 @@ ax.set_extent([-125.,-67.,22.,52.], ccrs.PlateCarree())
 ax.coastlines('50m',edgecolor='black',linewidth=0.75)
 ax.add_feature(states_provinces,edgecolor='black',linewidth=0.5)
 
-
 # Set the CINT
 clev500 = np.arange(5100,6000,60)
+
 # Plot smoothed 500-hPa contours
 cs2 = ax.contour(lons, lats, Z_500, clev500, colors='red',
                  linewidths=3, linestyles='solid', transform=datacrs)
@@ -132,20 +138,5 @@ cs = ax.contour(lons, lats, hght_500, clev500, colors='black',
 cl = plt.clabel(cs, fontsize=12, colors='k',inline=1, inline_spacing=8, 
                 fmt='%i', rightside_up=True, use_clabeltext=True)
 
-
-
-# Transform Vectors before plotting, then plot wind barbs.
-#wslice = slice(None, None, 15)
-#ax.barbs(lons[wslice,wslice], lats[wslice,wslice],
-#         uwnd_500[wslice,wslice].m, vwnd_500[wslice,wslice].m,
-#         length=7, transform=datacrs)
-
-# Save and show
-#plt.savefig('500hPa_heights_'+vtimes[0].strftime('%Y%m%d_%H')+'.png',dpi=150)
 plt.show()
-
-
-# In[ ]:
-
-
 

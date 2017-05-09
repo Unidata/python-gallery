@@ -1,7 +1,7 @@
 """
-=============================
+======================================
 A 250-hPa Hemispheric Map using Python
-=============================
+======================================
 
 This example plots a hemispheric plot of GFS 250-hPa Geopotential Heights and
 wind speed in knots.

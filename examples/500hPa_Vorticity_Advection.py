@@ -1,7 +1,7 @@
 """
-=============================
+===========================
 500 hPa Vorticity Advection
-=============================
+===========================
 
 Plot an 500-hPa map with calculating vorticity advection using MetPy calculations.
 
@@ -11,6 +11,7 @@ the distance between lat/lon grid points.
 """
 ########################################
 # Helper function to calculate distance between lat/lon
+# -----------------------------------------------------
 
 def calc_dx_dy(longitude,latitude,shape='sphere',radius=6370997.):
     ''' This definition calculates the distance between grid points that are in
@@ -60,6 +61,7 @@ def calc_dx_dy(longitude,latitude,shape='sphere',radius=6370997.):
 
 #######################################
 # Data Aquisition
+# ---------------
 
 import numpy as np
 import matplotlib.pylab as plt
@@ -103,6 +105,7 @@ vwnd_500 = ds.variables['v_wind'][0,lev_500,:,:] * units('m/s')
 
 #######################################
 # Begin Data Calculations
+# -----------------------
 
 dx, dy = calc_dx_dy(lon,lat)
 
@@ -116,6 +119,7 @@ vort_adv = advection(avor.T, [uwnd_500.T, vwnd_500.T], (dx.T, dy.T)).T*1e9
 
 #######################################
 # Map Creation
+# ------------
 
 # Set up Coordinate System for Plot and Transforms
 dproj = ds.variables['Lambert_Conformal']

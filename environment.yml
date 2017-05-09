@@ -3,10 +3,14 @@
    - conda-forge
  dependencies:
    - python=3
-   - numpy
+   - numpy=1.11
    - matplotlib
    - cartopy
    - jupyter
    - metpy
    - siphon
+   - sphinx
+   - sphinx-gallery
+   - sphinx_rtd_theme
+   - xarray
 

@@ -1,7 +1,7 @@
 """
-=============================
+========================================
 Using Xarray for Data read and selection
-=============================
+========================================
 
 Use Xarray module to read in model data from nomads server.
 
@@ -28,6 +28,7 @@ from metpy.units import units
 
 ########################################
 # Accessing data using Xarray
+# ---------------------------
 
 # Set year, month, day, and hour values as variables to make it
 # easier to change dates for a case study
@@ -44,8 +45,6 @@ data = xr.open_dataset('https://nomads.ncdc.noaa.gov/thredds/dodsC/namanl/'
 # To list all available variables for this data set,
 # uncomment the following line
 #print(sorted(list(data.variables)))
-
-
 
 ########################################
 # NAM data is in a projected coordinate and you get back the projection
@@ -81,6 +80,7 @@ vwnd_500 = data.v_wind.sel(time=vtimes[0], isobaric1=500)
 
 ########################################
 # Now make the 500-hPa map
+# ------------------------
 
 # Must set data projection, NAM is LCC projection
 datacrs = ccrs.LambertConformal(central_latitude=data.Lambert_Conformal.latitude_of_projection_origin,

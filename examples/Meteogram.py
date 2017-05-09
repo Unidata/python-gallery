@@ -1,7 +1,7 @@
 """
-=============================
+=================
 Surface Meteogram
-=============================
+=================
 
 Plot a surface meteogram from METAR data available on the Unidata Thredds Server.
 
@@ -22,6 +22,7 @@ from metpy.units import units
 
 ########################################
 # Begin Data Ingest
+# -----------------
 
 # Request METAR data from TDS
 metar = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/nws/metar/ncdecoded/catalog.xml')
@@ -82,6 +83,7 @@ wdir = data.variables['wind_from_direction'][:] * units('degree')
 
 ########################################
 # Use MetPy Calulations to calculate RH
+# -------------------------------------
 
 # Get ambient partial pressure, use to calculate mixing ratio
 es = saturation_vapor_pressure(dewp)
@@ -99,6 +101,7 @@ rh = (vp / svp) * 100
 
 ########################################
 # Make Meteogram Plot
+# -------------------
 
 # Create the plots
 fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, sharex=True, figsize=(12,10))
