@@ -1,7 +1,7 @@
 """
-=============================
+======================
 Calculating Wind Shear
-=============================
+======================
 
 This example plots calculates the 850-500 hPa Bulk Wind Shear
 

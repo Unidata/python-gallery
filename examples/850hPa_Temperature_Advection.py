@@ -80,6 +80,7 @@ import cartopy.feature as cfeature
 
 ###############################################
 # Create NCSS object to access the NetcdfSubset
+# ---------------------------------------------
 # Data from NOMADS GFS 0.5 deg Analysis Archive
 # https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs
 year = '2017'
@@ -134,6 +135,7 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 
 ###############################################
 # Begin data calculations
+# -----------------------
 
 # Use helper function defined above to calculate distance
 # between lat/lon grid points
@@ -150,6 +152,7 @@ adv = ndimage.gaussian_filter(adv, sigma=3, order=0) * units('K/sec')
 
 ###############################################
 # Begin map creation
+# ------------------
 
 # Set Projection of Data
 datacrs = ccrs.PlateCarree()
@@ -208,5 +211,4 @@ ax.barbs(lon_2d, lat_2d, u_wind_850.magnitude, v_wind_850.magnitude,
          length=6, regrid_shape=20, pivot='middle', transform=datacrs)
 
 gs.tight_layout(fig)
-plt.savefig('advection.png',dpi=150)
 plt.show()

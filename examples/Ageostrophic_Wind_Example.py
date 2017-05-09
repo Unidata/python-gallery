@@ -1,7 +1,7 @@
 """
-=============================
+=================================
 Geostrophic and Ageostrophic Wind
-=============================
+=================================
 
 Plot a 1000-hPa map calculating the geostrophic from MetPy and finding the
 ageostrophic wind from the total wind and the geostrophic wind.

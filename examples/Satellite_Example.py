@@ -1,7 +1,7 @@
 """
-=============================
+============================
 WV Satellite Overlay Example
-=============================
+============================
 
 Plot a Gini Satellite file and overlay GFS-based data.
 
