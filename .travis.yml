@@ -1,50 +1,49 @@
-# Since we really don't want any of Travis' Python
 language: generic
 sudo: false
 
-python:
+os:
+  - linux
+  - osx
+
 env:
   global:
     - MINICONDA_DIR="$HOME/miniconda"
-    - GH_PAGES_DIR="$TRAVIS_BUILD_DIR/website/"
   matrix:
-    - Python=3.4
     - Python=3.5
-    - Task=website
+    - Python=3.6
 
 before_install:
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+      export CONDA_OS_NAME="MacOSX";
+    else
+      export CONDA_OS_NAME="Linux";
+    fi;
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-${CONDA_OS_NAME}-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $MINICONDA_DIR
   - export PATH="$MINICONDA_DIR/bin:$PATH"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - if [[ $Task != 'website' ]]; then
-      sed -i -e "s/python=3/python=$Python/" environment.yml;
-    else
-      conda install nbconvert jupyter_client;
-    fi;
+  - sed -i -e "s/python=3/python=$Python/" environment.yml;
 
 install:
   - if [[ $Task != 'website' ]]; then
       conda env create -q -f environment.yml;
       source activate gallery;
       conda list;
-      python -m ipykernel install --user --name gallery;
     fi
 
 script:
-  - if [[ $Task == 'website' ]]; then
-      python nbconverter.py;
-    else
-      find notebooks/ -name \*.ipynb -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=gallery --to=notebook --stdout >| /dev/null;
-    fi
+  - cd website
+  - make html
 
 deploy:
+  provider: pages
   skip_cleanup: true
-  provider: script
-  script: scripts/deploy.sh
+  github_token: $GH_TOKEN
+  local_dir: website/build/html
+  target_branch: gh-pages
   on:
     branch: master
-    condition: $Task == 'website'
+    python: 3.6
