@@ -1,9 +1,8 @@
-# Notebook Gallery
-This is a collection of notebooks published in the Unidata
-[blogs](https://www.unidata.ucar.edu/blogs/developer/) or just collected as examples. In
-addition to viewing them on the blog, or at the [web gallery](http://unidata.github.io/notebook-gallery)
-you can also load them up in
-[nbviewer](http://nbviewer.jupyter.org/github/unidata/notebook-gallery/tree/master/).
+# Unidata Python Gallery
+This is a collection of examples published in the Unidata
+[blogs](https://www.unidata.ucar.edu/blogs/developer/) or just contributed. In
+addition to viewing them on the blog you can view them rendered at the [web gallery](http://unidata.github.io/python-gallery),
+where you can also download the examples as Jupyter notebooks.
 
 ## Installation Instructions
 
@@ -62,32 +61,3 @@ To switch and/or deactivate environments:
 deactivate
 activate <environment>
 ```
-
-## Running the jupyter notebook server
-From the `notebook-gallery` directory and with the `gallery` environment active,
-run:
-
-```sh
-jupyter notebook
-```
-
-This starts the webserver for running jupyter notebooks. You should see some output like the following:
-
-```
-[I 11:59:31.409 NotebookApp] Serving notebooks from local directory: /Users/rmay/repos/notebook-gallery
-[I 11:59:31.409 NotebookApp] 0 active kernels
-[I 11:59:31.409 NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/
-[I 11:59:31.409 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-```
-
-This indicates that the server is ready to accept connections on your local machine at port 8888.
-Here's a link for convenience: [http://localhost:8888/](http://localhost:8888/).
-If port 8888 is not available (say if you're running more than one server, you
-may get a few more messages and the server may end up accepting connections on
-a different port. The messages in the terminal should tell you which port to try.
-
-Once you open up the main notebook page, if you click on the notebooks/ directory, you should
-see the full collection of notebooks. Clicking on any of the notebooks will open them for running
-in an interactive python session. Clicking a cell and typing shift-enter will run the cell.
-The Jupyter Notebook [documentation](https://jupyter-notebook-beginner-guide.readthedocs.org)
-has more information on working with notebooks.
