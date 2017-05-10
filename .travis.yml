@@ -36,7 +36,7 @@ install:
 script:
   - flake8 examples
   - pushd website
-  - make html
+  - travis_retry make html
   - popd
 
 before_deploy:
