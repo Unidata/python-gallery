@@ -102,10 +102,6 @@ state_boundaries = cfeat.NaturalEarthFeature(category='cultural',
 ax.add_feature(state_boundaries, edgecolor='black', linestyle=':')
 ax.add_feature(cfeat.BORDERS, linewidth='2', edgecolor='black')
 
-################################
-# Plot Satellite Image
-# --------------------
-
 # Plot the image with our colormapping choices
 wv_norm, wv_cmap = registry.get_with_steps('WVCIMSS', 0, 1)
 im = ax.imshow(data_var[:], extent=(x[0], x[-1], y[0], y[-1]), origin='upper',
