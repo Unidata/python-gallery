@@ -11,28 +11,27 @@ kernel as it displays the ability to use widgets and make an interactive plot.
 The interactive plot has the ability to display three different variables, a couple
 of different times, and use four different color maps.
 """
-
-import ipywidgets as widgets
-from IPython.display import display
-from ipywidgets import interactive, FloatSlider, RadioButtons, SelectionSlider, HBox, VBox, Layout
-import matplotlib.pyplot as plt
-from siphon.catalog import TDSCatalog
-from siphon.ncss import NCSS
 from datetime import datetime, timedelta
-from netCDF4 import num2date
-import numpy as np
+
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+from IPython.display import display
+import ipywidgets as widgets
+import matplotlib.pyplot as plt
 from metpy.units import units
+from netCDF4 import num2date
+import numpy as np
+from siphon.catalog import TDSCatalog
+from siphon.ncss import NCSS
 
 
 # Request the GFS data from the thredds server
-gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p5deg/catalog.xml')
+gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/'
+                 'NCEP/GFS/Global_0p5deg/catalog.xml')
 dataset = list(gfs.datasets.values())[1]
-dataset.access_urls
+print(dataset.access_urls)
 
 # Create NCSS object to access the NetcdfSubset
-from siphon.ncss import NCSS
 ncss = NCSS(dataset.access_urls['NetcdfSubset'])
 
 # get current date and time
@@ -43,12 +42,13 @@ now = datetime(now.year, now.month, now.day, now.hour)
 start = now
 end = now + timedelta(hours=12)
 
-
 query = ncss.query()
 query.time_range(start, end)
 query.lonlat_box(north=60, south=20, east=310, west=230)
 query.accept('netcdf4')
-query.variables('Temperature_surface', 'Relative_humidity_entire_atmosphere_single_layer', 'Wind_speed_gust_surface')
+query.variables('Temperature_surface', 'Relative_humidity_entire_atmosphere_single_layer',
+                'Wind_speed_gust_surface')
+
 
 # Helper function for finding proper time variable
 def find_time_var(var, time_basename='time'):
@@ -56,6 +56,7 @@ def find_time_var(var, time_basename='time'):
         if coord_name.startswith(time_basename):
             return coord_name
     raise ValueError('No time variable found for ' + var.name)
+
 
 # Request data for the variables you want to use
 data = ncss.get_data(query)
@@ -76,19 +77,21 @@ lon_2d, lat_2d = np.meshgrid(lon, lat)
 
 def plot(varname='', time=0, colormap=''):
     variable = data.variables[varname][:]
-    fig = plt.figure(figsize=(10,8))
+    fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(111, projection=ccrs.PlateCarree())
     ax.set_extent([235., 290., 20., 55.])
     ax.set_title('GFS 12-Hour Forecast', size=16)
 
     # Add state boundaries to plot
-    states_provinces = cfeature.NaturalEarthFeature(category='cultural', name='admin_1_states_provinces_lines',
-                                                scale='50m', facecolor='none')
+    states_provinces = cfeature.NaturalEarthFeature(category='cultural',
+                                                    name='admin_1_states_provinces_lines',
+                                                    scale='50m', facecolor='none')
     ax.add_feature(states_provinces, edgecolor='black', linewidth=1)
 
     # Add country borders to plot
-    country_borders = cfeature.NaturalEarthFeature(category='cultural', name='admin_0_countries',
-                                               scale='50m',facecolor='none')
+    country_borders = cfeature.NaturalEarthFeature(category='cultural',
+                                                   name='admin_0_countries',
+                                                   scale='50m', facecolor='none')
     ax.add_feature(country_borders, edgecolor='black', linewidth=1)
 
     if varname == 'Temperature_surface':
@@ -106,8 +109,13 @@ def plot(varname='', time=0, colormap=''):
         cb.set_label(r'$m/s$', size='large')
 
 
-x = interactive(plot, varname=widgets.Dropdown(options={'Temperature': 'Temperature_surface',
-    'Relative Humidity': 'Relative_humidity_entire_atmosphere_single_layer', 'Wind Speed': 'Wind_speed_gust_surface'},
-    description='Variable', alignment='center'), time=widgets.SelectionSlider(description='Time', options=time_strings,
-    width='40%'), colormap=widgets.RadioButtons(description='Colormap', options=['viridis', 'coolwarm', 'YlGnBu', 'RdPu']))
+var_widget = widgets.Dropdown(
+    options={'Temperature': 'Temperature_surface',
+             'Relative Humidity': 'Relative_humidity_entire_atmosphere_single_layer',
+             'Wind Speed': 'Wind_speed_gust_surface'},
+    description='Variable', alignment='center')
+time_widget = widgets.SelectionSlider(description='Time', options=time_strings, width='40%')
+colormap_widget = widgets.RadioButtons(description='Colormap',
+                                       options=['viridis', 'coolwarm', 'YlGnBu', 'RdPu'])
+x = widgets.interactive(plot, varname=var_widget, time=time_widget, colormap=colormap_widget)
 display(x)

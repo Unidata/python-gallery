@@ -13,26 +13,28 @@ Geopotential Heights and Wind Barbs.
 # Begin with imports, need a lot for this task.
 
 # A whole bunch of imports
+from datetime import datetime
 from urllib.request import urlopen
-import matplotlib.pyplot as plt
-from matplotlib import patheffects
+
 import cartopy.crs as ccrs
 import cartopy.feature as cfeat
-from metpy.io.gini import GiniFile
+from matplotlib import patheffects
+import matplotlib.pyplot as plt
+from metpy.io import GiniFile
 from metpy.plots.ctables import registry
+from metpy.units import units
 from netCDF4 import num2date
+import scipy.ndimage as ndimage
 from siphon.catalog import TDSCatalog
 from siphon.ncss import NCSS
-from datetime import datetime
-import scipy.ndimage as ndimage
-from metpy.units import units
 
 
 ##############################################
 # Get satellite data and set projection based on that data.
 
 # Scan the catalog and download the data
-satcat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/satellite/WV/EAST-CONUS_4km/current/catalog.xml')
+satcat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/satellite/'
+                    'WV/EAST-CONUS_4km/current/catalog.xml')
 dataset = satcat.datasets[list(satcat.datasets)[0]]
 gini_ds = GiniFile(urlopen(dataset.access_urls['HTTPServer'])).to_dataset()
 
@@ -55,7 +57,8 @@ proj = ccrs.LambertConformal(central_longitude=proj_var.longitude_of_central_mer
 ##############################################
 # Use Siphon to obtain data that is close to the time of the satellite file
 
-gfscat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p5deg/catalog.xml')
+gfscat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/'
+                    'NCEP/GFS/Global_0p5deg/catalog.xml')
 dataset = gfscat.datasets[list(gfscat.datasets)[1]]
 ncss = NCSS(dataset.access_urls['NetcdfSubset'])
 now = datetime.utcnow()
@@ -99,8 +102,9 @@ state_boundaries = cfeat.NaturalEarthFeature(category='cultural',
 ax.add_feature(state_boundaries, edgecolor='black', linestyle=':')
 ax.add_feature(cfeat.BORDERS, linewidth='2', edgecolor='black')
 
-
-# PLOT SATTELITE IMAGE
+################################
+# Plot Satellite Image
+# --------------------
 
 # Plot the image with our colormapping choices
 wv_norm, wv_cmap = registry.get_with_steps('WVCIMSS', 0, 1)
@@ -112,20 +116,18 @@ timestamp = num2date(time_var[:].squeeze(), time_var.units)
 text = ax.text(0.99, 0.01, timestamp.strftime('%d %B %Y %H%MZ'),
                horizontalalignment='right', transform=ax.transAxes,
                color='white', fontsize='x-large', weight='bold')
-text.set_path_effects([patheffects.Stroke(linewidth=2, foreground='black'),
-                       patheffects.Normal()])
+text.set_path_effects([patheffects.withStroke(linewidth=2, foreground='black')])
 
 # PLOT 300-hPa Geopotential Heights and Wind Barbs
-ax.set_extent([-112,-65,20,59],ccrs.Geodetic())
-cs = plt.contour(lon, lat, Z_300, colors='black', transform=ccrs.PlateCarree())
-plt.clabel(cs, fontsize=12, colors='k',inline=1, inline_spacing=8,
-           fmt='%i', rightside_up=True, use_clabeltext=True)
+ax.set_extent([-112, -65, 20, 59], ccrs.Geodetic())
+cs = ax.contour(lon, lat, Z_300, colors='black', transform=ccrs.PlateCarree())
+ax.clabel(cs, fontsize=12, colors='k', inline=1, inline_spacing=8,
+          fmt='%i', rightside_up=True, use_clabeltext=True)
 
 ax.barbs(lon, lat, uwnd_300.to('knots').m, vwnd_300.to('knots').m, color='tab:red',
          length=7, regrid_shape=15, pivot='middle', transform=ccrs.PlateCarree())
 
 ax.set_title('300-hPa Geo Heights (m; black) and Wind Barbs (kt)', loc='left')
-ax.set_title('Valid: %s' %(vtime[0]), loc='right')
+ax.set_title('Valid: {}'.format(vtime[0]), loc='right')
 
-plt.tight_layout()
 plt.show()

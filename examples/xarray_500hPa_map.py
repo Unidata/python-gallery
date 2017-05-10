@@ -12,19 +12,14 @@ simple 500 hPa plot is created after selecting with xarray.
 """
 ########################################
 # Import all of our needed modules
-
-import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.io.shapereader as shpreader
-import cartopy.feature as cfeature
-import xarray as xr
-from netCDF4 import num2date
-import scipy.ndimage as ndimage
 from datetime import datetime
-from siphon.ncss import NCSS
-from metpy.units import units
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.ndimage as ndimage
+import xarray as xr
 
 ########################################
 # Accessing data using Xarray
@@ -32,30 +27,25 @@ from metpy.units import units
 
 # Set year, month, day, and hour values as variables to make it
 # easier to change dates for a case study
-year = '2016'
-month = '04'
-day = '16'
-hour = '18'
-
-data = xr.open_dataset('https://nomads.ncdc.noaa.gov/thredds/dodsC/namanl/'
-                       +year+month+'/'+year+month+day+'/'+'namanl_218_'
-                       +year+month+day+'_'+hour+'00_000.grb',
+dt = datetime(2016, 4, 16, 18)
+data = xr.open_dataset('https://nomads.ncdc.noaa.gov/thredds/dodsC/namanl/{0:%Y%m}/'
+                       '{0:%Y%m%d}/namanl_218_{0:%Y%m%d}_{0:%H}00_000.grb'.format(dt),
                        decode_times=True)
 
 # To list all available variables for this data set,
 # uncomment the following line
-#print(sorted(list(data.variables)))
+# print(sorted(list(data.variables)))
 
 ########################################
 # NAM data is in a projected coordinate and you get back the projection
 # X and Y values in km
 
 # X, Y values are in units of km, need them in meters for plotting/calculations
-data.x.values = data.x.values*1000.
-data.y.values = data.y.values*1000.
+data.x.values = data.x.values * 1000.
+data.y.values = data.y.values * 1000.
 
 # Make them 2D for plotting/calculations
-x, y = np.meshgrid(data.x.values,data.y.values)
+x, y = np.meshgrid(data.x.values, data.y.values)
 
 ########################################
 # Getting the valid times in a more useable format
@@ -63,7 +53,7 @@ x, y = np.meshgrid(data.x.values,data.y.values)
 # Get the valid times from the file
 vtimes = []
 for t in range(data.time.size):
-    vtimes.append(datetime.utcfromtimestamp(data.time[t].data.astype('O')/1e9))
+    vtimes.append(datetime.utcfromtimestamp(data.time[t].data.astype('O') / 1e9))
 print(vtimes)
 
 ########################################
@@ -73,7 +63,7 @@ print(vtimes)
 # each file you use, so you'll always need to check what they are by listing
 # the coordinate variable names
 
-#print(data.Geopotential_height.coords)
+# print(data.Geopotential_height.coords)
 hght_500 = data.Geopotential_height.sel(time=vtimes[0], isobaric1=500)
 uwnd_500 = data.u_wind.sel(time=vtimes[0], isobaric1=500)
 vwnd_500 = data.v_wind.sel(time=vtimes[0], isobaric1=500)
@@ -83,12 +73,13 @@ vwnd_500 = data.v_wind.sel(time=vtimes[0], isobaric1=500)
 # ------------------------
 
 # Must set data projection, NAM is LCC projection
-datacrs = ccrs.LambertConformal(central_latitude=data.Lambert_Conformal.latitude_of_projection_origin,
-                                central_longitude=data.Lambert_Conformal.longitude_of_central_meridian)
+datacrs = ccrs.LambertConformal(
+    central_latitude=data.Lambert_Conformal.latitude_of_projection_origin,
+    central_longitude=data.Lambert_Conformal.longitude_of_central_meridian)
 
 # A different LCC projection for the plot.
 plotcrs = ccrs.LambertConformal(central_latitude=45., central_longitude=-100.,
-                                standard_parallels=[30,60])
+                                standard_parallels=[30, 60])
 
 states_provinces = cfeature.NaturalEarthFeature(
         category='cultural',
@@ -96,27 +87,27 @@ states_provinces = cfeature.NaturalEarthFeature(
         scale='50m',
         facecolor='none')
 
-fig = plt.figure(1,figsize=(17.,11.))
-ax  = plt.axes(projection=plotcrs)
-ax.coastlines('50m',edgecolor='black')
-ax.add_feature(states_provinces,edgecolor='black',linewidth=0.5)
-ax.set_extent([-130,-67,20,50],ccrs.PlateCarree())
+fig = plt.figure(figsize=(17., 11.))
+ax = plt.axes(projection=plotcrs)
+ax.coastlines('50m', edgecolor='black')
+ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
+ax.set_extent([-130, -67, 20, 50], ccrs.PlateCarree())
 
-clev500 = np.arange(5100,6000,60)
-cs = ax.contour(x,y,ndimage.gaussian_filter(hght_500,sigma=5),clev500,colors='k',linewidths=2.5,linestyles='solid',
-                transform=datacrs)
-tl = plt.clabel(cs, fontsize=12, colors='k',inline=1, inline_spacing=8,
+clev500 = np.arange(5100, 6000, 60)
+cs = ax.contour(x, y, ndimage.gaussian_filter(hght_500, sigma=5), clev500,
+                colors='k', linewidths=2.5, linestyles='solid', transform=datacrs)
+tl = plt.clabel(cs, fontsize=12, colors='k', inline=1, inline_spacing=8,
                 fmt='%i', rightside_up=True, use_clabeltext=True)
 # Here we put boxes around the clabels with a black boarder white facecolor
 for t in tl:
-    t.set_bbox(dict(fc="w"))
+    t.set_bbox(dict(fc='w'))
 
 # Transform Vectors before plotting, then plot wind barbs.
-ax.barbs(x,y,uwnd_500.data,vwnd_500.data,length=7,regrid_shape=20,transform=datacrs)
+ax.barbs(x, y, uwnd_500.data, vwnd_500.data, length=7, regrid_shape=20, transform=datacrs)
 
 # Add some titles to make the plot readable by someone else
-plt.title('500-hPa Geopotential Heights (m)',loc='left')
-plt.title('VALID: %s' %(vtimes[0]),loc='right')
+plt.title('500-hPa Geopotential Heights (m)', loc='left')
+plt.title('VALID: %s'.format(vtimes[0]), loc='right')
 
 plt.tight_layout()
 plt.show()

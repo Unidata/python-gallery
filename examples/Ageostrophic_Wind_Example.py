@@ -15,7 +15,26 @@ Additionally, we utilize the `ndimage.zoom` method for smoothing the 1000-hPa
 height contours without smoothing the data.
 """
 
-def calc_dx_dy(longitude,latitude,shape='sphere',radius=6370997.):
+########################################
+# Imports
+from datetime import datetime
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
+from metpy.calc import coriolis_parameter, geostrophic_wind
+from metpy.units import units
+from netCDF4 import num2date
+import numpy as np
+import scipy.ndimage as ndimage
+from siphon.ncss import NCSS
+
+########################################
+# Helper function to calculate distance between lat/lon
+# -----------------------------------------------------
+
+
+def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
     ''' This definition calculates the distance between grid points that are in
         a latitude/longitude format.
 
@@ -29,70 +48,51 @@ def calc_dx_dy(longitude,latitude,shape='sphere',radius=6370997.):
         Assumes [Y, X] for 2D arrays
 
         Returns: dx, dy; 2D arrays of distances between grid points
-                 in the x and y direction with units of meters
+                 in the x and y direction with units of meters and sign of differencing
     '''
     import numpy as np
     from metpy.units import units
     from pyproj import Geod
 
-    if (radius != 6370997.):
-        g = Geod(a=radius,b=radius)
+    if radius != 6370997.:
+        g = Geod(a=radius, b=radius)
     else:
         g = Geod(ellps=shape)
 
-    if (latitude.ndim == 1):
-        longitude, latitude = np.meshgrid(longitude,latitude)
+    if latitude.ndim == 1:
+        longitude, latitude = np.meshgrid(longitude, latitude)
 
     dy = np.zeros(latitude.shape)
     dx = np.zeros(longitude.shape)
 
-
     for i in range(longitude.shape[1]):
         for j in range(latitude.shape[0]-1):
-            _, _, dy[j,i] = g.inv(longitude[j,i],latitude[j,i],
-                                  longitude[j+1,i],latitude[j+1,i])
-    dy[j+1,:] = dy[j,:]
+            _, _, dy[j, i] = g.inv(longitude[j, i], latitude[j, i],
+                                   longitude[j+1, i], latitude[j+1, i])
+    dy[j+1, :] = dy[j, :]
 
     for i in range(longitude.shape[1]-1):
         for j in range(latitude.shape[0]):
-            _, _, dx[j,i] = g.inv(longitude[j,i],latitude[j,i],
-                                  longitude[j,i+1],latitude[j,i+1])
-    dx[:,i+1] = dx[:,i]
+            _, _, dx[j, i] = g.inv(longitude[j, i], latitude[j, i],
+                                   longitude[j, i+1], latitude[j, i+1])
+    dx[:, i+1] = dx[:, i]
 
-    xdiff_sign = np.sign(longitude[0,1]-longitude[0,0])
-    ydiff_sign = np.sign(latitude[1,0]-latitude[0,0])
+    xdiff_sign = np.sign(longitude[0, 1] - longitude[0, 0])
+    ydiff_sign = np.sign(latitude[1, 0] - latitude[0, 0])
     return xdiff_sign*dx*units.meter, ydiff_sign*dy*units.meter
 
-from siphon.catalog import TDSCatalog
-from siphon.ncss import NCSS
-from datetime import datetime
-import numpy as np
-from netCDF4 import num2date
-import scipy.ndimage as ndimage
-from metpy.units import units
-from metpy.calc import coriolis_parameter, geostrophic_wind
-from metpy.constants import earth_avg_radius, g
-from metpy.units import units
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
+######################################
+# Set up access to the data
 
-# Construct a TDSCatalog instance pointing to the gfs dataset
-best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p25deg/catalog.xml')
-
-# Pull out the dataset you want to use and look at access URLS
-best_ds = list(best_gfs.datasets.values())[1]
-best_ds.access_urls
 
 # Create NCSS object to access the NetcdfSubset
-
-ncss = NCSS(best_ds.access_urls['NetcdfSubset'])
-ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/201608/20160822/gfsanl_4_20160822_1800_003.grb2')
+ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/201608/20160822/'
+            'gfsanl_4_20160822_1800_003.grb2')
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query()
 query.lonlat_box(north=50, south=30, east=-80, west=-115)
-query.time(datetime(2016,8,22,21))
+query.time(datetime(2016, 8, 22, 21))
 
 # Request data for geopotential height
 query.variables('Geopotential_height', 'U-component_of_wind', 'V-component_of_wind')
@@ -117,9 +117,9 @@ lon_var = data.variables['lon']
 # Get actual data values and remove any size 1 dimensions
 lat = lat_var[:].squeeze()
 lon = lon_var[:].squeeze()
-height = height_var[0,0,:,:].squeeze()
-u_wind = u_wind_var[0,0,:,:].squeeze() * units('m/s')
-v_wind = v_wind_var[0,0,:,:].squeeze() * units('m/s')
+height = height_var[0, 0, :, :].squeeze()
+u_wind = u_wind_var[0, 0, :, :].squeeze() * units('m/s')
+v_wind = v_wind_var[0, 0, :, :].squeeze() * units('m/s')
 
 # Convert number of hours since the reference time into an actual date
 time = num2date(time_var[:].squeeze(), time_var.units)
@@ -133,7 +133,7 @@ height = ndimage.gaussian_filter(height, sigma=1.5, order=0)
 # Set up some constants based on our projection, including the Coriolis parameter and
 # grid spacing, converting lon/lat spacing to Cartesian
 f = coriolis_parameter(np.deg2rad(lat_2d)).to('1/s')
-dx, dy = calc_dx_dy(lon_2d,lat_2d)
+dx, dy = calc_dx_dy(lon_2d, lat_2d)
 
 # In MetPy 0.5, geostrophic_wind() assumes the order of the dimensions is (X, Y),
 # so we need to transpose from the input data, which are ordered lat (y), lon (x).
@@ -147,7 +147,7 @@ ageo_wind_u = u_wind - geo_wind_u
 ageo_wind_v = v_wind - geo_wind_v
 
 # Create new figure
-fig = plt.figure(figsize=(15,10), facecolor='black')
+fig = plt.figure(figsize=(15, 10), facecolor='black')
 
 # Add the map and set the extent
 ax = plt.axes(projection=ccrs.PlateCarree())
@@ -163,7 +163,7 @@ ax.add_feature(states_provinces, edgecolor='white', linewidth=2)
 # Add country borders to plot
 country_borders = cfeature.NaturalEarthFeature(category='cultural',
                                                name='admin_0_countries',
-                                               scale='50m',facecolor='none')
+                                               scale='50m', facecolor='none')
 ax.add_feature(country_borders, edgecolor='white', linewidth=2)
 
 # Contour the heights every 10 m

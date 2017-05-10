@@ -21,8 +21,8 @@ extensions = [
 
 sphinx_gallery_conf = {
     'reference_url': {
-        #'metpy': 'https://unidata.github.io/MetPy/',
-        #'siphon': 'https://unidata.github.io/siphon/',
+        'metpy': 'http://unidata.github.io/MetPy',
+        'siphon': 'http://unidata.github.io/siphon',
         'matplotlib': 'http://matplotlib.org',
         'numpy': 'http://docs.scipy.org/doc/numpy/',
         'scipy': 'http://docs.scipy.org/doc/scipy/reference'},

@@ -28,15 +28,21 @@ before_install:
   - sed -i -e "s/python=3/python=$Python/" environment.yml;
 
 install:
-  - if [[ $Task != 'website' ]]; then
-      conda env create -q -f environment.yml;
-      source activate gallery;
-      conda list;
-    fi
+  - conda env create -q -f environment.yml
+  - source activate gallery
+  - conda install -c conda-forge flake8 flake8-quotes flake8-mutable flake8-pep3101 flake8-comprehensions flake8-builtins flake8-import-order
+  - conda list
 
 script:
+  - flake8 examples
   - cd website
   - make html
+
+before_deploy:
+  # Remove unused, unminified javascript from sphinx
+  - touch website/build/html/.nojekyll;
+  - rm -f website/build/html/_static/jquery-*.js;
+  - rm -f website/build/html/_static/underscore-*.js;
 
 deploy:
   provider: pages
@@ -46,4 +52,5 @@ deploy:
   target_branch: gh-pages
   on:
     branch: master
-    python: 3.6
+    os: linux
+    condition: $Python == '3.6'
