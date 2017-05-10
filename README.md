@@ -6,7 +6,7 @@ where you can also download the examples as Jupyter notebooks.
 
 ## Installation Instructions
 
-The current list of dependencies for this collection of notebooks is:
+The current list of dependencies for this collection is:
 
 - [numpy](http://www.numpy.org/)
 - [netcdf4-python](https://unidata.github.io/netcdf4-python/)
@@ -23,9 +23,9 @@ The easiest way to install these libraries is with [conda](http://conda.pydata.o
   cmd.exe), run these instructions to clone the repository and create the environment:
 
 ```sh
-git clone https://github.com/Unidata/notebook-gallery
+git clone https://github.com/Unidata/python-gallery
 
-cd notebook-gallery
+cd python-gallery
 
 conda env create -f environment.yml
 ```
