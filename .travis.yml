@@ -35,8 +35,9 @@ install:
 
 script:
   - flake8 examples
-  - cd website
+  - pushd website
   - make html
+  - popd
 
 before_deploy:
   # Remove unused, unminified javascript from sphinx
