@@ -100,7 +100,7 @@ tl = plt.clabel(cs, fontsize=12, colors='k', inline=1, inline_spacing=8,
                 fmt='%i', rightside_up=True, use_clabeltext=True)
 # Here we put boxes around the clabels with a black boarder white facecolor
 for t in tl:
-    t.set_bbox(dict(fc='w'))
+    t.set_bbox({'fc': 'w'})
 
 # Transform Vectors before plotting, then plot wind barbs.
 ax.barbs(x, y, uwnd_500.data, vwnd_500.data, length=7, regrid_shape=20, transform=datacrs)
