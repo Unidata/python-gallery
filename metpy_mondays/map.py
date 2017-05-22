@@ -5,6 +5,9 @@ MetPy Monday #7
 
 MetPy Monday #7
 """
+
+# sphinx_gallery_thumbnail_number = 2
+
 #####################################
 
 import matplotlib
