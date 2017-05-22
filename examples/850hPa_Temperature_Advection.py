@@ -40,7 +40,7 @@ def find_time_var(var, time_basename='time'):
 # Helper function to calculate distance between lat/lon points
 # to be used in differencing calculations
 def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    ''' This definition calculates the distance between grid points that are in
+    """ This definition calculates the distance between grid points that are in
         a latitude/longitude format.
 
         Using pyproj GEOD; different Earth Shapes
@@ -54,7 +54,7 @@ def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
 
         Returns: dx, dy; 2D arrays of distances between grid points
                  in the x and y direction with units of meters and sign of differencing
-    '''
+    """
     import numpy as np
     from metpy.units import units
     from pyproj import Geod

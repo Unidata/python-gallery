@@ -35,7 +35,7 @@ from siphon.ncss import NCSS
 
 
 def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    ''' This definition calculates the distance between grid points that are in
+    """ This definition calculates the distance between grid points that are in
         a latitude/longitude format.
 
         Using pyproj GEOD; different Earth Shapes
@@ -49,7 +49,7 @@ def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
 
         Returns: dx, dy; 2D arrays of distances between grid points
                  in the x and y direction with units of meters and sign of differencing
-    '''
+    """
     import numpy as np
     from metpy.units import units
     from pyproj import Geod
@@ -181,7 +181,8 @@ ax.clabel(c, fontsize=12, inline=1, inline_spacing=3, fmt='%i')
 # taking every 4th point in x and y). The quiver_kwargs are parameters to control the
 # appearance of the quiver so that they stay consistent between the calls.
 quiver_slices = (slice(None, None, 2), slice(None, None, 2))
-quiver_kwargs = dict(headlength=4, headwidth=3, angles='uv', scale_units='xy', scale=20)
+quiver_kwargs = {'headlength': 4, 'headwidth': 3, 'angles': 'uv', 'scale_units': 'xy',
+                 'scale': 20}
 
 # Plot the wind vectors
 wind = ax.quiver(lon_2d[quiver_slices], lat_2d[quiver_slices],
