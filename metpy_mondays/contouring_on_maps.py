@@ -3,7 +3,9 @@
 MetPy Monday #7
 ===============
 
-MetPy Monday #7
+This week we learn about contouring a field on the map and some of the idiosyncrasies of
+cyclic points. In the end, we will have a plot of the globe with the Coriolis parameter
+contoured. You can use this functionality to create height maps and more!
 """
 
 #####################################
