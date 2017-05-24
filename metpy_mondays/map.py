@@ -6,8 +6,6 @@ MetPy Monday #7
 MetPy Monday #7
 """
 
-# sphinx_gallery_thumbnail_number = 2
-
 #####################################
 
 import matplotlib
@@ -18,7 +16,7 @@ import numpy as np
 
 #####################################
 
-lats = np.arange(-90,91) * units.degrees
+lats = np.arange(-90, 91) * units.degrees
 coriolis = mpcalc.coriolis_parameter(lats)
 
 #####################################
@@ -33,9 +31,9 @@ ax.set_ylabel('Coriolis Parameter', fontsize=14)
 
 from cartopy.util import add_cyclic_point
 
-lons = np.arange(0,360)
+lons = np.arange(0, 360)
 
-coriolis = np.ones((181,360)) * coriolis[:, np.newaxis]
+coriolis = np.ones((181, 360)) * coriolis[:, np.newaxis]
 
 cyclic_data, cyclic_lons = add_cyclic_point(coriolis, coord=lons)
 
@@ -46,6 +44,8 @@ import cartopy.crs as ccrs
 
 # import cartopy's collection of map features
 import cartopy.feature as cfeat
+
+# sphinx_gallery_thumbnail_number = 2
 
 # Works with matplotlib's built-in transform support.
 fig = plt.figure(figsize=(10, 8))
@@ -61,7 +61,8 @@ ax.add_feature(cfeat.COASTLINE)
 
 # Set negative contours to be solid instead of dashed
 matplotlib.rcParams['contour.negative_linestyle'] = 'solid'
-CS = ax.contour(cyclic_lons, lats, cyclic_data, 20, colors='tab:brown', transform=ccrs.PlateCarree())
+CS = ax.contour(cyclic_lons, lats, cyclic_data, 20, colors='tab:brown',
+                transform=ccrs.PlateCarree())
 ax.clabel(CS, inline=1, fontsize=10, fmt='%1.1f')
 
 plt.show()
