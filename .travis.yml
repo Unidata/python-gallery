@@ -34,7 +34,7 @@ install:
   - conda list
 
 script:
-  - flake8 examples
+  - flake8 examples metpy_mondays
   - pushd website
   - travis_retry make html
   - popd
