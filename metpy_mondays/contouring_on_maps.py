@@ -9,7 +9,9 @@ contoured. You can use this functionality to create height maps and more!
 """
 
 #####################################
-
+import cartopy.crs as ccrs
+import cartopy.feature as cfeat
+from cartopy.util import add_cyclic_point
 import matplotlib
 import matplotlib.pyplot as plt
 import metpy.calc as mpcalc
@@ -31,8 +33,6 @@ ax.set_ylabel('Coriolis Parameter', fontsize=14)
 
 #####################################
 
-from cartopy.util import add_cyclic_point
-
 lons = np.arange(0, 360)
 
 coriolis = np.ones((181, 360)) * coriolis[:, np.newaxis]
@@ -40,12 +40,6 @@ coriolis = np.ones((181, 360)) * coriolis[:, np.newaxis]
 cyclic_data, cyclic_lons = add_cyclic_point(coriolis, coord=lons)
 
 #####################################
-
-# Importing CartoPy
-import cartopy.crs as ccrs
-
-# import cartopy's collection of map features
-import cartopy.feature as cfeat
 
 # sphinx_gallery_thumbnail_number = 2
 
