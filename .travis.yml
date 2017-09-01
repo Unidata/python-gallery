@@ -44,13 +44,12 @@ before_deploy:
   - touch website/build/html/.nojekyll;
   - rm -f website/build/html/_static/jquery-*.js;
   - rm -f website/build/html/_static/underscore-*.js;
+  - rm -f website/build/html/.buildinfo
 
 deploy:
-  provider: pages
+  provider: script
+  script: deploy/deploy.sh
   skip_cleanup: true
-  github_token: $GH_TOKEN
-  local_dir: website/build/html
-  target_branch: gh-pages
   on:
     branch: master
     os: linux
