@@ -21,11 +21,11 @@ extensions = [
 
 sphinx_gallery_conf = {
     'reference_url': {
-        'metpy': 'http://unidata.github.io/MetPy',
-        'siphon': 'http://unidata.github.io/siphon',
-        'matplotlib': 'http://matplotlib.org',
-        'numpy': 'http://docs.scipy.org/doc/numpy/',
-        'scipy': 'http://docs.scipy.org/doc/scipy/reference'},
+        'metpy': 'https://unidata.github.io/MetPy/latest',
+        'siphon': 'https://unidata.github.io/siphon/latest',
+        'matplotlib': 'https://matplotlib.org',
+        'numpy': 'https://docs.scipy.org/doc/numpy/',
+        'scipy': 'https://docs.scipy.org/doc/scipy/reference'},
     'examples_dirs': [os.path.join('..', 'examples'), os.path.join('..', 'metpy_mondays')],
     'gallery_dirs': ['examples', 'metpy_mondays'],
     'filename_pattern': os.path.join('.', '*'),
@@ -267,4 +267,3 @@ latex_elements = {
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 # texinfo_no_detailmenu = False
-
