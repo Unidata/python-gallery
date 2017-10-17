@@ -14,6 +14,7 @@ Galleries
 
    examples/index
    metpy_mondays/index
+   useful_tools
 
 ----------
 Contact Us
