@@ -129,7 +129,7 @@ html_title = project
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = os.path.join('_static', 'Unidata_logo_vertical_400x400.png')
+html_logo = os.path.join('_static', 'Unidata_logo_vertical_400x400_alpha.png')
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
