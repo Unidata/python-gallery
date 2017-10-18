@@ -4,13 +4,12 @@
  dependencies:
    - python=3
    - numpy=1.11
-   - matplotlib
+   - matplotlib!=2.1
    - cartopy
    - jupyter
    - metpy
    - siphon
-   - sphinx
+   - sphinx!=1.6.4
    - sphinx-gallery
    - sphinx_rtd_theme
    - xarray
-

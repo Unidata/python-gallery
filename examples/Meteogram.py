@@ -108,7 +108,6 @@ ax1.plot(time, dewp, ls='solid', color='tab:green', marker='*', ms=8)
 ax1.fill_between(time, dewp.min().m-5, dewp.m, color='tab:green', alpha=0.5)
 ax1.fill_between(time, dewp.m, temp.m, color='tab:red', alpha=0.5)
 ax1.set_ylabel(r'$Temp\/(^oC)$''\n'r'$Dew\/Point\/Temp\/(^oC)$', fontsize=12)
-ax1.set_ylim(dewp.min().m - 5, temp.max().m + 5)
 ax1.grid(True)
 
 ax2.bar(time, wspd, width=.01, align='center', color='skyblue')
@@ -127,7 +126,6 @@ ax3.grid(True)
 
 ax4.plot(time, slp, ls='--', color='brown', lw=3)
 ax4.set_ylabel(r'$Pressure\/(in-Hg)$')
-ax4.set_ylim(slp.min().m-0.05, slp.max().m+0.05)
 ax4.grid(True)
 
 locator = AutoDateLocator()
