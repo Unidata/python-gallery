@@ -100,7 +100,7 @@ state_boundaries = cfeat.NaturalEarthFeature(category='cultural',
                                              scale='50m', facecolor='none')
 
 ax.add_feature(state_boundaries, edgecolor='black', linestyle=':')
-ax.add_feature(cfeat.BORDERS, linewidth='2', edgecolor='black')
+ax.add_feature(cfeat.BORDERS, linewidth=2, edgecolor='black')
 
 # Plot the image with our colormapping choices
 wv_norm, wv_cmap = registry.get_with_steps('WVCIMSS', 0, 1)
