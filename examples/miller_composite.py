@@ -139,8 +139,7 @@ rh_850 = relh[6, :]
 
 # 500 hPa CVA
 dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
-vort_adv_500 = mpcalc.advection(avor_500, [v_500.to('m/s'), u_500.to('m/s')], (dy, dx),
-                               dim_order='yx') * 1e9
+vort_adv_500 = mpcalc.advection(avor_500, [u_500.to('m/s'), v_500.to('m/s')], (dx, dy)) * 1e9
 vort_adv_500_smooth = gaussian_filter(vort_adv_500, 4)
 
 ####################################
