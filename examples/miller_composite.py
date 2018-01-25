@@ -8,6 +8,7 @@ Matplotlib.
 """
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+from datetime import datetime
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
@@ -24,20 +25,22 @@ from siphon.ncss import NCSS
 #
 # This example will use data from the North American Mesoscale Model Analysis
 # (https://nomads.ncdc.gov/) for 12 UTC 27 April 2011.
-ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/namanl/201104/20110427/'
-            'namanl_218_20110427_1800_000.grb')
+
+base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/namanl/'
+dt = datetime(2011, 4, 27)
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_1800_000.grb'.format(base_url, dt=dt))
 
 # Query for required variables
 gfsdata = ncss.query().all_times()
-gfsdata.variables('Geopotential_height',
-                  'u_wind',
-                  'v_wind',
-                  'Temperature',
-                  'Relative_humidity',
-                  'Best_4-layer_lifted_index',
-                  'Absolute_vorticity',
-                  'Pressure_reduced_to_MSL',
-                  'Dew_point_temperature'
+gfsdata.variables('Geopotential_height_isobaric',
+                  'u-component_of_wind_isobaric',
+                  'v-component_of_wind_isobaric',
+                  'Temperature_isobaric',
+                  'Relative_humidity_isobaric',
+                  'Best_4_layer_lifted_index_layer_between_two_pressure_difference_from_ground_layer',
+                  'Absolute_vorticity_isobaric',
+                  'Pressure_reduced_to_MSL_msl',
+                  'Dew_point_temperature_height_above_ground'
                   ).add_lonlat()
 
 # Set the lat/lon box for the data to pull in.
@@ -47,47 +50,47 @@ gfsdata.lonlat_box(-135, -60, 15, 65)
 data = ncss.get_data(gfsdata)
 
 # Assign variable names to collected data
-dtime = data.variables['Geopotential_height'].dimensions[0]
-dlev = data.variables['Geopotential_height'].dimensions[1]
+dtime = data.variables['Geopotential_height_isobaric'].dimensions[0]
+dlev = data.variables['Geopotential_height_isobaric'].dimensions[1]
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
 lev = data.variables[dlev][:] * units.hPa
 times = data.variables[dtime]
 vtimes = num2date(times[:], times.units)
-temps = data.variables['Temperature']
+temps = data.variables['Temperature_isobaric']
 tmp = temps[0, :] * units.kelvin
-uwnd = data.variables['u_wind'][0, :] * units.meter / units.second
-vwnd = data.variables['v_wind'][0, :] * units.meter / units.second
-hgt = data.variables['Geopotential_height'][0, :] * units.meter
-relh = data.variables['Relative_humidity'][0, :]
-lifted_index = (data.variables['Best_4-layer_lifted_index'][0, 0, :] *
-                units(data.variables['Best_4-layer_lifted_index'].units))
-Td_sfc = (data.variables['Dew_point_temperature'][0, 0, :] *
-          units(data.variables['Dew_point_temperature'].units))
-avor = data.variables['Absolute_vorticity'][0, :] * units('1/s')
-pmsl = (data.variables['Pressure_reduced_to_MSL'][0, :] *
-        units(data.variables['Pressure_reduced_to_MSL'].units))
+uwnd = data.variables['u-component_of_wind_isobaric'][0, :] * units.meter / units.second
+vwnd = data.variables['v-component_of_wind_isobaric'][0, :] * units.meter / units.second
+hgt = data.variables['Geopotential_height_isobaric'][0, :] * units.meter
+relh = data.variables['Relative_humidity_isobaric'][0, :]
+lifted_index = (data.variables['Best_4_layer_lifted_index_layer_between_two_pressure_difference_from_ground_layer'][0, 0, :] *
+                units(data.variables['Best_4_layer_lifted_index_layer_between_two_pressure_difference_from_ground_layer'].units))
+Td_sfc = (data.variables['Dew_point_temperature_height_above_ground'][0, 0, :] *
+          units(data.variables['Dew_point_temperature_height_above_ground'].units))
+avor = data.variables['Absolute_vorticity_isobaric'][0, :] * units('1/s')
+pmsl = (data.variables['Pressure_reduced_to_MSL_msl'][0, :] *
+        units(data.variables['Pressure_reduced_to_MSL_msl'].units))
 
 ########################
 # Query for 00 UTC to calculate pressure falls and height change
 
-ncss2 = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/namanl/201104/20110427/'
-             'namanl_218_20110427_0600_000.grb')
+ncss2 = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_0600_000.grb'.format(base_url, dt=dt))
 
 # Query for required variables
-gfsdata2 = ncss2.query().all_times()
-gfsdata2.variables('Geopotential_height',
-                   'Pressure_reduced_to_MSL').add_lonlat()
+gfsdata = ncss.query().all_times()
+gfsdata.variables('Geopotential_height_isobaric',
+                  'Pressure_reduced_to_MSL_msl',
+                  ).add_lonlat()
 
 # Set the lat/lon box for the data you want to pull in.
-gfsdata2.lonlat_box(-135, -60, 15, 65)
+gfsdata.lonlat_box(-135, -60, 15, 65)
 
 # Actually getting the data
 data2 = ncss2.get_data(gfsdata)
 
-hgt_00z = data2.variables['Geopotential_height'][0, :] * units.meter
-pmsl_00z = (data2.variables['Pressure_reduced_to_MSL'][0, :] *
-            units(data2.variables['Pressure_reduced_to_MSL'].units))
+hgt_00z = data2.variables['Geopotential_height_isobaric'][0, :] * units.meter
+pmsl_00z = (data2.variables['Pressure_reduced_to_MSL_msl'][0, :] *
+            units(data2.variables['Pressure_reduced_to_MSL_msl'].units))
 
 ###########################
 # **Subset the Data**
@@ -150,11 +153,11 @@ wspd_500 = gaussian_filter(mpcalc.get_wind_speed(u_500, v_500), 5)
 wspd_850 = gaussian_filter(mpcalc.get_wind_speed(u_850, v_850), 5)
 
 #################################
-# 850-hPa dewpoint will be calculated from RH and temperature
+# 850-hPa dewpoint will be calculated from RH and Temperature_isobaric
 Td_850 = mpcalc.dewpoint_rh(tmp_850, rh_850 / 100.)
 
 ################################
-# 700-hPa dewpoint depression will be calculated from temperature and RH
+# 700-hPa dewpoint depression will be calculated from Temperature_isobaric and RH
 Td_dep_700 = tmp_700 - mpcalc.dewpoint_rh(tmp_700, rh_700 / 100.)
 
 ######################################
