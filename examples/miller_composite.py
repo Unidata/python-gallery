@@ -11,7 +11,7 @@ import cartopy.feature as cfeature
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
-import metpy.calc as mcalc
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
@@ -138,24 +138,24 @@ rh_850 = relh[6, :]
 
 
 # 500 hPa CVA
-dx, dy = mcalc.lat_lon_grid_spacing(lon, lat)
-vort_adv_500 = mcalc.advection(avor_500, [v_500.to('m/s'), u_500.to('m/s')], (dy, dx),
+dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
+vort_adv_500 = mpcalc.advection(avor_500, [v_500.to('m/s'), u_500.to('m/s')], (dy, dx),
                                dim_order='yx') * 1e9
 vort_adv_500_smooth = gaussian_filter(vort_adv_500, 4)
 
 ####################################
 # For the jet axes, we will calculate the windspeed at each level, and plot the highest values
-wspd_300 = gaussian_filter(mcalc.get_wind_speed(u_300, v_300), 5)
-wspd_500 = gaussian_filter(mcalc.get_wind_speed(u_500, v_500), 5)
-wspd_850 = gaussian_filter(mcalc.get_wind_speed(u_850, v_850), 5)
+wspd_300 = gaussian_filter(mpcalc.get_wind_speed(u_300, v_300), 5)
+wspd_500 = gaussian_filter(mpcalc.get_wind_speed(u_500, v_500), 5)
+wspd_850 = gaussian_filter(mpcalc.get_wind_speed(u_850, v_850), 5)
 
 #################################
 # 850-hPa dewpoint will be calculated from RH and temperature
-Td_850 = mcalc.dewpoint_rh(tmp_850, rh_850 / 100.)
+Td_850 = mpcalc.dewpoint_rh(tmp_850, rh_850 / 100.)
 
 ################################
 # 700-hPa dewpoint depression will be calculated from temperature and RH
-Td_dep_700 = tmp_700 - mcalc.dewpoint_rh(tmp_700, rh_700 / 100.)
+Td_dep_700 = tmp_700 - mpcalc.dewpoint_rh(tmp_700, rh_700 / 100.)
 
 ######################################
 # 12-hr surface pressure falls and 500-hPa height changes
