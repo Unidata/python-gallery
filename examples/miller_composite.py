@@ -117,55 +117,6 @@ u_850 = uwnd[6, :].to('kt')
 v_850 = vwnd[6, :].to('kt')
 rh_850 = relh[6, :]
 
-##############################
-# Calculation of advections will require the help of the following function to find deltas
-
-
-def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    """ This definition calculates the distance between grid points that are in
-        a latitude/longitude format.
-
-        Using pyproj GEOD; different Earth Shapes
-        https://jswhit.github.io/pyproj/pyproj.Geod-class.html
-
-        Common shapes: 'sphere', 'WGS84', 'GRS80'
-
-        Accepts, 1D or 2D arrays for latitude and longitude
-
-        Assumes [Y, X] for 2D arrays
-
-        Returns: dx, dy; 2D arrays of distances between grid points
-                 in the x and y direction with units of meters
-    """
-    from pyproj import Geod
-
-    if radius != 6370997.:
-        g = Geod(a=radius, b=radius)
-    else:
-        g = Geod(ellps=shape)
-
-    if latitude.ndim == 1:
-        longitude, latitude = np.meshgrid(longitude, latitude)
-
-    dy = np.zeros(latitude.shape)
-    dx = np.zeros(longitude.shape)
-
-    for i in range(longitude.shape[1]):
-        for j in range(latitude.shape[0]-1):
-            _, _, dy[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j+1, i], latitude[j+1, i])
-    dy[j+1, :] = dy[j, :]
-
-    for i in range(longitude.shape[1]-1):
-        for j in range(latitude.shape[0]):
-            _, _, dx[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j, i+1], latitude[j, i+1])
-    dx[:, i+1] = dx[:, i]
-
-    xdiff_sign = np.sign(longitude[0, 1]-longitude[0, 0])
-    ydiff_sign = np.sign(latitude[1, 0]-latitude[0, 0])
-    return xdiff_sign*dx*units.meter, ydiff_sign*dy*units.meter
-
 ########################################
 # **Prepare Variables for Plotting**
 #
@@ -187,7 +138,7 @@ def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
 
 
 # 500 hPa CVA
-dx, dy = calc_dx_dy(lon, lat)
+dx, dy = mcalc.lat_lon_grid_spacing(lon, lat)
 vort_adv_500 = mcalc.advection(avor_500, [v_500.to('m/s'), u_500.to('m/s')], (dy, dx),
                                dim_order='yx') * 1e9
 vort_adv_500_smooth = gaussian_filter(vort_adv_500, 4)
