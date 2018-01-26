@@ -18,7 +18,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
-from metpy.calc import advection
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
@@ -35,57 +35,6 @@ def find_time_var(var, time_basename='time'):
         if coord_name.startswith(time_basename):
             return coord_name
     raise ValueError('No time variable found for ' + var.name)
-
-
-# Helper function to calculate distance between lat/lon points
-# to be used in differencing calculations
-def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    """ This definition calculates the distance between grid points that are in
-        a latitude/longitude format.
-
-        Using pyproj GEOD; different Earth Shapes
-        https://jswhit.github.io/pyproj/pyproj.Geod-class.html
-
-        Common shapes: 'sphere', 'WGS84', 'GRS80'
-
-        Accepts, 1D or 2D arrays for latitude and longitude
-
-        Assumes [Y, X] for 2D arrays
-
-        Returns: dx, dy; 2D arrays of distances between grid points
-                 in the x and y direction with units of meters and sign of differencing
-    """
-    import numpy as np
-    from metpy.units import units
-    from pyproj import Geod
-
-    if radius != 6370997.:
-        g = Geod(a=radius, b=radius)
-    else:
-        g = Geod(ellps=shape)
-
-    if latitude.ndim == 1:
-        longitude, latitude = np.meshgrid(longitude, latitude)
-
-    dy = np.zeros(latitude.shape)
-    dx = np.zeros(longitude.shape)
-
-    for i in range(longitude.shape[1]):
-        for j in range(latitude.shape[0]-1):
-            _, _, dy[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j+1, i], latitude[j+1, i])
-    dy[j+1, :] = dy[j, :]
-
-    for i in range(longitude.shape[1]-1):
-        for j in range(latitude.shape[0]):
-            _, _, dx[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j, i+1], latitude[j, i+1])
-    dx[:, i+1] = dx[:, i]
-
-    xdiff_sign = np.sign(longitude[0, 1] - longitude[0, 0])
-    ydiff_sign = np.sign(latitude[1, 0] - latitude[0, 0])
-    return xdiff_sign*dx*units.meter, ydiff_sign*dy*units.meter
-
 
 ###############################################
 # Create NCSS object to access the NetcdfSubset
@@ -144,11 +93,11 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 
 # Use helper function defined above to calculate distance
 # between lat/lon grid points
-dx, dy = calc_dx_dy(lon_var, lat_var)
+dx, dy = mpcalc.lat_lon_grid_spacing(lon_var, lat_var)
 
 # Calculate temperature advection using metpy function
-adv = advection(temp_850.T * units.kelvin, [u_wind_850.T, v_wind_850.T],
-                (dx.T, dy.T)).T * units('K/sec')
+adv = mpcalc.advection(temp_850 * units.kelvin, [u_wind_850, v_wind_850],
+                       (dx, dy), dim_order='yx') * units('K/sec')
 
 # Smooth heights and advection a little
 # Be sure to only put in a 2D lat/lon or Y/X array for smoothing
