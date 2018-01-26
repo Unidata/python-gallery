@@ -41,29 +41,25 @@ def find_time_var(var, time_basename='time'):
 # ---------------------------------------------
 # Data from NCEI GFS 0.5 deg Analysis Archive
 
+base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
 dt = datetime(2017, 4, 5, 12)
-ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/'
-            '{0:%Y%m}/{0:%Y%m%d}/gfsanl_4_{0:%Y%m%d}_{0:%H}00_000.grb2'.format(dt))
-
-#base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
-#dt = datetime(2017, 4, 5, 12)
-#ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query().time(dt)
 query.lonlat_box(north=65, south=15, east=310, west=220)
-query.accept('netcdf4')
+query.accept('netcdf')
 
 # Request data for vorticity
-query.variables('Geopotential_height', 'Temperature',
-                'U-component_of_wind', 'V-component_of_wind')
+query.variables('Geopotential_height_isobaric', 'Temperature_isobaric',
+                'u-component_of_wind_isobaric', 'v-component_of_wind_isobaric')
 data = ncss.get_data(query)
 
 # Pull out variables you want to use
-hght_var = data.variables['Geopotential_height']
-temp_var = data.variables['Temperature']
-u_wind_var = data.variables['U-component_of_wind']
-v_wind_var = data.variables['V-component_of_wind']
+hght_var = data.variables['Geopotential_height_isobaric']
+temp_var = data.variables['Temperature_isobaric']
+u_wind_var = data.variables['u-component_of_wind_isobaric']
+v_wind_var = data.variables['v-component_of_wind_isobaric']
 time_var = data.variables[find_time_var(temp_var)]
 lat_var = data.variables['lat']
 lon_var = data.variables['lon']
@@ -79,7 +75,7 @@ v_wind = v_wind_var[:].squeeze() * units('m/s')
 # Convert number of hours since the reference time into an actual date
 time = num2date(time_var[:].squeeze(), time_var.units)
 
-lev_850 = np.where(data.variables['pressure'][:] == 850*100)[0][0]
+lev_850 = np.where(data.variables['isobaric'][:] == 850*100)[0][0]
 hght_850 = hght[lev_850]
 temp_850 = temp[lev_850]
 u_wind_850 = u_wind[lev_850]
