@@ -39,11 +39,15 @@ def find_time_var(var, time_basename='time'):
 ###############################################
 # Create NCSS object to access the NetcdfSubset
 # ---------------------------------------------
-# Data from NOMADS GFS 0.5 deg Analysis Archive
-# https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs
+# Data from NCEI GFS 0.5 deg Analysis Archive
+
 dt = datetime(2017, 4, 5, 12)
 ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/'
             '{0:%Y%m}/{0:%Y%m%d}/gfsanl_4_{0:%Y%m%d}_{0:%H}00_000.grb2'.format(dt))
+
+#base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
+#dt = datetime(2017, 4, 5, 12)
+#ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query().time(dt)
@@ -94,6 +98,10 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 # Use helper function defined above to calculate distance
 # between lat/lon grid points
 dx, dy = mpcalc.lat_lon_grid_spacing(lon_var, lat_var)
+
+# Because of the way the data are returned we need a negative spacing. This
+# will be easier in the next version of MetPy.
+dy *= -1
 
 # Calculate temperature advection using metpy function
 adv = mpcalc.advection(temp_850 * units.kelvin, [u_wind_850, v_wind_850],
