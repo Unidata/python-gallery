@@ -29,12 +29,13 @@ from siphon.ncss import NCSS
 ##################################
 # Set up netCDF Subset Service link
 dt = datetime(2016, 4, 16, 18)
-ncss = NCSS('http://nomads.ncdc.noaa.gov/thredds/ncss/grid/namanl/'
-            '{0:%Y%m}/{0:%Y%m%d}/namanl_218_{0:%Y%m%d}_{0:%H}00_000.grb'.format(dt))
+base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/namanl/'
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_{dt:%H}00_000.grb'.format(base_url, dt=dt))
 
 # Data Query
 hgt = ncss.query().time(dt)
-hgt.variables('Geopotential_height', 'u_wind', 'v_wind').add_lonlat()
+hgt.variables('Geopotential_height_isobaric', 'u-component_of_wind_isobaric',
+              'v-component_of_wind_isobaric').add_lonlat()
 
 # Actually getting the data
 data = ncss.get_data(hgt)
@@ -44,10 +45,10 @@ data = ncss.get_data(hgt)
 # Pull apart the data
 
 # Get dimension names to pull appropriate variables
-dtime = data.variables['Geopotential_height'].dimensions[0]
-dlev = data.variables['Geopotential_height'].dimensions[1]
-dlat = data.variables['Geopotential_height'].dimensions[2]
-dlon = data.variables['Geopotential_height'].dimensions[3]
+dtime = data.variables['Geopotential_height_isobaric'].dimensions[0]
+dlev = data.variables['Geopotential_height_isobaric'].dimensions[1]
+dlat = data.variables['Geopotential_height_isobaric'].dimensions[2]
+dlon = data.variables['Geopotential_height_isobaric'].dimensions[3]
 
 # Get lat and lon data, as well as time data and metadata
 lats = data.variables['lat'][:]
@@ -67,9 +68,9 @@ times = data.variables[dtime]
 vtimes = num2date(times[:], times.units)
 
 # Pull out the 500 hPa Heights
-hght = data.variables['Geopotential_height'][:].squeeze() * units.meter
-uwnd = data.variables['u_wind'][:].squeeze() * units('m/s')
-vwnd = data.variables['v_wind'][:].squeeze() * units('m/s')
+hght = data.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
+uwnd = data.variables['u-component_of_wind_isobaric'][:].squeeze() * units('m/s')
+vwnd = data.variables['v-component_of_wind_isobaric'][:].squeeze() * units('m/s')
 
 # Calculate the magnitude of the wind speed in kts
 sped = get_wind_speed(uwnd, vwnd).to('knots')
