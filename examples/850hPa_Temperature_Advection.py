@@ -18,7 +18,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
-from metpy.calc import advection
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
@@ -36,81 +36,30 @@ def find_time_var(var, time_basename='time'):
             return coord_name
     raise ValueError('No time variable found for ' + var.name)
 
-
-# Helper function to calculate distance between lat/lon points
-# to be used in differencing calculations
-def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    """ This definition calculates the distance between grid points that are in
-        a latitude/longitude format.
-
-        Using pyproj GEOD; different Earth Shapes
-        https://jswhit.github.io/pyproj/pyproj.Geod-class.html
-
-        Common shapes: 'sphere', 'WGS84', 'GRS80'
-
-        Accepts, 1D or 2D arrays for latitude and longitude
-
-        Assumes [Y, X] for 2D arrays
-
-        Returns: dx, dy; 2D arrays of distances between grid points
-                 in the x and y direction with units of meters and sign of differencing
-    """
-    import numpy as np
-    from metpy.units import units
-    from pyproj import Geod
-
-    if radius != 6370997.:
-        g = Geod(a=radius, b=radius)
-    else:
-        g = Geod(ellps=shape)
-
-    if latitude.ndim == 1:
-        longitude, latitude = np.meshgrid(longitude, latitude)
-
-    dy = np.zeros(latitude.shape)
-    dx = np.zeros(longitude.shape)
-
-    for i in range(longitude.shape[1]):
-        for j in range(latitude.shape[0]-1):
-            _, _, dy[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j+1, i], latitude[j+1, i])
-    dy[j+1, :] = dy[j, :]
-
-    for i in range(longitude.shape[1]-1):
-        for j in range(latitude.shape[0]):
-            _, _, dx[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j, i+1], latitude[j, i+1])
-    dx[:, i+1] = dx[:, i]
-
-    xdiff_sign = np.sign(longitude[0, 1] - longitude[0, 0])
-    ydiff_sign = np.sign(latitude[1, 0] - latitude[0, 0])
-    return xdiff_sign*dx*units.meter, ydiff_sign*dy*units.meter
-
-
 ###############################################
 # Create NCSS object to access the NetcdfSubset
 # ---------------------------------------------
-# Data from NOMADS GFS 0.5 deg Analysis Archive
-# https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs
+# Data from NCEI GFS 0.5 deg Analysis Archive
+
+base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
 dt = datetime(2017, 4, 5, 12)
-ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/'
-            '{0:%Y%m}/{0:%Y%m%d}/gfsanl_4_{0:%Y%m%d}_{0:%H}00_000.grb2'.format(dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query().time(dt)
 query.lonlat_box(north=65, south=15, east=310, west=220)
-query.accept('netcdf4')
+query.accept('netcdf')
 
 # Request data for vorticity
-query.variables('Geopotential_height', 'Temperature',
-                'U-component_of_wind', 'V-component_of_wind')
+query.variables('Geopotential_height_isobaric', 'Temperature_isobaric',
+                'u-component_of_wind_isobaric', 'v-component_of_wind_isobaric')
 data = ncss.get_data(query)
 
 # Pull out variables you want to use
-hght_var = data.variables['Geopotential_height']
-temp_var = data.variables['Temperature']
-u_wind_var = data.variables['U-component_of_wind']
-v_wind_var = data.variables['V-component_of_wind']
+hght_var = data.variables['Geopotential_height_isobaric']
+temp_var = data.variables['Temperature_isobaric']
+u_wind_var = data.variables['u-component_of_wind_isobaric']
+v_wind_var = data.variables['v-component_of_wind_isobaric']
 time_var = data.variables[find_time_var(temp_var)]
 lat_var = data.variables['lat']
 lon_var = data.variables['lon']
@@ -126,7 +75,7 @@ v_wind = v_wind_var[:].squeeze() * units('m/s')
 # Convert number of hours since the reference time into an actual date
 time = num2date(time_var[:].squeeze(), time_var.units)
 
-lev_850 = np.where(data.variables['pressure'][:] == 850*100)[0][0]
+lev_850 = np.where(data.variables['isobaric'][:] == 850*100)[0][0]
 hght_850 = hght[lev_850]
 temp_850 = temp[lev_850]
 u_wind_850 = u_wind[lev_850]
@@ -144,11 +93,15 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 
 # Use helper function defined above to calculate distance
 # between lat/lon grid points
-dx, dy = calc_dx_dy(lon_var, lat_var)
+dx, dy = mpcalc.lat_lon_grid_spacing(lon_var, lat_var)
+
+# Because of the way the data are returned we need a negative spacing. This
+# will be easier in the next version of MetPy.
+dy *= -1
 
 # Calculate temperature advection using metpy function
-adv = advection(temp_850.T * units.kelvin, [u_wind_850.T, v_wind_850.T],
-                (dx.T, dy.T)).T * units('K/sec')
+adv = mpcalc.advection(temp_850 * units.kelvin, [u_wind_850, v_wind_850],
+                       (dx, dy), dim_order='yx') * units('K/sec')
 
 # Smooth heights and advection a little
 # Be sure to only put in a 2D lat/lon or Y/X array for smoothing

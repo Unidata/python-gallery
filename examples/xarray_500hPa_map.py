@@ -27,9 +27,14 @@ import xarray as xr
 
 # Set year, month, day, and hour values as variables to make it
 # easier to change dates for a case study
+#data = xr.open_dataset('https://nomads.ncdc.noaa.gov/thredds/dodsC/namanl/{0:%Y%m}/'
+#                       '{0:%Y%m%d}/namanl_218_{0:%Y%m%d}_{0:%H}00_000.grb'.format(dt),
+#                       decode_times=True)
+
+base_url = 'https://www.ncei.noaa.gov/thredds/dodsC/namanl/'
 dt = datetime(2016, 4, 16, 18)
-data = xr.open_dataset('https://nomads.ncdc.noaa.gov/thredds/dodsC/namanl/{0:%Y%m}/'
-                       '{0:%Y%m%d}/namanl_218_{0:%Y%m%d}_{0:%H}00_000.grb'.format(dt),
+data = xr.open_dataset('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_'
+                       '{dt:%H}00_000.grb'.format(base_url, dt=dt),
                        decode_times=True)
 
 # To list all available variables for this data set,
@@ -64,9 +69,9 @@ print(vtimes)
 # the coordinate variable names
 
 # print(data.Geopotential_height.coords)
-hght_500 = data.Geopotential_height.sel(time=vtimes[0], isobaric1=500)
-uwnd_500 = data.u_wind.sel(time=vtimes[0], isobaric1=500)
-vwnd_500 = data.v_wind.sel(time=vtimes[0], isobaric1=500)
+hght_500 = data.Geopotential_height_isobaric.sel(time1=vtimes[0], isobaric=500)
+uwnd_500 = data['u-component_of_wind_isobaric'].sel(time1=vtimes[0], isobaric=500)
+vwnd_500 = data['v-component_of_wind_isobaric'].sel(time1=vtimes[0], isobaric=500)
 
 ########################################
 # Now make the 500-hPa map
@@ -74,8 +79,8 @@ vwnd_500 = data.v_wind.sel(time=vtimes[0], isobaric1=500)
 
 # Must set data projection, NAM is LCC projection
 datacrs = ccrs.LambertConformal(
-    central_latitude=data.Lambert_Conformal.latitude_of_projection_origin,
-    central_longitude=data.Lambert_Conformal.longitude_of_central_meridian)
+    central_latitude=data.LambertConformal_Projection.latitude_of_projection_origin,
+    central_longitude=data.LambertConformal_Projection.longitude_of_central_meridian)
 
 # A different LCC projection for the plot.
 plotcrs = ccrs.LambertConformal(central_latitude=45., central_longitude=-100.,

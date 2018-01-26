@@ -22,7 +22,7 @@ from datetime import datetime
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
-from metpy.calc import coriolis_parameter, geostrophic_wind
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
@@ -30,64 +30,15 @@ import scipy.ndimage as ndimage
 from siphon.ncss import NCSS
 
 ########################################
-# Helper function to calculate distance between lat/lon
-# -----------------------------------------------------
-
-
-def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    """ This definition calculates the distance between grid points that are in
-        a latitude/longitude format.
-
-        Using pyproj GEOD; different Earth Shapes
-        https://jswhit.github.io/pyproj/pyproj.Geod-class.html
-
-        Common shapes: 'sphere', 'WGS84', 'GRS80'
-
-        Accepts, 1D or 2D arrays for latitude and longitude
-
-        Assumes [Y, X] for 2D arrays
-
-        Returns: dx, dy; 2D arrays of distances between grid points
-                 in the x and y direction with units of meters and sign of differencing
-    """
-    import numpy as np
-    from metpy.units import units
-    from pyproj import Geod
-
-    if radius != 6370997.:
-        g = Geod(a=radius, b=radius)
-    else:
-        g = Geod(ellps=shape)
-
-    if latitude.ndim == 1:
-        longitude, latitude = np.meshgrid(longitude, latitude)
-
-    dy = np.zeros(latitude.shape)
-    dx = np.zeros(longitude.shape)
-
-    for i in range(longitude.shape[1]):
-        for j in range(latitude.shape[0]-1):
-            _, _, dy[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j+1, i], latitude[j+1, i])
-    dy[j+1, :] = dy[j, :]
-
-    for i in range(longitude.shape[1]-1):
-        for j in range(latitude.shape[0]):
-            _, _, dx[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j, i+1], latitude[j, i+1])
-    dx[:, i+1] = dx[:, i]
-
-    xdiff_sign = np.sign(longitude[0, 1] - longitude[0, 0])
-    ydiff_sign = np.sign(latitude[1, 0] - latitude[0, 0])
-    return xdiff_sign*dx*units.meter, ydiff_sign*dy*units.meter
-
-######################################
 # Set up access to the data
 
-
 # Create NCSS object to access the NetcdfSubset
-ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/201608/20160822/'
-            'gfsanl_4_20160822_1800_003.grb2')
+#ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/201608/20160822/'
+#            'gfsanl_4_20160822_1800_003.grb2')
+
+base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
+dt = datetime(2016, 8, 22, 18)
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_003.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query()
@@ -95,14 +46,14 @@ query.lonlat_box(north=50, south=30, east=-80, west=-115)
 query.time(datetime(2016, 8, 22, 21))
 
 # Request data for geopotential height
-query.variables('Geopotential_height', 'U-component_of_wind', 'V-component_of_wind')
+query.variables('Geopotential_height_isobaric', 'u-component_of_wind_isobaric', 'v-component_of_wind_isobaric')
 query.vertical_level(100000)
 data = ncss.get_data(query)
 
 # Pull out variables you want to use
-height_var = data.variables['Geopotential_height']
-u_wind_var = data.variables['U-component_of_wind']
-v_wind_var = data.variables['V-component_of_wind']
+height_var = data.variables['Geopotential_height_isobaric']
+u_wind_var = data.variables['u-component_of_wind_isobaric']
+v_wind_var = data.variables['v-component_of_wind_isobaric']
 
 # Find the name of the time coordinate
 for name in height_var.coordinates.split():
@@ -132,15 +83,16 @@ height = ndimage.gaussian_filter(height, sigma=1.5, order=0)
 
 # Set up some constants based on our projection, including the Coriolis parameter and
 # grid spacing, converting lon/lat spacing to Cartesian
-f = coriolis_parameter(np.deg2rad(lat_2d)).to('1/s')
-dx, dy = calc_dx_dy(lon_2d, lat_2d)
+f = mpcalc.coriolis_parameter(np.deg2rad(lat_2d)).to('1/s')
+dx, dy = mpcalc.lat_lon_grid_spacing(lon_2d, lat_2d)
+dy *= -1
 
 # In MetPy 0.5, geostrophic_wind() assumes the order of the dimensions is (X, Y),
 # so we need to transpose from the input data, which are ordered lat (y), lon (x).
 # Once we get the components,transpose again so they match our original data.
-geo_wind_u, geo_wind_v = geostrophic_wind(height.T * units.m, f.T, dx.T, dy.T)
-geo_wind_u = geo_wind_u.T
-geo_wind_v = geo_wind_v.T
+geo_wind_u, geo_wind_v = mpcalc.geostrophic_wind(height * units.m, f, dx, dy)
+geo_wind_u = geo_wind_u
+geo_wind_v = geo_wind_v
 
 # Calculate ageostrophic wind components
 ageo_wind_u = u_wind - geo_wind_u
