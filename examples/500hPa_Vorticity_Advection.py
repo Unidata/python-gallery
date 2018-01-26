@@ -19,78 +19,26 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.gridspec as gridspec
 import matplotlib.pylab as plt
-from metpy.calc import advection, coriolis_parameter, v_vorticity
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
 import scipy.ndimage as ndimage
 from siphon.ncss import NCSS
 
-########################################
-# Helper function to calculate distance between lat/lon
-# -----------------------------------------------------
-
-
-def calc_dx_dy(longitude, latitude, shape='sphere', radius=6370997.):
-    """ This definition calculates the distance between grid points that are in
-        a latitude/longitude format.
-
-        Using pyproj GEOD; different Earth Shapes
-        https://jswhit.github.io/pyproj/pyproj.Geod-class.html
-
-        Common shapes: 'sphere', 'WGS84', 'GRS80'
-
-        Accepts, 1D or 2D arrays for latitude and longitude
-
-        Assumes [Y, X] for 2D arrays
-
-        Returns: dx, dy; 2D arrays of distances between grid points
-                 in the x and y direction with units of meters
-    """
-    import numpy as np
-    from metpy.units import units
-    from pyproj import Geod
-
-    if radius != 6370997.:
-        g = Geod(a=radius, b=radius)
-    else:
-        g = Geod(ellps=shape)
-
-    if latitude.ndim == 1:
-        longitude, latitude = np.meshgrid(longitude, latitude)
-
-    dy = np.zeros(latitude.shape)
-    dx = np.zeros(longitude.shape)
-
-    for i in range(longitude.shape[1]):
-        for j in range(latitude.shape[0]-1):
-            _, _, dy[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j+1, i], latitude[j+1, i])
-    dy[j+1, :] = dy[j, :]
-
-    for i in range(longitude.shape[1]-1):
-        for j in range(latitude.shape[0]):
-            _, _, dx[j, i] = g.inv(longitude[j, i], latitude[j, i],
-                                   longitude[j, i+1], latitude[j, i+1])
-    dx[:, i+1] = dx[:, i]
-
-    xdiff_sign = np.sign(longitude[0, 1]-longitude[0, 0])
-    ydiff_sign = np.sign(latitude[1, 0]-latitude[0, 0])
-    return xdiff_sign*dx*units.meter, ydiff_sign*dy*units.meter
-
-
 #######################################
 # Data Aquisition
 # ---------------
 
 # Open the example netCDF data
-ncss = NCSS('http://nomads.ncdc.noaa.gov/thredds/ncss/grid/namanl/'
+ncss = NCSS('https://www.ncei.noaa.gov/thredds/ncss/grid/namanl/'
             '201604/20160416/namanl_218_20160416_1800_000.grb')
 now = datetime.utcnow()
 
 # Query for Latest GFS Run
 hgt = ncss.query().time(datetime(2016, 4, 16, 18)).accept('netcdf')
-hgt.variables('Geopotential_height', 'u_wind', 'v_wind').add_lonlat()
+hgt.variables('Geopotential_height_isobaric', 'u-component_of_wind_isobaric',
+              'v-component_of_wind_isobaric').add_lonlat()
 
 # Actually getting the data
 ds = ncss.get_data(hgt)
@@ -98,38 +46,38 @@ ds = ncss.get_data(hgt)
 lon = ds.variables['lon'][:]
 lat = ds.variables['lat'][:]
 
-times = ds.variables[ds.variables['Geopotential_height'].dimensions[0]]
+times = ds.variables[ds.variables['Geopotential_height_isobaric'].dimensions[0]]
 vtime = num2date(times[:], units=times.units)
 
 
-lev_500 = np.where(ds.variables['isobaric1'][:] == 500)[0][0]
+lev_500 = np.where(ds.variables['isobaric'][:] == 500)[0][0]
 
-hght_500 = ds.variables['Geopotential_height'][0, lev_500, :, :]
+hght_500 = ds.variables['Geopotential_height_isobaric'][0, lev_500, :, :]
 hght_500 = ndimage.gaussian_filter(hght_500, sigma=3, order=0) * units.meter
 
-uwnd_500 = ds.variables['u_wind'][0, lev_500, :, :] * units('m/s')
-vwnd_500 = ds.variables['v_wind'][0, lev_500, :, :] * units('m/s')
+uwnd_500 = ds.variables['u-component_of_wind_isobaric'][0, lev_500, :, :] * units('m/s')
+vwnd_500 = ds.variables['v-component_of_wind_isobaric'][0, lev_500, :, :] * units('m/s')
 
 #######################################
 # Begin Data Calculations
 # -----------------------
 
-dx, dy = calc_dx_dy(lon, lat)
+dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
 
-f = coriolis_parameter(np.deg2rad(lat)).to(units('1/sec'))
+f = mpcalc.coriolis_parameter(np.deg2rad(lat)).to(units('1/sec'))
 
-avor = v_vorticity(uwnd_500.T, vwnd_500.T, dx.T, dy.T).T + f
+avor = mpcalc.vorticity(uwnd_500, vwnd_500, dx, dy, dim_order='yx') + f
 
 avor = ndimage.gaussian_filter(avor, sigma=3, order=0) * units('1/s')
 
-vort_adv = advection(avor.T, [uwnd_500.T, vwnd_500.T], (dx.T, dy.T)).T*1e9
+vort_adv = mpcalc.advection(avor, [uwnd_500, vwnd_500], (dx, dy), dim_order='yx') * 1e9
 
 #######################################
 # Map Creation
 # ------------
 
 # Set up Coordinate System for Plot and Transforms
-dproj = ds.variables['Lambert_Conformal']
+dproj = ds.variables['LambertConformal_Projection']
 globe = ccrs.Globe(ellipse='sphere', semimajor_axis=dproj.earth_radius,
                    semiminor_axis=dproj.earth_radius)
 datacrs = ccrs.LambertConformal(central_latitude=dproj.latitude_of_projection_origin,
