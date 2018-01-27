@@ -13,7 +13,6 @@ Geopotential Heights and Wind Barbs.
 # Begin with imports, need a lot for this task.
 
 # A whole bunch of imports
-from datetime import datetime
 from urllib.request import urlopen
 
 import cartopy.crs as ccrs
@@ -34,9 +33,9 @@ from siphon.ncss import NCSS
 
 # Scan the catalog and download the data
 satcat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/satellite/'
-                    'WV/EAST-CONUS_4km/current/catalog.xml')
-dataset = satcat.datasets[list(satcat.datasets)[0]]
-gini_ds = GiniFile(urlopen(dataset.access_urls['HTTPServer'])).to_dataset()
+                    'WV/WEST-CONUS_4km/current/catalog.xml')
+dataset = satcat.datasets[0]
+gini_ds = GiniFile(dataset.remote_open()).to_dataset()
 
 # Pull parts out of the data file
 data_var = gini_ds.variables['WV']
@@ -44,6 +43,7 @@ x = gini_ds.variables['x'][:]
 y = gini_ds.variables['y'][:]
 time_var = gini_ds.variables['time']
 proj_var = gini_ds.variables[data_var.grid_mapping]
+timestamp = num2date(time_var[:].squeeze(), time_var.units)
 
 # Set up the projection based on satellite projection
 globe = ccrs.Globe(ellipse='sphere', semimajor_axis=proj_var.earth_radius,
@@ -59,16 +59,15 @@ proj = ccrs.LambertConformal(central_longitude=proj_var.longitude_of_central_mer
 
 gfscat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/'
                     'NCEP/GFS/Global_0p5deg/catalog.xml')
-dataset = gfscat.datasets[list(gfscat.datasets)[1]]
-ncss = NCSS(dataset.access_urls['NetcdfSubset'])
-now = datetime.utcnow()
+dataset = gfscat.datasets['Best GFS Half Degree Forecast Time Series']
+ncss = dataset.subset()
 
 query = ncss.query()
 query.variables('Geopotential_height_isobaric',
                 'u-component_of_wind_isobaric',
                 'v-component_of_wind_isobaric')
 query.add_lonlat().vertical_level(300*100)
-query.time(now)
+query.time(timestamp)  # Use the time from the GINI file
 query.lonlat_box(north=65, south=15, east=310, west=220)
 data = ncss.get_data(query)
 
@@ -103,19 +102,18 @@ ax.add_feature(state_boundaries, edgecolor='black', linestyle=':')
 ax.add_feature(cfeat.BORDERS, linewidth=2, edgecolor='black')
 
 # Plot the image with our colormapping choices
-wv_norm, wv_cmap = registry.get_with_steps('WVCIMSS', 0, 1)
+wv_norm, wv_cmap = registry.get_with_range('WVCIMSS', 100, 260)
 im = ax.imshow(data_var[:], extent=(x[0], x[-1], y[0], y[-1]), origin='upper',
                cmap=wv_cmap, norm=wv_norm)
 
 # Add the text, complete with outline
-timestamp = num2date(time_var[:].squeeze(), time_var.units)
 text = ax.text(0.99, 0.01, timestamp.strftime('%d %B %Y %H%MZ'),
                horizontalalignment='right', transform=ax.transAxes,
                color='white', fontsize='x-large', weight='bold')
 text.set_path_effects([patheffects.withStroke(linewidth=2, foreground='black')])
 
 # PLOT 300-hPa Geopotential Heights and Wind Barbs
-ax.set_extent([-112, -65, 20, 59], ccrs.Geodetic())
+ax.set_extent([-132, -95, 25, 47], ccrs.Geodetic())
 cs = ax.contour(lon, lat, Z_300, colors='black', transform=ccrs.PlateCarree())
 ax.clabel(cs, fontsize=12, colors='k', inline=1, inline_spacing=8,
           fmt='%i', rightside_up=True, use_clabeltext=True)
