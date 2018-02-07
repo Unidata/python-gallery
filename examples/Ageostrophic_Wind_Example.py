@@ -33,12 +33,10 @@ from siphon.ncss import NCSS
 # Set up access to the data
 
 # Create NCSS object to access the NetcdfSubset
-#ncss = NCSS('https://nomads.ncdc.noaa.gov/thredds/ncss/grid/gfs-004-anl/201608/20160822/'
-#            'gfsanl_4_20160822_1800_003.grb2')
-
 base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
 dt = datetime(2016, 8, 22, 18)
-ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_003.grb2'.format(base_url, dt=dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_'
+            '{dt:%H}00_003.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query()
@@ -46,7 +44,8 @@ query.lonlat_box(north=50, south=30, east=-80, west=-115)
 query.time(datetime(2016, 8, 22, 21))
 
 # Request data for geopotential height
-query.variables('Geopotential_height_isobaric', 'u-component_of_wind_isobaric', 'v-component_of_wind_isobaric')
+query.variables('Geopotential_height_isobaric', 'u-component_of_wind_isobaric',
+                'v-component_of_wind_isobaric')
 query.vertical_level(100000)
 data = ncss.get_data(query)
 

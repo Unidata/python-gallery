@@ -5,9 +5,9 @@ NWS Precipitation Map
 
 Plot a 1-day precipitation map using a netCDF file from the National Weather Service.
 
-This opens the data directly in memory using the support in the netCDF library to open from an
-existing memory buffer. In addition to CartoPy and Matplotlib, this uses a colortable from MetPy
-as well as MetPy's unit support.
+This opens the data directly in memory using the support in the netCDF library to open
+from an existing memory buffer. In addition to CartoPy and Matplotlib, this uses
+a custom colortable as well as MetPy's unit support.
 """
 ###############################
 # Imports
@@ -16,16 +16,16 @@ from urllib.request import urlopen
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-from metpy.plots import ctables
-from metpy.units import units, masked_array
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
+from metpy.units import masked_array, units
 from netCDF4 import Dataset
 
 ###############################
 # Download the data from the National Weather Service.
 dt = datetime.utcnow() - timedelta(days=1)  # This should always be available
-url = 'http://water.weather.gov/precip/downloads/{dt:%Y/%m/%d}/nws_precip_1day_{dt:%Y%m%d}_conus.nc'.format(dt=dt)
+url = 'http://water.weather.gov/precip/downloads/{dt:%Y/%m/%d}/nws_precip_1day_'\
+      '{dt:%Y%m%d}_conus.nc'.format(dt=dt)
 data = urlopen(url).read()
 Dataset('temp.nc', 'w').close()  # Work around bug where it needs an existing netCDF file
 nc = Dataset('temp.nc', 'r', memory=data)
@@ -41,7 +41,8 @@ proj_var = nc.variables['polar_stereographic']
 ###############################
 # Set up the projection information within CartoPy
 globe = ccrs.Globe(semimajor_axis=proj_var.earth_radius)
-proj = ccrs.Stereographic(central_latitude=90.0, central_longitude=proj_var.straight_vertical_longitude_from_pole,
+proj = ccrs.Stereographic(central_latitude=90.0,
+                          central_longitude=proj_var.straight_vertical_longitude_from_pole,
                           true_scale_latitude=proj_var.standard_parallel, globe=globe)
 
 ###############################

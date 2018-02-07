@@ -30,7 +30,8 @@ from siphon.ncss import NCSS
 # Set up netCDF Subset Service link
 dt = datetime(2016, 4, 16, 18)
 base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/namanl/'
-ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_{dt:%H}00_000.grb'.format(base_url, dt=dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_'
+            '{dt:%H}00_000.grb'.format(base_url, dt=dt))
 
 # Data Query
 hgt = ncss.query().time(dt)
@@ -111,7 +112,7 @@ ax = plt.subplot(1, 1, 1, projection=plotcrs)
 # Add some titles to make the plot readable by someone else
 plt.title('500-hPa Geo Heights (m; black), Smoothed 500-hPa Geo. Heights (m; red)',
           loc='left')
-plt.title('VALID: %s'.format(vtimes[0]), loc='right')
+plt.title('VALID: {}'.format(vtimes[0]), loc='right')
 
 # Set GAREA and add map features
 ax.set_extent([-125., -67., 22., 52.], ccrs.PlateCarree())
