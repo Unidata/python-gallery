@@ -6,9 +6,10 @@ Miller Composite Chart
 Create a Miller Composite chart based on Miller 1972 in Python with MetPy and
 Matplotlib.
 """
+from datetime import datetime
+
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-from datetime import datetime
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
@@ -28,7 +29,8 @@ from siphon.ncss import NCSS
 
 base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/namanl/'
 dt = datetime(2011, 4, 27)
-ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_1800_000.grb'.format(base_url, dt=dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_'
+            '1800_000.grb'.format(base_url, dt=dt))
 
 # Query for required variables
 gfsdata = ncss.query().all_times()
@@ -37,7 +39,8 @@ gfsdata.variables('Geopotential_height_isobaric',
                   'v-component_of_wind_isobaric',
                   'Temperature_isobaric',
                   'Relative_humidity_isobaric',
-                  'Best_4_layer_lifted_index_layer_between_two_pressure_difference_from_ground_layer',
+                  'Best_4_layer_lifted_index_layer_between_two_pressure_'
+                  'difference_from_ground_layer',
                   'Absolute_vorticity_isobaric',
                   'Pressure_reduced_to_MSL_msl',
                   'Dew_point_temperature_height_above_ground'
@@ -63,8 +66,10 @@ uwnd = data.variables['u-component_of_wind_isobaric'][0, :] * units.meter / unit
 vwnd = data.variables['v-component_of_wind_isobaric'][0, :] * units.meter / units.second
 hgt = data.variables['Geopotential_height_isobaric'][0, :] * units.meter
 relh = data.variables['Relative_humidity_isobaric'][0, :]
-lifted_index = (data.variables['Best_4_layer_lifted_index_layer_between_two_pressure_difference_from_ground_layer'][0, 0, :] *
-                units(data.variables['Best_4_layer_lifted_index_layer_between_two_pressure_difference_from_ground_layer'].units))
+lifted_index = (data.variables['Best_4_layer_lifted_index_layer_between_two_'
+                               'pressure_difference_from_ground_layer'][0, 0, :] *
+                units(data.variables['Best_4_layer_lifted_index_layer_between_two_'
+                                     'pressure_difference_from_ground_layer'].units))
 Td_sfc = (data.variables['Dew_point_temperature_height_above_ground'][0, 0, :] *
           units(data.variables['Dew_point_temperature_height_above_ground'].units))
 avor = data.variables['Absolute_vorticity_isobaric'][0, :] * units('1/s')
@@ -74,7 +79,8 @@ pmsl = (data.variables['Pressure_reduced_to_MSL_msl'][0, :] *
 ########################
 # Query for 00 UTC to calculate pressure falls and height change
 
-ncss2 = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_0600_000.grb'.format(base_url, dt=dt))
+ncss2 = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_'
+             '0600_000.grb'.format(base_url, dt=dt))
 
 # Query for required variables
 gfsdata = ncss.query().all_times()

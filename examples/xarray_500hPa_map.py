@@ -27,10 +27,6 @@ import xarray as xr
 
 # Set year, month, day, and hour values as variables to make it
 # easier to change dates for a case study
-#data = xr.open_dataset('https://nomads.ncdc.noaa.gov/thredds/dodsC/namanl/{0:%Y%m}/'
-#                       '{0:%Y%m%d}/namanl_218_{0:%Y%m%d}_{0:%H}00_000.grb'.format(dt),
-#                       decode_times=True)
-
 base_url = 'https://www.ncei.noaa.gov/thredds/dodsC/namanl/'
 dt = datetime(2016, 4, 16, 18)
 data = xr.open_dataset('{}{dt:%Y%m}/{dt:%Y%m%d}/namanl_218_{dt:%Y%m%d}_'

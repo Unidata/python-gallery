@@ -36,6 +36,7 @@ def find_time_var(var, time_basename='time'):
             return coord_name
     raise ValueError('No time variable found for ' + var.name)
 
+
 ###############################################
 # Create NCSS object to access the NetcdfSubset
 # ---------------------------------------------
@@ -43,7 +44,8 @@ def find_time_var(var, time_basename='time'):
 
 base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
 dt = datetime(2017, 4, 5, 12)
-ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_'
+            '{dt:%H}00_000.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query().time(dt)

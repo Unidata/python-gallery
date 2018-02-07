@@ -13,8 +13,6 @@ Geopotential Heights and Wind Barbs.
 # Begin with imports, need a lot for this task.
 
 # A whole bunch of imports
-from urllib.request import urlopen
-
 import cartopy.crs as ccrs
 import cartopy.feature as cfeat
 from matplotlib import patheffects
@@ -25,7 +23,6 @@ from metpy.units import units
 from netCDF4 import num2date
 import scipy.ndimage as ndimage
 from siphon.catalog import TDSCatalog
-from siphon.ncss import NCSS
 
 
 ##############################################
