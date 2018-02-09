@@ -40,7 +40,8 @@ def find_time_var(var, time_basename='time'):
 
 base_url = 'https://www.ncei.noaa.gov/thredds/ncss/grid/gfs-g4-anl-files/'
 dt = datetime(2018, 1, 4, 12)
-ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
+ncss = NCSS('{}{dt:%Y%m}/{dt:%Y%m%d}/gfsanl_4_{dt:%Y%m%d}'
+            '_{dt:%H}00_000.grb2'.format(base_url, dt=dt))
 
 # Create lat/lon box for location you want to get data for
 query = ncss.query().time(dt)
@@ -68,21 +69,15 @@ data = ncss.get_data(query)
 # Height above ground Wind from GFS has three levels (10m, 80m, 100m)
 
 # Pull out variables you want to use
-mslp_var = data.variables['Pressure_reduced_to_MSL_msl']
-temp_var = data.variables['Apparent_temperature_height_above_ground']
-u_wind_var = data.variables['u-component_of_wind_height_above_ground']
-v_wind_var = data.variables['v-component_of_wind_height_above_ground']
-time_var = data.variables[find_time_var(temp_var)]
-lat_var = data.variables['lat']
-lon_var = data.variables['lon']
+mslp = data.variables['Pressure_reduced_to_MSL_msl'][:].squeeze()
+temp = data.variables['Apparent_temperature_height_above_ground'][:].squeeze() * units.K
+u_wind = data.variables['u-component_of_wind_height_above_ground'][:].squeeze() * units('m/s')
+v_wind = data.variables['v-component_of_wind_height_above_ground'][:].squeeze() * units('m/s')
+lat = data.variables['lat'][:].squeeze()
+lon = data.variables['lon'][:].squeeze()
+time_var = data.variables[find_time_var(data.variables['Pressure_reduced_to_MSL_msl'])]
 
-# Get actual data values and remove any size 1 dimensions
-lat = lat_var[:].squeeze()
-lon = lon_var[:].squeeze()
-mslp = mslp_var[:].squeeze()
-temp = temp_var[:].squeeze() * units.K
-u_wind = u_wind_var[:].squeeze() * units('m/s')
-v_wind = v_wind_var[:].squeeze() * units('m/s')
+# Convert winds to knots
 u_wind.ito('kt')
 v_wind.ito('kt')
 
