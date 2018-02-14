@@ -9,13 +9,23 @@ matrix:
   fast_finish: true
   allow_failures:
     - os: osx
-    
+    - env: Python=3.6 THREDDS="test"
+    - env: Python=3.6 THREDDS="dev"
+  exclude:
+    - os: osx
+      env: Python=3.6 THREDDS="test"
+    - os: osx
+      env: Python=3.6 THREDDS="dev"
+
 env:
   global:
     - MINICONDA_DIR="$HOME/miniconda"
   matrix:
-    - Python=3.5
-    - Python=3.6
+    - Python=3.5 THREDDS="main"
+    - Python=3.6 THREDDS="main"
+    - Python=3.6 THREDDS="test"
+    - Python=3.6 THREDDS="dev"
+     
 
 before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
@@ -39,6 +49,9 @@ install:
   - conda list
 
 script:
+  - if [[ $THREDDS != "main" ]]; then
+       python thredds_test_converter.py $THREDDS;
+    fi;
   - flake8 examples metpy_mondays
   - pushd website
   - travis_retry make html
