@@ -24,7 +24,8 @@ from siphon.ncss import NCSS
 # -----------------
 
 # Request METAR data from TDS
-metar = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/nws/metar/ncdecoded/catalog.xml')
+metar = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/nws/'
+                   'metar/ncdecoded/catalog.xml')
 dataset = list(metar.datasets.values())[0]
 print(list(dataset.access_urls))
 
