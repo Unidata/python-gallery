@@ -2,10 +2,12 @@
 =========================================================
 MSLP and 1000-500 hPa Thickness with High and Low Symbols
 =========================================================
+
 Plot MSLP, calculate and plot 1000-500 hPa thickness, and plot H and L markers.
 Beyond just plotting a few variables, in the example we use functionality
 from the scipy module to find local maximum and minimimum values within the
 MSLP field in order to plot symbols at those locations.
+
 """
 
 ###############################
