@@ -1,7 +1,7 @@
 """
-=============================
-MSLP and 1000-500 hPa Thickness  with High and Low Symbols
-=============================
+=========================================================
+MSLP and 1000-500 hPa Thickness with High and Low Symbols
+=========================================================
 
 Plot MSLP, calculate and plot 1000-500 hPa thickness, and plot H and L markers.
 
