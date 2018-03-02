@@ -77,11 +77,6 @@ wspd250 = mpcalc.get_wind_speed(u250, v250) * 1.94384
 datacrs = ccrs.PlateCarree()
 plotcrs = ccrs.NorthPolarStereo(central_longitude=-100.0)
 
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m',
-                                                facecolor='none')
-
 # Make a grid of lat/lon values to use for plotting with Basemap.
 lons, lats = np.meshgrid(lon, lat)
 
@@ -96,7 +91,7 @@ ax.set_title('VALID: {}'.format(vtimes[0]), loc='right')
 #   ax.set_extent([west long, east long, south lat, north lat])
 ax.set_extent([-180, 180, 10, 90], ccrs.PlateCarree())
 ax.coastlines('50m', edgecolor='black', linewidth=0.5)
-ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
+ax.add_feature(cfeature.STATES, linewidth=0.5)
 
 clev250 = np.arange(9000, 12000, 120)
 cs = ax.contour(lons, lats, Z_250, clev250, colors='k',

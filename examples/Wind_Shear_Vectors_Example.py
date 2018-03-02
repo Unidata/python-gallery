@@ -123,10 +123,7 @@ ax.set_extent([-108., -91., 33., 45.])
 ax.background_patch.set_fill(False)
 
 # Add state boundaries to plot
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m', facecolor='none')
-ax.add_feature(states_provinces, edgecolor='white', linewidth=2)
+ax.add_feature(cfeature.STATES, edgecolor='white', linewidth=2)
 
 # Contour the MSLP
 c = ax.contour(lon_2d, lat_2d, mslp, colors='lime', linewidth=6)

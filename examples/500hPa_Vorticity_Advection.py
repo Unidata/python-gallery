@@ -100,12 +100,7 @@ plt.title('VALID: {}'.format(vtime[0]), loc='right')
 # Plot Background
 ax.set_extent([235., 290., 20., 58.], ccrs.PlateCarree())
 ax.coastlines('50m', edgecolor='black', linewidth=0.75)
-states_provinces = cfeature.NaturalEarthFeature(
-        category='cultural',
-        name='admin_1_states_provinces_lakes',
-        scale='50m',
-        facecolor='none')
-ax.add_feature(states_provinces, edgecolor='black', linewidth=.5)
+ax.add_feature(cfeature.STATES, linewidth=.5)
 
 # Plot Height Contours
 clev500 = np.arange(5100, 6061, 60)
