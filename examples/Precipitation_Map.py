@@ -52,13 +52,9 @@ fig = plt.figure(figsize=(8, 8))
 ax = fig.add_subplot(1, 1, 1, projection=proj)
 
 # draw coastlines, state and country boundaries, edge of map.
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m',
-                                                facecolor='none')
 ax.coastlines()
 ax.add_feature(cfeature.BORDERS)
-ax.add_feature(states_provinces)
+ax.add_feature(cfeature.STATES)
 
 # draw filled contours.
 clevs = [0, 1, 2.5, 5, 7.5, 10, 15, 20, 30, 40,

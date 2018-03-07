@@ -106,16 +106,7 @@ ax.set_extent([-105., -93., 35., 43.])
 ax.background_patch.set_fill(False)
 
 # Add state boundaries to plot
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lines',
-                                                scale='50m', facecolor='none')
-ax.add_feature(states_provinces, edgecolor='white', linewidth=2)
-
-# Add country borders to plot
-country_borders = cfeature.NaturalEarthFeature(category='cultural',
-                                               name='admin_0_countries',
-                                               scale='50m', facecolor='none')
-ax.add_feature(country_borders, edgecolor='white', linewidth=2)
+ax.add_feature(cfeature.STATES, edgecolor='white', linewidth=2)
 
 # Contour the heights every 10 m
 contours = np.arange(10, 200, 10)

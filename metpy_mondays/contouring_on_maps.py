@@ -10,7 +10,7 @@ contoured. You can use this functionality to create height maps and more!
 
 #####################################
 import cartopy.crs as ccrs
-import cartopy.feature as cfeat
+import cartopy.feature as cfeature
 from cartopy.util import add_cyclic_point
 import matplotlib
 import matplotlib.pyplot as plt
@@ -51,9 +51,9 @@ ax = fig.add_subplot(1, 1, 1, projection=ccrs.Robinson())
 ax.set_global()
 
 # Add variety of features
-ax.add_feature(cfeat.LAND)
-ax.add_feature(cfeat.OCEAN)
-ax.add_feature(cfeat.COASTLINE)
+ax.add_feature(cfeature.LAND)
+ax.add_feature(cfeature.OCEAN)
+ax.add_feature(cfeature.COASTLINE)
 
 # Set negative contours to be solid instead of dashed
 matplotlib.rcParams['contour.negative_linestyle'] = 'solid'

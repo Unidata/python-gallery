@@ -14,7 +14,7 @@ Geopotential Heights and Wind Barbs.
 
 # A whole bunch of imports
 import cartopy.crs as ccrs
-import cartopy.feature as cfeat
+import cartopy.feature as cfeature
 from matplotlib import patheffects
 import matplotlib.pyplot as plt
 from metpy.io import GiniFile
@@ -91,12 +91,8 @@ ax = fig.add_subplot(1, 1, 1, projection=proj)
 
 # Add mapping information
 ax.coastlines(resolution='50m', color='black')
-state_boundaries = cfeat.NaturalEarthFeature(category='cultural',
-                                             name='admin_1_states_provinces_lakes',
-                                             scale='50m', facecolor='none')
-
-ax.add_feature(state_boundaries, edgecolor='black', linestyle=':')
-ax.add_feature(cfeat.BORDERS, linewidth=2, edgecolor='black')
+ax.add_feature(cfeature.STATES, linestyle=':')
+ax.add_feature(cfeature.BORDERS, linewidth=2)
 
 # Plot the image with our colormapping choices
 wv_norm, wv_cmap = registry.get_with_range('WVCIMSS', 100, 260)
