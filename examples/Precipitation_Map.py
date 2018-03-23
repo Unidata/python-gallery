@@ -36,7 +36,7 @@ prcpvar = nc.variables['observation']
 data = masked_array(prcpvar[:], units(prcpvar.units.lower())).to('mm')
 x = nc.variables['x'][:]
 y = nc.variables['y'][:]
-proj_var = nc.variables['polar_stereographic']
+proj_var = nc.variables[prcpvar.grid_mapping]
 
 ###############################
 # Set up the projection information within CartoPy
