@@ -19,6 +19,8 @@ elif sys.argv[1] == 'test':
     replace_text = 'http://thredds-test.unidata.ucar.edu'
 elif sys.argv[1] == 'dev':
     replace_text = 'http://thredds-dev.unidata.ucar.edu'
+elif sys.argv[1] == 'atm':
+    replace_text = 'http://atm.ucar.edu'
 else:
     raise ValueError('Invalid THREDDS specifier: {}'.format(sys.argv[1]))
 
