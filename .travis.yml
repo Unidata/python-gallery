@@ -12,6 +12,7 @@ matrix:
     - env: Python=3.6 THREDDS="test"
     - env: Python=3.6 THREDDS="dev"
     - env: Python=3.6 THREDDS="atm"
+    - env: Python=3.6 THREDDS="jetstream"
   exclude:
     - os: osx
       env: Python=3.6 THREDDS="test"
@@ -19,6 +20,8 @@ matrix:
       env: Python=3.6 THREDDS="dev"
     - os: osx
       env: Python=3.6 THREDDS="atm"
+    - os: osx
+      env: Python=3.6 THREDDS="jetstream"
 
 env:
   global:
@@ -29,6 +32,7 @@ env:
     - Python=3.6 THREDDS="test"
     - Python=3.6 THREDDS="dev"
     - Python=3.6 THREDDS="atm"
+    - Python=3.6 THREDDS="jetstream"
 
 
 before_install:
