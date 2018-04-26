@@ -13,7 +13,6 @@ Galleries
    :maxdepth: 1
 
    examples/index
-   metpy_mondays/index
    useful_tools
 
 ----------
