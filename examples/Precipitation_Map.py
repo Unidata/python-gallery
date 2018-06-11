@@ -27,8 +27,7 @@ dt = datetime.utcnow() - timedelta(days=1)  # This should always be available
 url = 'http://water.weather.gov/precip/downloads/{dt:%Y/%m/%d}/nws_precip_1day_'\
       '{dt:%Y%m%d}_conus.nc'.format(dt=dt)
 data = urlopen(url).read()
-Dataset('temp.nc', 'w').close()  # Work around bug where it needs an existing netCDF file
-nc = Dataset('temp.nc', 'r', memory=data)
+nc = Dataset('', memory=data)
 
 ###############################
 # Pull the needed information out of the netCDF file
