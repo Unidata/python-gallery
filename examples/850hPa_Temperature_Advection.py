@@ -130,17 +130,9 @@ ax = plt.subplot(gs[0], projection=plotcrs)
 plt.title('850mb Temperature Advection for {0:%d %B %Y %H:%MZ}'.format(time), fontsize=16)
 ax.set_extent([235., 290., 20., 55.])
 
-# Add state boundaries to plot
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m', facecolor='none')
-ax.add_feature(states_provinces, edgecolor='black', linewidth=1)
-
-# Add country borders to plot
-country_borders = cfeature.NaturalEarthFeature(category='cultural',
-                                               name='admin_0_countries',
-                                               scale='50m', facecolor='none')
-ax.add_feature(country_borders, edgecolor='black', linewidth=1)
+# Add state/country boundaries to plot
+ax.add_feature(cfeature.STATES)
+ax.add_feature(cfeature.BORDERS)
 
 # Plot Height Contours
 clev850 = np.arange(900, 3000, 30)

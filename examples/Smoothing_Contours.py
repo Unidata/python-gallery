@@ -82,12 +82,6 @@ sped = get_wind_speed(uwnd, vwnd).to('knots')
 plotcrs = ccrs.LambertConformal(central_longitude=-100.0, central_latitude=45.0)
 datacrs = ccrs.PlateCarree(central_longitude=0.)
 
-states_provinces = cfeature.NaturalEarthFeature(
-        category='cultural',
-        name='admin_1_states_provinces_lakes',
-        scale='50m',
-        facecolor='none')
-
 
 ##################################
 # Subset and smooth
@@ -117,7 +111,7 @@ plt.title('VALID: {}'.format(vtimes[0]), loc='right')
 # Set GAREA and add map features
 ax.set_extent([-125., -67., 22., 52.], ccrs.PlateCarree())
 ax.coastlines('50m', edgecolor='black', linewidth=0.75)
-ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
+ax.add_feature(cfeature.STATES, linewidth=0.5)
 
 # Set the CINT
 clev500 = np.arange(5100, 6000, 60)

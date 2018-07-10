@@ -199,42 +199,37 @@ crs = ccrs.LambertConformal(central_longitude=-100.0, central_latitude=45.0)
 
 
 # Coordinates to limit map area
-bounds = [(-122., -75., 25., 50.)]
+bounds = [-122., -75., 25., 50.]
 # Choose a level to plot, in this case 296 K
 level = 0
 
-# Get data to plot state and province boundaries
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m',
-                                                facecolor='none')
 
 #########################
 # Plot the composite
-fig = plt.figure(1, figsize=(17., 12.))
-ax = plt.subplot(111, projection=crs)
-ax.set_extent(*bounds, crs=ccrs.PlateCarree())
+fig = plt.figure(1, figsize=(17, 12))
+ax = fig.add_subplot(1, 1, 1, projection=crs)
+ax.set_extent(bounds, crs=ccrs.PlateCarree())
 ax.coastlines('50m', edgecolor='black', linewidth=0.75)
-ax.add_feature(states_provinces, edgecolor='black', linewidth=0.25)
+ax.add_feature(cfeature.STATES, linewidth=0.25)
 
 # Plot Lifted Index
 cs1 = ax.contour(lon, lat, lifted_index, range(-8, -2, 2), transform=ccrs.PlateCarree(),
-                 colors='red', linewidths=0.75, linestyles='solid', zorder=7,
-                 label='Best Lifted Index')
-plt.clabel(cs1, fontsize=10, inline=1, inline_spacing=7,
+                 colors='red', linewidths=0.75, linestyles='solid', zorder=7)
+cs1.clabel(fontsize=10, inline=1, inline_spacing=7,
            fmt='%i', rightside_up=True, use_clabeltext=True)
 
 # Plot Surface pressure falls
 cs2 = ax.contour(lon, lat, pmsl_change.to('hPa'), range(-10, -1, 4),
                  transform=ccrs.PlateCarree(),
                  colors='k', linewidths=0.75, linestyles='dashed', zorder=6)
-plt.clabel(cs2, fontsize=10, inline=1, inline_spacing=7,
+cs2.clabel(fontsize=10, inline=1, inline_spacing=7,
            fmt='%i', rightside_up=True, use_clabeltext=True)
 
 # Plot 500-hPa height falls
 cs3 = ax.contour(lon, lat, hgt_500_change, range(-60, -29, 15),
-                 colors='k', linewidths=0.75, linestyles='solid', zorder=5)
-plt.clabel(cs3, fontsize=10, inline=1, inline_spacing=7,
+                 transform=ccrs.PlateCarree(), colors='k', linewidths=0.75,
+                 linestyles='solid', zorder=5)
+cs3.clabel(fontsize=10, inline=1, inline_spacing=7,
            fmt='%i', rightside_up=True, use_clabeltext=True)
 
 # Plot surface pressure

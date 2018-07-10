@@ -82,16 +82,10 @@ datacrs = ccrs.LambertConformal(
 plotcrs = ccrs.LambertConformal(central_latitude=45., central_longitude=-100.,
                                 standard_parallels=[30, 60])
 
-states_provinces = cfeature.NaturalEarthFeature(
-        category='cultural',
-        name='admin_1_states_provinces_lakes',
-        scale='50m',
-        facecolor='none')
-
 fig = plt.figure(figsize=(17., 11.))
 ax = plt.axes(projection=plotcrs)
 ax.coastlines('50m', edgecolor='black')
-ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
+ax.add_feature(cfeature.STATES, linewidth=0.5)
 ax.set_extent([-130, -67, 20, 50], ccrs.PlateCarree())
 
 clev500 = np.arange(5100, 6000, 60)
