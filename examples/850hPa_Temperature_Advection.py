@@ -71,8 +71,8 @@ lat = lat_var[:].squeeze()
 lon = lon_var[:].squeeze()
 hght = hght_var[:].squeeze()
 temp = temp_var[:].squeeze() * units.K
-u_wind = u_wind_var[:].squeeze() * units('m/s')
-v_wind = v_wind_var[:].squeeze() * units('m/s')
+u_wind = units('m/s') * u_wind_var[:].squeeze()
+v_wind = units('m/s') * v_wind_var[:].squeeze()
 
 # Convert number of hours since the reference time into an actual date
 time = num2date(time_var[:].squeeze(), time_var.units)

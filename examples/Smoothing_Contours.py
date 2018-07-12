@@ -70,8 +70,8 @@ vtimes = num2date(times[:], times.units)
 
 # Pull out the 500 hPa Heights
 hght = data.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
-uwnd = data.variables['u-component_of_wind_isobaric'][:].squeeze() * units('m/s')
-vwnd = data.variables['v-component_of_wind_isobaric'][:].squeeze() * units('m/s')
+uwnd = units('m/s') * data.variables['u-component_of_wind_isobaric'][:].squeeze()
+vwnd = units('m/s') * data.variables['v-component_of_wind_isobaric'][:].squeeze()
 
 # Calculate the magnitude of the wind speed in kts
 sped = get_wind_speed(uwnd, vwnd).to('knots')

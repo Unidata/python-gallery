@@ -72,8 +72,8 @@ data = ncss.get_data(query)
 # Pull out specific variables and attach units.
 
 hght_300 = data.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
-uwnd_300 = data.variables['u-component_of_wind_isobaric'][:].squeeze() * units('m/s')
-vwnd_300 = data.variables['v-component_of_wind_isobaric'][:].squeeze() * units('m/s')
+uwnd_300 = units('m/s') * data.variables['u-component_of_wind_isobaric'][:].squeeze()
+vwnd_300 = units('m/s') * data.variables['v-component_of_wind_isobaric'][:].squeeze()
 
 Z_300 = ndimage.gaussian_filter(hght_300, sigma=4, order=0)
 
