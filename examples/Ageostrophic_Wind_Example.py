@@ -83,7 +83,7 @@ height = ndimage.gaussian_filter(height, sigma=1.5, order=0)
 # Set up some constants based on our projection, including the Coriolis parameter and
 # grid spacing, converting lon/lat spacing to Cartesian
 f = mpcalc.coriolis_parameter(np.deg2rad(lat_2d)).to('1/s')
-dx, dy = mpcalc.lat_lon_grid_spacing(lon_2d, lat_2d)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon_2d, lat_2d)
 dy *= -1
 
 # In MetPy 0.5, geostrophic_wind() assumes the order of the dimensions is (X, Y),
@@ -116,7 +116,7 @@ zoom_500 = ndimage.zoom(height, 5)
 zlon = ndimage.zoom(lon_2d, 5)
 zlat = ndimage.zoom(lat_2d, 5)
 c = ax.contour(zlon, zlat, zoom_500, levels=contours,
-               colors='red', linewidth=4)
+               colors='red', linewidths=4)
 ax.clabel(c, fontsize=12, inline=1, inline_spacing=3, fmt='%i')
 
 # Set up parameters for quiver plot. The slices below are used to subset the data (here

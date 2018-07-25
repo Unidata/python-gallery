@@ -14,6 +14,7 @@ import cartopy.util as cutil
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import metpy.calc as mpcalc
+from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
 import scipy.ndimage as ndimage
@@ -66,9 +67,13 @@ hgt_250, lon = cutil.add_cyclic_point(data.variables['Geopotential_height_isobar
                                       coord=lon)
 Z_250 = ndimage.gaussian_filter(hgt_250[0, 0, :, :], sigma=3, order=0)
 
-u250 = cutil.add_cyclic_point(data.variables['u-component_of_wind_isobaric'][0, 0, :, :])
-v250 = cutil.add_cyclic_point(data.variables['v-component_of_wind_isobaric'][0, 0, :, :])
-wspd250 = mpcalc.get_wind_speed(u250, v250) * 1.94384
+u250 = (units(data.variables['u-component_of_wind_isobaric'].units) *
+        data.variables['u-component_of_wind_isobaric'][0, 0, :, :])
+v250 = (units(data.variables['v-component_of_wind_isobaric'].units) *
+        data.variables['v-component_of_wind_isobaric'][0, 0, :, :])
+u250 = u250.units * cutil.add_cyclic_point(u250)
+v250 = v250.units * cutil.add_cyclic_point(v250)
+wspd250 = mpcalc.get_wind_speed(u250, v250).to('knots')
 
 #################################################
 # The next cell sets up the geographic details for the plot that we are going to do later.

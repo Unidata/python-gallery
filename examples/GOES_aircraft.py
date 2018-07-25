@@ -16,11 +16,14 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 from matplotlib import patheffects
 import matplotlib.pyplot as plt
+import metpy  # noqa: F401
 import metpy.calc as mpcalc
 from metpy.plots.ctables import registry
 from metpy.units import units
 import numpy as np
 from siphon.catalog import TDSCatalog
+import xarray as xr
+from xarray.backends import NetCDF4DataStore
 
 
 def get_plane_data():
@@ -46,27 +49,21 @@ def get_goes_image(date=datetime.utcnow(), channel=8, region='CONUS'):
 
     ds = cat.datasets[-1]  # Get most recent dataset
     ds = ds.remote_access(service='OPENDAP')
+    ds = NetCDF4DataStore(ds)
+    ds = xr.open_dataset(ds)
     return ds
 
 
 ds = get_goes_image()
 data = get_plane_data()
 
+# Parse out the projection data from the satellite file
+dat = ds.metpy.parse_cf('Sectorized_CMI')
+proj = dat.metpy.cartopy_crs
+
 # Pull out what we need from the GOES netCDF file
-data_var = ds.variables['Sectorized_CMI']
-x = ds.variables['x'][:]
-y = ds.variables['y'][:]
-proj_var = ds.variables[data_var.grid_mapping]
-
-# Create a Globe specifying a spherical earth with the correct radius
-globe = ccrs.Globe(ellipse='sphere', semimajor_axis=proj_var.semi_major,
-                   semiminor_axis=proj_var.semi_minor)
-
-# Select the correct projection.
-proj = ccrs.LambertConformal(central_longitude=proj_var.longitude_of_central_meridian,
-                             central_latitude=proj_var.latitude_of_projection_origin,
-                             standard_parallels=[proj_var.standard_parallel],
-                             globe=globe)
+x = dat['x']
+y = dat['y']
 
 # Make the plot
 fig = plt.figure(figsize=(1.375 * 40, 40))
@@ -75,8 +72,8 @@ plt.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=0, hspace=0)
 
 wv_norm, wv_cmap = registry.get_with_range('WVCIMSS_r', 195, 265)
 
-im = ax.imshow(data_var[:], extent=(x.min(), x.max(), y.min(), y.max()),
-               origin='upper', transform=proj)
+im = ax.imshow(dat, extent=(x.min(), x.max(), y.min(), y.max()),
+               origin='upper')
 
 im.set_cmap(wv_cmap)
 im.set_norm(wv_norm)

@@ -55,14 +55,14 @@ lev_500 = np.where(ds.variables['isobaric'][:] == 500)[0][0]
 hght_500 = ds.variables['Geopotential_height_isobaric'][0, lev_500, :, :]
 hght_500 = ndimage.gaussian_filter(hght_500, sigma=3, order=0) * units.meter
 
-uwnd_500 = ds.variables['u-component_of_wind_isobaric'][0, lev_500, :, :] * units('m/s')
-vwnd_500 = ds.variables['v-component_of_wind_isobaric'][0, lev_500, :, :] * units('m/s')
+uwnd_500 = units('m/s') * ds.variables['u-component_of_wind_isobaric'][0, lev_500, :, :]
+vwnd_500 = units('m/s') * ds.variables['v-component_of_wind_isobaric'][0, lev_500, :, :]
 
 #######################################
 # Begin Data Calculations
 # -----------------------
 
-dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon, lat)
 
 f = mpcalc.coriolis_parameter(np.deg2rad(lat)).to(units('1/sec'))
 
