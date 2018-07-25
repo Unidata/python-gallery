@@ -70,9 +70,9 @@ data = ncss.get_data(query)
 
 # Pull out variables you want to use
 mslp = data.variables['Pressure_reduced_to_MSL_msl'][:].squeeze()
-temp = data.variables['Apparent_temperature_height_above_ground'][:].squeeze() * units.K
-u_wind = data.variables['u-component_of_wind_height_above_ground'][:].squeeze() * units('m/s')
-v_wind = data.variables['v-component_of_wind_height_above_ground'][:].squeeze() * units('m/s')
+temp = units.K * data.variables['Apparent_temperature_height_above_ground'][:].squeeze()
+u_wind = units('m/s') * data.variables['u-component_of_wind_height_above_ground'][:].squeeze()
+v_wind = units('m/s') * data.variables['v-component_of_wind_height_above_ground'][:].squeeze()
 lat = data.variables['lat'][:].squeeze()
 lon = data.variables['lon'][:].squeeze()
 time_var = data.variables[find_time_var(data.variables['Pressure_reduced_to_MSL_msl'])]

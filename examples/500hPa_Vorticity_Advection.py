@@ -62,7 +62,7 @@ vwnd_500 = units('m/s') * ds.variables['v-component_of_wind_isobaric'][0, lev_50
 # Begin Data Calculations
 # -----------------------
 
-dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon, lat)
 
 f = mpcalc.coriolis_parameter(np.deg2rad(lat)).to(units('1/sec'))
 

@@ -95,7 +95,7 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 
 # Use helper function defined above to calculate distance
 # between lat/lon grid points
-dx, dy = mpcalc.lat_lon_grid_spacing(lon_var, lat_var)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon_var, lat_var)
 
 # Because of the way the data are returned we need a negative spacing. This
 # will be easier in the next version of MetPy.

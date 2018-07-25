@@ -57,24 +57,25 @@ dtime = data.variables['Geopotential_height_isobaric'].dimensions[0]
 dlev = data.variables['Geopotential_height_isobaric'].dimensions[1]
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
-lev = data.variables[dlev][:] * units.hPa
+lev = units.hPa * data.variables[dlev][:]
 times = data.variables[dtime]
 vtimes = num2date(times[:], times.units)
 temps = data.variables['Temperature_isobaric']
-tmp = temps[0, :] * units.kelvin
-uwnd = data.variables['u-component_of_wind_isobaric'][0, :] * units.meter / units.second
-vwnd = data.variables['v-component_of_wind_isobaric'][0, :] * units.meter / units.second
-hgt = data.variables['Geopotential_height_isobaric'][0, :] * units.meter
+tmp = units.kelvin * temps[0, :]
+uwnd = (units.meter / units.second) * data.variables['u-component_of_wind_isobaric'][0, :]
+vwnd = (units.meter / units.second) * data.variables['v-component_of_wind_isobaric'][0, :]
+hgt = units.meter * data.variables['Geopotential_height_isobaric'][0, :]
 relh = data.variables['Relative_humidity_isobaric'][0, :]
 lifted_index = (data.variables['Best_4_layer_lifted_index_layer_between_two_'
                                'pressure_difference_from_ground_layer'][0, 0, :] *
                 units(data.variables['Best_4_layer_lifted_index_layer_between_two_'
                                      'pressure_difference_from_ground_layer'].units))
-Td_sfc = (data.variables['Dew_point_temperature_height_above_ground'][0, 0, :] *
-          units(data.variables['Dew_point_temperature_height_above_ground'].units))
+Td_sfc = (units(data.variables['Dew_point_temperature_height_above_ground'].units) *
+          data.variables['Dew_point_temperature_height_above_ground'][0, 0, :])
 avor = data.variables['Absolute_vorticity_isobaric'][0, :] * units('1/s')
-pmsl = (data.variables['Pressure_reduced_to_MSL_msl'][0, :] *
-        units(data.variables['Pressure_reduced_to_MSL_msl'].units))
+pmsl = (units(data.variables['Pressure_reduced_to_MSL_msl'].units) *
+        data.variables['Pressure_reduced_to_MSL_msl'][0, :])
+
 
 ########################
 # Query for 00 UTC to calculate pressure falls and height change
@@ -95,8 +96,9 @@ gfsdata.lonlat_box(-135, -60, 15, 65)
 data2 = ncss2.get_data(gfsdata)
 
 hgt_00z = data2.variables['Geopotential_height_isobaric'][0, :] * units.meter
-pmsl_00z = (data2.variables['Pressure_reduced_to_MSL_msl'][0, :] *
-            units(data2.variables['Pressure_reduced_to_MSL_msl'].units))
+pmsl_00z = (units(data2.variables['Pressure_reduced_to_MSL_msl'].units) *
+            data2.variables['Pressure_reduced_to_MSL_msl'][0, :])
+
 
 ###########################
 # **Subset the Data**
@@ -116,7 +118,7 @@ hgt_500_00z = hgt_00z[20, :]
 
 # 700 hPa, index 12
 tmp_700 = tmp[12, :].to('degC')
-rh_700 = relh[12, :]
+rh_700 = units.percent * relh[12, :]
 u_700 = uwnd[12, :].to('kt')
 v_700 = vwnd[12, :].to('kt')
 
@@ -124,7 +126,7 @@ v_700 = vwnd[12, :].to('kt')
 tmp_850 = tmp[6, :].to('degC')
 u_850 = uwnd[6, :].to('kt')
 v_850 = vwnd[6, :].to('kt')
-rh_850 = relh[6, :]
+rh_850 = units.percent * relh[6, :]
 
 ########################################
 # **Prepare Variables for Plotting**
@@ -147,7 +149,7 @@ rh_850 = relh[6, :]
 
 
 # 500 hPa CVA
-dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon, lat)
 vort_adv_500 = mpcalc.advection(avor_500, [u_500.to('m/s'), v_500.to('m/s')],
                                 (dx, dy), dim_order='yx') * 1e9
 vort_adv_500_smooth = gaussian_filter(vort_adv_500, 4)
@@ -160,7 +162,7 @@ wspd_850 = gaussian_filter(mpcalc.get_wind_speed(u_850, v_850), 5)
 
 #################################
 # 850-hPa dewpoint will be calculated from RH and Temperature_isobaric
-Td_850 = mpcalc.dewpoint_rh(tmp_850, rh_850 / 100.)
+Td_850 = mpcalc.dewpoint_rh(tmp_850, rh_850)
 
 ################################
 # 700-hPa dewpoint depression will be calculated from Temperature_isobaric and RH

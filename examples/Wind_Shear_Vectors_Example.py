@@ -126,7 +126,7 @@ ax.background_patch.set_fill(False)
 ax.add_feature(cfeature.STATES, edgecolor='white', linewidth=2)
 
 # Contour the MSLP
-c = ax.contour(lon_2d, lat_2d, mslp, colors='lime', linewidth=6)
+c = ax.contour(lon_2d, lat_2d, mslp, colors='lime', linewidths=6)
 ax.clabel(c, fontsize=12, inline=1, inline_spacing=4, fmt='%i')
 
 wslice = slice(1, None, 4)

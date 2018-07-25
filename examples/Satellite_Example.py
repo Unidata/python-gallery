@@ -23,6 +23,7 @@ from metpy.units import units
 from netCDF4 import num2date
 import scipy.ndimage as ndimage
 from siphon.catalog import TDSCatalog
+import xarray as xr
 
 
 ##############################################
@@ -32,24 +33,15 @@ from siphon.catalog import TDSCatalog
 satcat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/satellite/'
                     'WV/WEST-CONUS_4km/current/catalog.xml')
 dataset = satcat.datasets[0]
-gini_ds = GiniFile(dataset.remote_open()).to_dataset()
+f = GiniFile(dataset.remote_open())
+gini_ds = xr.open_dataset(f)
 
 # Pull parts out of the data file
+dat = gini_ds.metpy.parse_cf('WV')
 data_var = gini_ds.variables['WV']
 x = gini_ds.variables['x'][:]
 y = gini_ds.variables['y'][:]
-time_var = gini_ds.variables['time']
-proj_var = gini_ds.variables[data_var.grid_mapping]
-timestamp = num2date(time_var[:].squeeze(), time_var.units)
-
-# Set up the projection based on satellite projection
-globe = ccrs.Globe(ellipse='sphere', semimajor_axis=proj_var.earth_radius,
-                   semiminor_axis=proj_var.earth_radius)
-
-proj = ccrs.LambertConformal(central_longitude=proj_var.longitude_of_central_meridian,
-                             central_latitude=proj_var.latitude_of_projection_origin,
-                             standard_parallels=[proj_var.standard_parallel],
-                             globe=globe)
+timestamp = f.prod_desc.datetime
 
 ##############################################
 # Use Siphon to obtain data that is close to the time of the satellite file
@@ -63,7 +55,7 @@ query = ncss.query()
 query.variables('Geopotential_height_isobaric',
                 'u-component_of_wind_isobaric',
                 'v-component_of_wind_isobaric')
-query.add_lonlat().vertical_level(300*100)
+query.add_lonlat().vertical_level(300 * 100)
 query.time(timestamp)  # Use the time from the GINI file
 query.lonlat_box(north=65, south=15, east=310, west=220)
 data = ncss.get_data(query)
@@ -87,7 +79,7 @@ vtime = num2date(time[:], time.units)
 
 # Create the figure
 fig = plt.figure(figsize=(10, 10))
-ax = fig.add_subplot(1, 1, 1, projection=proj)
+ax = fig.add_subplot(1, 1, 1, projection=dat.metpy.cartopy_crs)
 
 # Add mapping information
 ax.coastlines(resolution='50m', color='black')
