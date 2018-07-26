@@ -133,7 +133,8 @@ v_850 = vwnd[idx_850, ].to('kt')
 # With the data queried and subset, we will make any needed calculations in preparation for
 # plotting.
 #
-# The following fields should be plotted:
+# **The following fields should be plotted:**
+#
 #   500-hPa cyclonic vorticity advection
 #
 #   Surface-based Lifted Index
@@ -276,8 +277,10 @@ dashed_black_line = lines.Line2D([], [], linestyle='dashed', color='k',
                                  label='12-hr Surface Pressure Falls (hPa)')
 black_line = lines.Line2D([], [], linestyle='solid', color='k',
                           label='12-hr 500-hPa Height Falls (m)')
-plt.legend(handles=[jet300, jet500, jet850, dashed_black_line, black_line, red_line,
-                    purple, tan, green, yellow], loc=3,
-           title='Composite Analysis Valid: {:s}'.format(str(vtimes[0])))
+leg = plt.legend(handles=[jet300, jet500, jet850, dashed_black_line, black_line, red_line,
+                          purple, tan, green, yellow], loc=3,
+                 title='Composite Analysis Valid: {:s}'.format(str(vtimes[0])),
+                 framealpha=1)
+leg.set_zorder(100)
 
 plt.show()
