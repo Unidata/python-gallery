@@ -106,27 +106,27 @@ pmsl_00z = (units(data2.variables['Pressure_reduced_to_MSL_msl'].units) *
 # With the data pulled in, we will now subset to the specific levels desired
 
 # 300 hPa, index 28
-u_300 = uwnd[28, :].to('kt')
-v_300 = vwnd[28, :].to('kt')
+idx_300 = np.where(lev == 300. * units.hPa)[0][0]
+u_300 = uwnd[idx_300, :].to('kt')
+v_300 = vwnd[idx_300, :].to('kt')
 
 # 500 hPa, index 20
-avor_500 = avor[3, :]
-u_500 = uwnd[20, :].to('kt')
-v_500 = vwnd[20, :].to('kt')
-hgt_500 = hgt[20, :]
-hgt_500_00z = hgt_00z[20, :]
+idx_500 = np.where(lev == 500. * units.hPa)[0][0]
+avor_500 = avor[1, ]
+u_500 = uwnd[idx_500, ].to('kt')
+v_500 = vwnd[idx_500, ].to('kt')
+hgt_500 = hgt[idx_500, ]
+hgt_500_00z = hgt_00z[idx_500, ]
 
 # 700 hPa, index 12
-tmp_700 = tmp[12, :].to('degC')
-rh_700 = units.percent * relh[12, :]
-u_700 = uwnd[12, :].to('kt')
-v_700 = vwnd[12, :].to('kt')
+idx_700 = np.where(lev == 700. * units.hPa)[0][0]
+tmp_700 = tmp[idx_700, ].to('degC')
+rh_700 = relh[idx_700, ]
 
 # 850 hPa, index 6
-tmp_850 = tmp[6, :].to('degC')
-u_850 = uwnd[6, :].to('kt')
-v_850 = vwnd[6, :].to('kt')
-rh_850 = units.percent * relh[6, :]
+idx_850 = np.where(lev == 850. * units.hPa)[0][0]
+u_850 = uwnd[idx_850, ].to('kt')
+v_850 = vwnd[idx_850, ].to('kt')
 
 ########################################
 # **Prepare Variables for Plotting**
@@ -159,10 +159,6 @@ vort_adv_500_smooth = gaussian_filter(vort_adv_500, 4)
 wspd_300 = gaussian_filter(mpcalc.wind_speed(u_300, v_300), 5)
 wspd_500 = gaussian_filter(mpcalc.wind_speed(u_500, v_500), 5)
 wspd_850 = gaussian_filter(mpcalc.wind_speed(u_850, v_850), 5)
-
-#################################
-# 850-hPa dewpoint will be calculated from RH and Temperature_isobaric
-Td_850 = mpcalc.dewpoint_rh(tmp_850, rh_850)
 
 ################################
 # 700-hPa dewpoint depression will be calculated from Temperature_isobaric and RH
@@ -202,9 +198,6 @@ crs = ccrs.LambertConformal(central_longitude=-100.0, central_latitude=45.0)
 
 # Coordinates to limit map area
 bounds = [-122., -75., 25., 50.]
-# Choose a level to plot, in this case 296 K
-level = 0
-
 
 #########################
 # Plot the composite
@@ -253,19 +246,24 @@ ax.contourf(lon, lat, vort_adv_500_smooth, range(5, 106, 100), alpha=0.5,
             transform=ccrs.PlateCarree(),
             colors='BlueViolet', zorder=4)
 
+# Define a skip to reduce the barb point density
+skip_300 = (slice(None, None, 12), slice(None, None, 12))
+skip_500 = (slice(None, None, 10), slice(None, None, 10))
+skip_850 = (slice(None, None, 8), slice(None, None, 8))
+
 # 300-hPa wind barbs
-jet300 = ax.barbs(lon, lat, u_300.m, v_300.m, length=6, regrid_shape=20,
+jet300 = ax.barbs(lon[skip_300], lat[skip_300], u_300[skip_300].m, v_300[skip_300].m, length=6,
                   transform=ccrs.PlateCarree(),
                   color='green', zorder=10, label='300-hPa Jet Core Winds (kt)')
 
 
 # 500-hPa wind barbs
-jet500 = ax.barbs(lon, lat, u_500.m, v_500.m, length=6, regrid_shape=20,
+jet500 = ax.barbs(lon[skip_500], lat[skip_500], u_500[skip_500].m, v_500[skip_500].m, length=6,
                   transform=ccrs.PlateCarree(),
                   color='blue', zorder=9, label='500-hPa Jet Core Winds (kt)')
 
 # 850-hPa wind barbs
-jet850 = ax.barbs(lon, lat, u_850.m, v_850.m, length=6, regrid_shape=20,
+jet850 = ax.barbs(lon[skip_850], lat[skip_850], u_850[skip_850].m, v_850[skip_850].m, length=6,
                   transform=ccrs.PlateCarree(),
                   color='k', zorder=8, label='850-hPa Jet Core Winds (kt)')
 
