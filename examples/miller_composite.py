@@ -156,9 +156,9 @@ vort_adv_500_smooth = gaussian_filter(vort_adv_500, 4)
 
 ####################################
 # For the jet axes, we will calculate the windspeed at each level, and plot the highest values
-wspd_300 = gaussian_filter(mpcalc.get_wind_speed(u_300, v_300), 5)
-wspd_500 = gaussian_filter(mpcalc.get_wind_speed(u_500, v_500), 5)
-wspd_850 = gaussian_filter(mpcalc.get_wind_speed(u_850, v_850), 5)
+wspd_300 = gaussian_filter(mpcalc.wind_speed(u_300, v_300), 5)
+wspd_500 = gaussian_filter(mpcalc.wind_speed(u_500, v_500), 5)
+wspd_850 = gaussian_filter(mpcalc.wind_speed(u_850, v_850), 5)
 
 #################################
 # 850-hPa dewpoint will be calculated from RH and Temperature_isobaric

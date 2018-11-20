@@ -94,12 +94,12 @@ text_time.set_path_effects(outline_effect)
 ax.set_extent([-124.5, -105, 38.5, 50])
 
 # Transform plane heading to a map direction and plot a rotated marker
-u, v = mpcalc.get_wind_components(1 * units('m/s'),
+u, v = mpcalc.wind_components(1 * units('m/s'),
                                   data['heading'] * units('degrees'))
 u, v = proj.transform_vectors(ccrs.PlateCarree(), np.array([data['longitude']]),
                               np.array([data['latitude']]), np.array([u.m]),
                               np.array([v.m]))
-map_direction = -mpcalc.get_wind_dir(u, v).to('degrees')
+map_direction = -mpcalc.wind_direction(u, v).to('degrees')
 map_direction = map_direction[0].m
 
 ax.scatter(data['longitude'], data['latitude'],
