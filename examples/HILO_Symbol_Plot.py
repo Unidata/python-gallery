@@ -134,7 +134,9 @@ ax.coastlines('50m', edgecolor='black', linewidth=0.75)
 ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
 
 # Plot thickness with multiple colors
-clevs = (np.arange(0, 5400, 60), 5400, np.arange(5460, 7000, 60))
+clevs = (np.arange(0, 5400, 60),
+         np.array([5400]),
+         np.arange(5460, 7000, 60))
 colors = ('tab:blue', 'b', 'tab:red')
 kw_clabels = {'fontsize': 11, 'inline': True, 'inline_spacing': 5, 'fmt': '%i',
               'rightside_up': True, 'use_clabeltext': True}
