@@ -159,5 +159,4 @@ plot_maxmin_points(lons, lats, mslp, 'min', 25, symbol='L', color='r', transform
 plt.title('MSLP (hPa) with Highs and Lows, 1000-500 hPa Thickness (m)', loc='left')
 plt.title('VALID: {}'.format(vtime[0]), loc='right')
 
-plt.tight_layout()
 plt.show()

@@ -161,5 +161,4 @@ cb.set_label(r'$^{o}C/3h$', size='large')
 ax.barbs(lon_2d, lat_2d, u_wind_850.magnitude, v_wind_850.magnitude,
          length=6, regrid_shape=20, pivot='middle', transform=datacrs)
 
-gs.tight_layout(fig)
 plt.show()

@@ -110,5 +110,4 @@ cf = ax.contourf(lons, lats, wspd250, clevsped250, cmap=cmap, transform=datacrs)
 cax = plt.subplot(gs[1])
 cbar = plt.colorbar(cf, cax=cax, orientation='horizontal', extend='max', extendrect=True)
 
-gs.tight_layout(fig)
 plt.show()
