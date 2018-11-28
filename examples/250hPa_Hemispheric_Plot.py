@@ -73,7 +73,7 @@ v250 = (units(data.variables['v-component_of_wind_isobaric'].units) *
         data.variables['v-component_of_wind_isobaric'][0, 0, :, :])
 u250 = u250.units * cutil.add_cyclic_point(u250)
 v250 = v250.units * cutil.add_cyclic_point(v250)
-wspd250 = mpcalc.get_wind_speed(u250, v250).to('knots')
+wspd250 = mpcalc.wind_speed(u250, v250).to('knots')
 
 #################################################
 # The next cell sets up the geographic details for the plot that we are going to do later.
@@ -110,5 +110,4 @@ cf = ax.contourf(lons, lats, wspd250, clevsped250, cmap=cmap, transform=datacrs)
 cax = plt.subplot(gs[1])
 cbar = plt.colorbar(cf, cax=cax, orientation='horizontal', extend='max', extendrect=True)
 
-gs.tight_layout(fig)
 plt.show()

@@ -129,5 +129,4 @@ cb.set_label(r'$1/s^2$', size='large')
 ax.barbs(lon, lat, uwnd_500.m, vwnd_500.m, length=6, regrid_shape=20,
          pivot='middle', transform=ccrs.PlateCarree())
 
-gs.tight_layout(fig)
 plt.show()

@@ -18,7 +18,7 @@ from datetime import datetime
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
-from metpy.calc import get_wind_speed
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
@@ -74,7 +74,7 @@ uwnd = units('m/s') * data.variables['u-component_of_wind_isobaric'][:].squeeze(
 vwnd = units('m/s') * data.variables['v-component_of_wind_isobaric'][:].squeeze()
 
 # Calculate the magnitude of the wind speed in kts
-sped = get_wind_speed(uwnd, vwnd).to('knots')
+sped = mpcalc.wind_speed(uwnd, vwnd).to('knots')
 
 
 ##################################

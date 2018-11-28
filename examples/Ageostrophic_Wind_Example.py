@@ -141,5 +141,5 @@ ageo = ax.quiver(lon_2d[quiver_slices], lat_2d[quiver_slices],
 plt.title('1000mb Geopotential Heights(m), Wind(blue), Geostrophic Wind(purple), and \n'
           'Ageostrophic Wind(green) for {0:%d %B %Y %H:%MZ}'.format(time),
           color='white', size=14)
-plt.tight_layout()
+
 plt.show()

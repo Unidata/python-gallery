@@ -162,5 +162,4 @@ legend.legendHandles[2].set_color('deeppink')
 plt.title('MSLP, 850mb Wind, 500mb Wind, and 500-850mb Vertical Wind Shear \n'
           ' for {0:%d %B %Y %H:%MZ}'.format(time), color='white', size=14)
 
-plt.tight_layout()
 plt.show()

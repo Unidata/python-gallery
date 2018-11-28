@@ -146,5 +146,4 @@ plt.clabel(cs2, fontsize=10, inline=1, inline_spacing=10, fmt='%i',
 ax.barbs(lon_2d, lat_2d, u_wind_10m.magnitude, v_wind_10m.magnitude,
          length=6, regrid_shape=20, pivot='middle', transform=datacrs)
 
-plt.tight_layout()
 plt.show()
