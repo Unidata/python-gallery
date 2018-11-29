@@ -3,6 +3,8 @@
 Sounding Plotter
 ================
 
+**This should be run as a script from the command line - not as a notebook.**
+
 Download and plot the most recent sounding data for a specified site.
 
 Provides a simple command line interface to specify a site. Using the current
