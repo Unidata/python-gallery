@@ -2,7 +2,6 @@
 ======================
 Miller Composite Chart
 ======================
-
 Create a Miller Composite chart based on Miller 1972 in Python with MetPy and
 Matplotlib.
 """
@@ -121,7 +120,7 @@ hgt_500_00z = hgt_00z[idx_500, ]
 # 700 hPa, index 12
 idx_700 = np.where(lev == 700. * units.hPa)[0][0]
 tmp_700 = tmp[idx_700, ].to('degC')
-rh_700 = relh[idx_700, ]
+rh_700 = relh[idx_700, ] * units.percent
 
 # 850 hPa, index 6
 idx_850 = np.where(lev == 850. * units.hPa)[0][0]
