@@ -83,7 +83,7 @@ height = ndimage.gaussian_filter(height, sigma=1.5, order=0)
 # Set up some constants based on our projection, including the Coriolis parameter and
 # grid spacing, converting lon/lat spacing to Cartesian
 f = mpcalc.coriolis_parameter(np.deg2rad(lat_2d)).to('1/s')
-dx, dy = mpcalc.lat_lon_grid_spacing(lon_2d, lat_2d)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon_2d, lat_2d)
 dy *= -1
 
 # In MetPy 0.5, geostrophic_wind() assumes the order of the dimensions is (X, Y),
@@ -106,16 +106,7 @@ ax.set_extent([-105., -93., 35., 43.])
 ax.background_patch.set_fill(False)
 
 # Add state boundaries to plot
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lines',
-                                                scale='50m', facecolor='none')
-ax.add_feature(states_provinces, edgecolor='white', linewidth=2)
-
-# Add country borders to plot
-country_borders = cfeature.NaturalEarthFeature(category='cultural',
-                                               name='admin_0_countries',
-                                               scale='50m', facecolor='none')
-ax.add_feature(country_borders, edgecolor='white', linewidth=2)
+ax.add_feature(cfeature.STATES, edgecolor='white', linewidth=2)
 
 # Contour the heights every 10 m
 contours = np.arange(10, 200, 10)
@@ -125,7 +116,7 @@ zoom_500 = ndimage.zoom(height, 5)
 zlon = ndimage.zoom(lon_2d, 5)
 zlat = ndimage.zoom(lat_2d, 5)
 c = ax.contour(zlon, zlat, zoom_500, levels=contours,
-               colors='red', linewidth=4)
+               colors='red', linewidths=4)
 ax.clabel(c, fontsize=12, inline=1, inline_spacing=3, fmt='%i')
 
 # Set up parameters for quiver plot. The slices below are used to subset the data (here
@@ -150,5 +141,5 @@ ageo = ax.quiver(lon_2d[quiver_slices], lat_2d[quiver_slices],
 plt.title('1000mb Geopotential Heights(m), Wind(blue), Geostrophic Wind(purple), and \n'
           'Ageostrophic Wind(green) for {0:%d %B %Y %H:%MZ}'.format(time),
           color='white', size=14)
-plt.tight_layout()
+
 plt.show()

@@ -123,13 +123,10 @@ ax.set_extent([-108., -91., 33., 45.])
 ax.background_patch.set_fill(False)
 
 # Add state boundaries to plot
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m', facecolor='none')
-ax.add_feature(states_provinces, edgecolor='white', linewidth=2)
+ax.add_feature(cfeature.STATES, edgecolor='white', linewidth=2)
 
 # Contour the MSLP
-c = ax.contour(lon_2d, lat_2d, mslp, colors='lime', linewidth=6)
+c = ax.contour(lon_2d, lat_2d, mslp, colors='lime', linewidths=6)
 ax.clabel(c, fontsize=12, inline=1, inline_spacing=4, fmt='%i')
 
 wslice = slice(1, None, 4)
@@ -165,5 +162,4 @@ legend.legendHandles[2].set_color('deeppink')
 plt.title('MSLP, 850mb Wind, 500mb Wind, and 500-850mb Vertical Wind Shear \n'
           ' for {0:%d %B %Y %H:%MZ}'.format(time), color='white', size=14)
 
-plt.tight_layout()
 plt.show()

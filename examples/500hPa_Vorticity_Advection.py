@@ -55,14 +55,14 @@ lev_500 = np.where(ds.variables['isobaric'][:] == 500)[0][0]
 hght_500 = ds.variables['Geopotential_height_isobaric'][0, lev_500, :, :]
 hght_500 = ndimage.gaussian_filter(hght_500, sigma=3, order=0) * units.meter
 
-uwnd_500 = ds.variables['u-component_of_wind_isobaric'][0, lev_500, :, :] * units('m/s')
-vwnd_500 = ds.variables['v-component_of_wind_isobaric'][0, lev_500, :, :] * units('m/s')
+uwnd_500 = units('m/s') * ds.variables['u-component_of_wind_isobaric'][0, lev_500, :, :]
+vwnd_500 = units('m/s') * ds.variables['v-component_of_wind_isobaric'][0, lev_500, :, :]
 
 #######################################
 # Begin Data Calculations
 # -----------------------
 
-dx, dy = mpcalc.lat_lon_grid_spacing(lon, lat)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon, lat)
 
 f = mpcalc.coriolis_parameter(np.deg2rad(lat)).to(units('1/sec'))
 
@@ -100,12 +100,7 @@ plt.title('VALID: {}'.format(vtime[0]), loc='right')
 # Plot Background
 ax.set_extent([235., 290., 20., 58.], ccrs.PlateCarree())
 ax.coastlines('50m', edgecolor='black', linewidth=0.75)
-states_provinces = cfeature.NaturalEarthFeature(
-        category='cultural',
-        name='admin_1_states_provinces_lakes',
-        scale='50m',
-        facecolor='none')
-ax.add_feature(states_provinces, edgecolor='black', linewidth=.5)
+ax.add_feature(cfeature.STATES, linewidth=.5)
 
 # Plot Height Contours
 clev500 = np.arange(5100, 6061, 60)
@@ -134,5 +129,4 @@ cb.set_label(r'$1/s^2$', size='large')
 ax.barbs(lon, lat, uwnd_500.m, vwnd_500.m, length=6, regrid_shape=20,
          pivot='middle', transform=ccrs.PlateCarree())
 
-gs.tight_layout(fig)
 plt.show()

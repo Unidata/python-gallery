@@ -14,6 +14,7 @@ import cartopy.util as cutil
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import metpy.calc as mpcalc
+from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
 import scipy.ndimage as ndimage
@@ -66,9 +67,13 @@ hgt_250, lon = cutil.add_cyclic_point(data.variables['Geopotential_height_isobar
                                       coord=lon)
 Z_250 = ndimage.gaussian_filter(hgt_250[0, 0, :, :], sigma=3, order=0)
 
-u250 = cutil.add_cyclic_point(data.variables['u-component_of_wind_isobaric'][0, 0, :, :])
-v250 = cutil.add_cyclic_point(data.variables['v-component_of_wind_isobaric'][0, 0, :, :])
-wspd250 = mpcalc.get_wind_speed(u250, v250) * 1.94384
+u250 = (units(data.variables['u-component_of_wind_isobaric'].units) *
+        data.variables['u-component_of_wind_isobaric'][0, 0, :, :])
+v250 = (units(data.variables['v-component_of_wind_isobaric'].units) *
+        data.variables['v-component_of_wind_isobaric'][0, 0, :, :])
+u250 = u250.units * cutil.add_cyclic_point(u250)
+v250 = v250.units * cutil.add_cyclic_point(v250)
+wspd250 = mpcalc.wind_speed(u250, v250).to('knots')
 
 #################################################
 # The next cell sets up the geographic details for the plot that we are going to do later.
@@ -76,11 +81,6 @@ wspd250 = mpcalc.get_wind_speed(u250, v250) * 1.94384
 # geo-reference the image for us.
 datacrs = ccrs.PlateCarree()
 plotcrs = ccrs.NorthPolarStereo(central_longitude=-100.0)
-
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m',
-                                                facecolor='none')
 
 # Make a grid of lat/lon values to use for plotting with Basemap.
 lons, lats = np.meshgrid(lon, lat)
@@ -96,7 +96,7 @@ ax.set_title('VALID: {}'.format(vtimes[0]), loc='right')
 #   ax.set_extent([west long, east long, south lat, north lat])
 ax.set_extent([-180, 180, 10, 90], ccrs.PlateCarree())
 ax.coastlines('50m', edgecolor='black', linewidth=0.5)
-ax.add_feature(states_provinces, edgecolor='black', linewidth=0.5)
+ax.add_feature(cfeature.STATES, linewidth=0.5)
 
 clev250 = np.arange(9000, 12000, 120)
 cs = ax.contour(lons, lats, Z_250, clev250, colors='k',
@@ -110,5 +110,4 @@ cf = ax.contourf(lons, lats, wspd250, clevsped250, cmap=cmap, transform=datacrs)
 cax = plt.subplot(gs[1])
 cbar = plt.colorbar(cf, cax=cax, orientation='horizontal', extend='max', extendrect=True)
 
-gs.tight_layout(fig)
 plt.show()

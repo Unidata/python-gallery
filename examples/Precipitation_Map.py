@@ -27,8 +27,7 @@ dt = datetime.utcnow() - timedelta(days=1)  # This should always be available
 url = 'http://water.weather.gov/precip/downloads/{dt:%Y/%m/%d}/nws_precip_1day_'\
       '{dt:%Y%m%d}_conus.nc'.format(dt=dt)
 data = urlopen(url).read()
-Dataset('temp.nc', 'w').close()  # Work around bug where it needs an existing netCDF file
-nc = Dataset('temp.nc', 'r', memory=data)
+nc = Dataset('', memory=data)
 
 ###############################
 # Pull the needed information out of the netCDF file
@@ -36,7 +35,7 @@ prcpvar = nc.variables['observation']
 data = masked_array(prcpvar[:], units(prcpvar.units.lower())).to('mm')
 x = nc.variables['x'][:]
 y = nc.variables['y'][:]
-proj_var = nc.variables['polar_stereographic']
+proj_var = nc.variables[prcpvar.grid_mapping]
 
 ###############################
 # Set up the projection information within CartoPy
@@ -52,13 +51,9 @@ fig = plt.figure(figsize=(8, 8))
 ax = fig.add_subplot(1, 1, 1, projection=proj)
 
 # draw coastlines, state and country boundaries, edge of map.
-states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                name='admin_1_states_provinces_lakes',
-                                                scale='50m',
-                                                facecolor='none')
 ax.coastlines()
 ax.add_feature(cfeature.BORDERS)
-ax.add_feature(states_provinces)
+ax.add_feature(cfeature.STATES)
 
 # draw filled contours.
 clevs = [0, 1, 2.5, 5, 7.5, 10, 15, 20, 30, 40,

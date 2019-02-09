@@ -16,18 +16,19 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'sphinx_gallery.gen_gallery',
+    'sphinx_gallery.gen_gallery'
 ]
 
 sphinx_gallery_conf = {
     'reference_url': {
         'metpy': 'https://unidata.github.io/MetPy/latest',
         'siphon': 'https://unidata.github.io/siphon/latest',
-        'matplotlib': 'https://matplotlib.org',
+        #'matplotlib': 'https://matplotlib.org',
         'numpy': 'https://docs.scipy.org/doc/numpy/',
-        'scipy': 'https://docs.scipy.org/doc/scipy/reference'},
-    'examples_dirs': [os.path.join('..', 'examples'), os.path.join('..', 'metpy_mondays')],
-    'gallery_dirs': ['examples', 'metpy_mondays'],
+        'scipy': 'https://docs.scipy.org/doc/scipy/reference',
+        'xarray': 'http://xarray.pydata.org/en/stable/'},
+    'examples_dirs': [os.path.join('..', 'examples')],
+    'gallery_dirs': ['examples'],
     'filename_pattern': os.path.join('.', '*'),
     'backreferences_dir': False,
     'default_thumb_file': os.path.join('_static', 'Unidata_logo_vertical_400x400.png'),

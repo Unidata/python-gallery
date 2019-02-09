@@ -82,17 +82,9 @@ def plot(varname='', time=0, colormap=''):
     ax.set_extent([235., 290., 20., 55.])
     ax.set_title('GFS 12-Hour Forecast', size=16)
 
-    # Add state boundaries to plot
-    states_provinces = cfeature.NaturalEarthFeature(category='cultural',
-                                                    name='admin_1_states_provinces_lines',
-                                                    scale='50m', facecolor='none')
-    ax.add_feature(states_provinces, edgecolor='black', linewidth=1)
-
-    # Add country borders to plot
-    country_borders = cfeature.NaturalEarthFeature(category='cultural',
-                                                   name='admin_0_countries',
-                                                   scale='50m', facecolor='none')
-    ax.add_feature(country_borders, edgecolor='black', linewidth=1)
+    # Add state/country boundaries to plot
+    ax.add_feature(cfeature.STATES)
+    ax.add_feature(cfeature.BORDERS)
 
     if varname == 'Temperature_surface':
         variable = (variable * units.kelvin).to('degF')

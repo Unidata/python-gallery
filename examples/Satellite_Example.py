@@ -14,7 +14,7 @@ Geopotential Heights and Wind Barbs.
 
 # A whole bunch of imports
 import cartopy.crs as ccrs
-import cartopy.feature as cfeat
+import cartopy.feature as cfeature
 from matplotlib import patheffects
 import matplotlib.pyplot as plt
 from metpy.io import GiniFile
@@ -23,6 +23,7 @@ from metpy.units import units
 from netCDF4 import num2date
 import scipy.ndimage as ndimage
 from siphon.catalog import TDSCatalog
+import xarray as xr
 
 
 ##############################################
@@ -32,24 +33,15 @@ from siphon.catalog import TDSCatalog
 satcat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/satellite/'
                     'WV/WEST-CONUS_4km/current/catalog.xml')
 dataset = satcat.datasets[0]
-gini_ds = GiniFile(dataset.remote_open()).to_dataset()
+f = GiniFile(dataset.remote_open())
+gini_ds = xr.open_dataset(f)
 
 # Pull parts out of the data file
+dat = gini_ds.metpy.parse_cf('WV')
 data_var = gini_ds.variables['WV']
 x = gini_ds.variables['x'][:]
 y = gini_ds.variables['y'][:]
-time_var = gini_ds.variables['time']
-proj_var = gini_ds.variables[data_var.grid_mapping]
-timestamp = num2date(time_var[:].squeeze(), time_var.units)
-
-# Set up the projection based on satellite projection
-globe = ccrs.Globe(ellipse='sphere', semimajor_axis=proj_var.earth_radius,
-                   semiminor_axis=proj_var.earth_radius)
-
-proj = ccrs.LambertConformal(central_longitude=proj_var.longitude_of_central_meridian,
-                             central_latitude=proj_var.latitude_of_projection_origin,
-                             standard_parallels=[proj_var.standard_parallel],
-                             globe=globe)
+timestamp = f.prod_desc.datetime
 
 ##############################################
 # Use Siphon to obtain data that is close to the time of the satellite file
@@ -63,7 +55,7 @@ query = ncss.query()
 query.variables('Geopotential_height_isobaric',
                 'u-component_of_wind_isobaric',
                 'v-component_of_wind_isobaric')
-query.add_lonlat().vertical_level(300*100)
+query.add_lonlat().vertical_level(300 * 100)
 query.time(timestamp)  # Use the time from the GINI file
 query.lonlat_box(north=65, south=15, east=310, west=220)
 data = ncss.get_data(query)
@@ -72,8 +64,8 @@ data = ncss.get_data(query)
 # Pull out specific variables and attach units.
 
 hght_300 = data.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
-uwnd_300 = data.variables['u-component_of_wind_isobaric'][:].squeeze() * units('m/s')
-vwnd_300 = data.variables['v-component_of_wind_isobaric'][:].squeeze() * units('m/s')
+uwnd_300 = units('m/s') * data.variables['u-component_of_wind_isobaric'][:].squeeze()
+vwnd_300 = units('m/s') * data.variables['v-component_of_wind_isobaric'][:].squeeze()
 
 Z_300 = ndimage.gaussian_filter(hght_300, sigma=4, order=0)
 
@@ -87,16 +79,12 @@ vtime = num2date(time[:], time.units)
 
 # Create the figure
 fig = plt.figure(figsize=(10, 10))
-ax = fig.add_subplot(1, 1, 1, projection=proj)
+ax = fig.add_subplot(1, 1, 1, projection=dat.metpy.cartopy_crs)
 
 # Add mapping information
 ax.coastlines(resolution='50m', color='black')
-state_boundaries = cfeat.NaturalEarthFeature(category='cultural',
-                                             name='admin_1_states_provinces_lakes',
-                                             scale='50m', facecolor='none')
-
-ax.add_feature(state_boundaries, edgecolor='black', linestyle=':')
-ax.add_feature(cfeat.BORDERS, linewidth=2, edgecolor='black')
+ax.add_feature(cfeature.STATES, linestyle=':')
+ax.add_feature(cfeature.BORDERS, linewidth=2)
 
 # Plot the image with our colormapping choices
 wv_norm, wv_cmap = registry.get_with_range('WVCIMSS', 100, 260)
