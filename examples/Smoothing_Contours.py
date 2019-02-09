@@ -18,7 +18,7 @@ from datetime import datetime
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
-from metpy.calc import get_wind_speed
+import metpy.calc as mpcalc
 from metpy.units import units
 from netCDF4 import num2date
 import numpy as np
@@ -70,11 +70,11 @@ vtimes = num2date(times[:], times.units)
 
 # Pull out the 500 hPa Heights
 hght = data.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
-uwnd = data.variables['u-component_of_wind_isobaric'][:].squeeze() * units('m/s')
-vwnd = data.variables['v-component_of_wind_isobaric'][:].squeeze() * units('m/s')
+uwnd = units('m/s') * data.variables['u-component_of_wind_isobaric'][:].squeeze()
+vwnd = units('m/s') * data.variables['v-component_of_wind_isobaric'][:].squeeze()
 
 # Calculate the magnitude of the wind speed in kts
-sped = get_wind_speed(uwnd, vwnd).to('knots')
+sped = mpcalc.wind_speed(uwnd, vwnd).to('knots')
 
 
 ##################################

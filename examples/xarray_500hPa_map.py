@@ -104,5 +104,4 @@ ax.barbs(x, y, uwnd_500.data, vwnd_500.data, length=7, regrid_shape=20, transfor
 plt.title('500-hPa Geopotential Heights (m)', loc='left')
 plt.title('VALID: %s'.format(vtimes[0]), loc='right')
 
-plt.tight_layout()
 plt.show()

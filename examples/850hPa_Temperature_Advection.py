@@ -71,8 +71,8 @@ lat = lat_var[:].squeeze()
 lon = lon_var[:].squeeze()
 hght = hght_var[:].squeeze()
 temp = temp_var[:].squeeze() * units.K
-u_wind = u_wind_var[:].squeeze() * units('m/s')
-v_wind = v_wind_var[:].squeeze() * units('m/s')
+u_wind = units('m/s') * u_wind_var[:].squeeze()
+v_wind = units('m/s') * v_wind_var[:].squeeze()
 
 # Convert number of hours since the reference time into an actual date
 time = num2date(time_var[:].squeeze(), time_var.units)
@@ -95,7 +95,7 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 
 # Use helper function defined above to calculate distance
 # between lat/lon grid points
-dx, dy = mpcalc.lat_lon_grid_spacing(lon_var, lat_var)
+dx, dy = mpcalc.lat_lon_grid_deltas(lon_var, lat_var)
 
 # Because of the way the data are returned we need a negative spacing. This
 # will be easier in the next version of MetPy.
@@ -161,5 +161,4 @@ cb.set_label(r'$^{o}C/3h$', size='large')
 ax.barbs(lon_2d, lat_2d, u_wind_850.magnitude, v_wind_850.magnitude,
          length=6, regrid_shape=20, pivot='middle', transform=datacrs)
 
-gs.tight_layout(fig)
 plt.show()
