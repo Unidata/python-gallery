@@ -13,3 +13,5 @@
    - sphinx-gallery
    - sphinx_rtd_theme
    - xarray
+   # Fix issues with pint 0.9
+   - pint != 0.9
