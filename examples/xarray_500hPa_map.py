@@ -6,7 +6,7 @@ Using Xarray for Data read and selection
 Use Xarray module to read in model data from nomads server.
 
 This example uses the xarray module to access data from the nomads server for
-archive NAM analysis data via OPENDaP. Xarray makes it easier to select times
+archive NAM analysis data via OPeNDAP. Xarray makes it easier to select times
 and levels, although you still have to know the coordinate variable name. A
 simple 500 hPa plot is created after selecting with xarray.
 """
@@ -58,7 +58,7 @@ for t in range(data.time.size):
 print(vtimes)
 
 ########################################
-# Xarray has sime nice functionality to choose the time and level that
+# Xarray has some nice functionality to choose the time and level that
 # you specifically want to use. In this example the time variable is 'time' and
 # the level variable is 'isobaric1'. Unfortunately, these can be different with
 # each file you use, so you'll always need to check what they are by listing
@@ -102,6 +102,6 @@ ax.barbs(x, y, uwnd_500.data, vwnd_500.data, length=7, regrid_shape=20, transfor
 
 # Add some titles to make the plot readable by someone else
 plt.title('500-hPa Geopotential Heights (m)', loc='left')
-plt.title('VALID: %s'.format(vtimes[0]), loc='right')
+plt.title('VALID: {}'.format(vtimes[0]), loc='right')
 
 plt.show()
