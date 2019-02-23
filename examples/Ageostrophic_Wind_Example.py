@@ -84,7 +84,6 @@ height = ndimage.gaussian_filter(height, sigma=1.5, order=0)
 # grid spacing, converting lon/lat spacing to Cartesian
 f = mpcalc.coriolis_parameter(np.deg2rad(lat_2d)).to('1/s')
 dx, dy = mpcalc.lat_lon_grid_deltas(lon_2d, lat_2d)
-dy *= -1
 
 # In MetPy 0.5, geostrophic_wind() assumes the order of the dimensions is (X, Y),
 # so we need to transpose from the input data, which are ordered lat (y), lon (x).
