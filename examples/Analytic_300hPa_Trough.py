@@ -31,8 +31,8 @@ def single_300hPa_trough(parameter='hght'):
         return (9240 + 100 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi)
                 + 200 * np.cos(y * np.pi) + 300 * y * np.cos(x * np.pi + np.pi / 2))
     elif parameter == 'temp':
-        return (-50 + 20 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi) / 10
-                + 20 * np.cos(y * np.pi) / 10 + 5 * y * np.cos(x * np.pi + np.pi / 2) / 10)
+        return (-50 + 2 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi)
+                + 2 * np.cos(y * np.pi) + 0.5 * y * np.cos(x * np.pi + np.pi / 2))
 
 
 def lifting_300hPa_trough(parameter='hght'):
@@ -50,8 +50,8 @@ def lifting_300hPa_trough(parameter='hght'):
         return (9240 + 150 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi)
                 + 200 * np.cos(y * np.pi) + 400 * y * np.cos(x * np.pi + np.pi))
     elif parameter == 'temp':
-        return (-50 + 20 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi) / 10
-                + 20 * np.cos(y * np.pi) / 10 + 50 * y * np.cos(x * np.pi + np.pi) / 10)
+        return (-50 + 2 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi)
+                + 2 * np.cos(y * np.pi) + 5 * y * np.cos(x * np.pi + np.pi))
 
 
 def digging_300hPa_trough(parameter='hght'):
@@ -69,8 +69,8 @@ def digging_300hPa_trough(parameter='hght'):
         return (9240 + 150 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi)
                 + 200 * np.cos(y * np.pi) + 400 * y * np.sin(x * np.pi + 5 * np.pi / 2))
     elif parameter == 'temp':
-        return (-50 + 20 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi) / 10
-                + 20 * np.cos(y * np.pi) / 10 + 50 * y * np.sin(x * np.pi + np.pi / 2) / 10)
+        return (-50 + 2 * np.cos(p * x * np.pi) * np.cos(q * y * np.pi)
+                + 2 * np.cos(y * np.pi) + 5 * y * np.sin(x * np.pi + np.pi / 2))
 
 
 ######################################################################
@@ -109,19 +109,19 @@ wdir = mpcalc.wind_direction(ugeo, vgeo)
 # Compute the Gradient Wind via an approximation
 dydx = mpcalc.first_derivative(Z, delta=dx, axis=1)
 d2ydx2 = mpcalc.first_derivative(dydx, delta=dx, axis=1)
-R = ((1+dydx.m**2)**(3./2.))/d2ydx2.m
+R = ((1 + dydx.m**2)**(3. / 2.)) / d2ydx2.m
 
 geo_mag = mpcalc.wind_speed(ugeo, vgeo)
-grad_mag = geo_mag.m - (geo_mag.m**2)/(f.magnitude*R)
+grad_mag = geo_mag.m - (geo_mag.m**2) / (f.magnitude * R)
 
-ugrad, vgrad = mpcalc.wind_components(grad_mag*units('m/s'), wdir)
+ugrad, vgrad = mpcalc.wind_components(grad_mag * units('m/s'), wdir)
 
 # Calculate Ageostrophic wind
 uageo = ugrad - ugeo
 vageo = vgrad - vgeo
 
 # Compute QVectors
-uqvect, vqvect = mpcalc.q_vector(ugeo, vgeo, T*units.degC, 500*units.hPa, dx, dy)
+uqvect, vqvect = mpcalc.q_vector(ugeo, vgeo, T * units.degC, 500 * units.hPa, dx, dy)
 
 # Calculate divergence of the ageostrophic wind
 div = mpcalc.divergence(uageo, vageo, dx, dy, dim_order='yx')
@@ -164,9 +164,9 @@ ax.barbs(lons[wind_slice], lats[wind_slice],
          ugeo[wind_slice, wind_slice].to('kt').m, vgeo[wind_slice, wind_slice].to('kt').m)
 
 # Plot Ageostrophic Wind Vectors
-# qvec_slice = slice(None, None, 10)
-# ax.quiver(lons[qvec_slice], lats[qvec_slice],
-#           uageo[qvec_slice, qvec_slice].m, vageo[qvec_slice, qvec_slice].m,
+# ageo_slice = slice(None, None, 10)
+# ax.quiver(lons[ageo_slice], lats[ageo_slice],
+#           uageo[ageo_slice, ageo_slice].m, vageo[ageo_slice, ageo_slice].m,
 #           color='blue', pivot='mid')
 
 # Plot QVectors
