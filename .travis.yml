@@ -11,15 +11,12 @@ matrix:
     - os: osx
     - env: Python=3.6 THREDDS="test"
     - env: Python=3.6 THREDDS="dev"
-    - env: Python=3.6 THREDDS="atm"
     - env: Python=3.6 THREDDS="jetstream"
   exclude:
     - os: osx
       env: Python=3.6 THREDDS="test"
     - os: osx
       env: Python=3.6 THREDDS="dev"
-    - os: osx
-      env: Python=3.6 THREDDS="atm"
     - os: osx
       env: Python=3.6 THREDDS="jetstream"
 
@@ -31,7 +28,6 @@ env:
     - Python=3.6 THREDDS="main"
     - Python=3.6 THREDDS="test"
     - Python=3.6 THREDDS="dev"
-    - Python=3.6 THREDDS="atm"
     - Python=3.6 THREDDS="jetstream"
 
 
