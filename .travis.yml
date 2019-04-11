@@ -9,26 +9,26 @@ matrix:
   fast_finish: true
   allow_failures:
     - os: osx
-    - env: Python=3.6 THREDDS="test"
-    - env: Python=3.6 THREDDS="dev"
-    - env: Python=3.6 THREDDS="jetstream"
+    - env: Python=3.7 THREDDS="test"
+    - env: Python=3.7 THREDDS="dev"
+    - env: Python=3.7 THREDDS="jetstream"
   exclude:
     - os: osx
-      env: Python=3.6 THREDDS="test"
+      env: Python=3.7 THREDDS="test"
     - os: osx
-      env: Python=3.6 THREDDS="dev"
+      env: Python=3.7 THREDDS="dev"
     - os: osx
-      env: Python=3.6 THREDDS="jetstream"
+      env: Python=3.7 THREDDS="jetstream"
 
 env:
   global:
     - MINICONDA_DIR="$HOME/miniconda"
   matrix:
-    - Python=3.5 THREDDS="main"
     - Python=3.6 THREDDS="main"
-    - Python=3.6 THREDDS="test"
-    - Python=3.6 THREDDS="dev"
-    - Python=3.6 THREDDS="jetstream"
+    - Python=3.7 THREDDS="main"
+    - Python=3.7 THREDDS="test"
+    - Python=3.7 THREDDS="dev"
+    - Python=3.7 THREDDS="jetstream"
 
 
 before_install:
@@ -75,4 +75,4 @@ deploy:
   on:
     branch: master
     os: linux
-    condition: $Python == '3.6'
+    condition: $Python == '3.7'
