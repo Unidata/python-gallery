@@ -1,20 +1,14 @@
 """
+==========================
 GOES-16: True Color Recipe
 ==========================
-**Brian Blaylock**
-
-**July 5, 2018**
-
-brian.blaylock@utah.edu([website
-](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html))
-
-With help from Julien Chastang (UCAR-Unidata) for help with sphinx-gallery,
-Cartopy, and remote data access.
+By: [Brian Blaylock](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)
+with help from Julien Chastang (UCAR-Unidata).
 
 Additional notebooks analyzing GOES-16 and other data can be found in [Brian's
 GitHub repository](https://github.com/blaylockbk/pyBKB_v3/).
 
-This Python 3 notebook shows how to make a true color image from the GOES-16
+This notebook shows how to make a true color image from the GOES-16
 Advanced Baseline Imager (ABI) level 2 data. We will plot the image with
 matplotlib and Cartopy. The image can be displayed on any map projection after
 applying a transformation using pyproj. The methods shown here are stitched
@@ -30,16 +24,11 @@ together from the following useful information found online:
 
 True color images are an RGB composite of the following three channels:
 
-
 |        --| Wavelength   | Channel | Description   |
 |----------|--------------|---------|---------------|
 | **Red**  | 0.64 &#181;m |    2    | Red Visible   |
 | **Green**| 0.86 &#181;m |    3    | Veggie Near-IR|
 | **Blue** | 0.47 &#181;m |    1    | Blue Visible  |
-
----
-GOES-16: True Color Recipe
-==========================
 
 For this demo, you will need GOES-16 ABI level 2 data. You can get GOES-16 files
 from NOAA's GOES archive on [Amazon
@@ -62,28 +51,25 @@ channel, and subsample the red channel 0.5 km grid to a 1 km grid.
 
 I previously downloaded the following file from Amazon Web Services
 
-    OR_ABI-L2-MCMIPC-M3_G16_s20181781922189_e20181781924562_c20181781925075.nc
+OR_ABI-L2-MCMIPC-M3_G16_s20181781922189_e20181781924562_c20181781925075.nc
 
-    OR     - Indicates the system is operational
-    ABI    - Instrument type
-    L2     - Level 2 Data
-    MCMIP  - Multichannel Cloud and Moisture Imagery products
-    c      - CONUS file (created every 5 minutes).
-    M3     - Scan mode
-    G16    - GOES-16
-    s##### - Scan start: 4 digit year, 3 digit day of year (Julian day),
-    hour, minute, second, tenth second
-    e##### - Scan end
-    c##### - File Creation
-    .nc    - NetCDF file extension
-
+OR     - Indicates the system is operational
+ABI    - Instrument type
+L2     - Level 2 Data
+MCMIP  - Multichannel Cloud and Moisture Imagery products
+c      - CONUS file (created every 5 minutes).
+M3     - Scan mode
+G16    - GOES-16
+s##### - Scan start: 4 digit year, 3 digit day of year (Julian day),
+hour, minute, second, tenth second
+e##### - Scan end
+c##### - File Creation
+.nc    - NetCDF file extension
 
 """  # noqa: E501
 
 ######################################################################
 # First, import the libraries we will use
-# ---------------------------------------
-#
 
 from datetime import datetime
 
@@ -93,14 +79,15 @@ import metpy  # noqa: F401
 import numpy as np
 import xarray
 
+
 ######################################################################
 # Open the GOES-16 NetCDF File
 # ----------------------------
-# Using xarray, I assign the opened file to the variable C for the CONUS domain.
-#
 
-FILE = 'http://ramadda-jetstream.unidata.ucar.edu/repository/opendap' \
-       '/4ef52e10-a7da-4405-bff4-e48f68bb6ba2/entry.das#fillmismatch'
+# Using xarray, I assign the opened file to the variable C for the CONUS domain.
+
+FILE = ('http://ramadda-jetstream.unidata.ucar.edu/repository/opendap'
+        '/4ef52e10-a7da-4405-bff4-e48f68bb6ba2/entry.das#fillmismatch')
 C = xarray.open_dataset(FILE)
 
 ######################################################################
@@ -181,8 +168,8 @@ for band in [2, 3, 1]:
         C['band_wavelength_C{:02d}'.format(band)].long_name,
         float(C['band_wavelength_C{:02d}'.format(band)][0]),
         C['band_wavelength_C{:02d}'.format(band)].units))
+
 ######################################################################
-#
 
 # Load the three channels into appropriate R, G, and B variables
 R = C['CMI_C02'].data
@@ -190,7 +177,6 @@ G = C['CMI_C03'].data
 B = C['CMI_C01'].data
 
 ######################################################################
-#
 
 # Apply range limits for each channel. RGB values must be between 0 and 1
 R = np.clip(R, 0, 1)
@@ -198,7 +184,6 @@ G = np.clip(G, 0, 1)
 B = np.clip(B, 0, 1)
 
 ######################################################################
-#
 
 # Apply a gamma correction to the image
 gamma = 2.2
@@ -207,7 +192,6 @@ G = np.power(G, 1/gamma)
 B = np.power(B, 1/gamma)
 
 ######################################################################
-#
 
 # Calculate the "True" Green
 G_true = 0.45 * R + 0.1 * G + 0.45 * B
@@ -250,7 +234,6 @@ plt.subplots_adjust(wspace=.02)
 ######################################################################
 # The addition of the three channels results in a color image. We combine the
 # three channels in a stacked array and display the image with `imshow` again.
-#
 
 # The RGB array with the raw veggie band
 RGB_veggie = np.dstack([R, G, B])
@@ -470,7 +453,6 @@ RGB_IR = np.dstack([np.maximum(R, cleanIR), np.maximum(G_true, cleanIR),
                     np.maximum(B, cleanIR)])
 
 ######################################################################
-#
 
 fig = plt.figure(figsize=(15, 12))
 
@@ -528,7 +510,6 @@ RGB_contrast_IR = np.dstack([np.maximum(RGB_contrast[:, :, 0], cleanIR),
                              np.maximum(RGB_contrast[:, :, 2], cleanIR)])
 
 ######################################################################
-#
 
 fig = plt.figure(figsize=(15, 12))
 
@@ -599,7 +580,6 @@ x = dat.x
 y = dat.y
 
 ######################################################################
-#
 
 fig = plt.figure(figsize=(10, 8))
 
@@ -621,7 +601,6 @@ plt.title('Mesoscale Section 1', loc='left')
 plt.show()
 
 ######################################################################
-#
 
 fig = plt.figure(figsize=(15, 12))
 
