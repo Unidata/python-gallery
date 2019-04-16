@@ -365,8 +365,8 @@ plt.show()
 
 # A GOES-16 file with half day and half night
 
-FILE = 'http://ramadda-jetstream.unidata.ucar.edu/repository/opendap' \
-       '/85da3304-b910-472b-aedf-a6d8c1148131/entry.das#fillmismatch'
+FILE = ('http://ramadda-jetstream.unidata.ucar.edu/repository/opendap'
+        '/85da3304-b910-472b-aedf-a6d8c1148131/entry.das#fillmismatch')
 C = xarray.open_dataset(FILE)
 
 # Scan's start time, converted to datetime object
@@ -542,8 +542,8 @@ plt.subplots_adjust(wspace=.02)
 
 # M1 is for the Mesoscale1 NetCDF file
 
-FILE = 'http://ramadda-jetstream.unidata.ucar.edu/repository/opendap' \
-       '/5e02eafa-5cee-4d00-9f58-6e201e69b014/entry.das#fillmismatch'
+FILE = ('http://ramadda-jetstream.unidata.ucar.edu/repository/opendap'
+        '/5e02eafa-5cee-4d00-9f58-6e201e69b014/entry.das#fillmismatch')
 M1 = xarray.open_dataset(FILE)
 
 # Load the RGB arrays
@@ -626,8 +626,8 @@ plt.show()
 # but data files are so large that plotting is very slow. I don't need to do
 # this, so I won't worry much about it. Feel free to experiment.
 
-FILE = 'http://ramadda-jetstream.unidata.ucar.edu/repository/opendap' \
-       '/deb91f58-f997-41a3-a077-987529bf02b3/entry.das#fillmismatch'
+FILE = ('http://ramadda-jetstream.unidata.ucar.edu/repository/opendap'
+        '/deb91f58-f997-41a3-a077-987529bf02b3/entry.das#fillmismatch')
 F = xarray.open_dataset(FILE)
 
 # Load the RGB arrays
