@@ -15,3 +15,5 @@
    - xarray
    # Fix issues with pint 0.9
    - pint != 0.9
+   - pip:
+       - sphinx-markdown-tables
