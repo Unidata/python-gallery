@@ -94,7 +94,7 @@ def plot_skewt(df):
     Td = df['dewpoint'].values * units.degC
     wind_speed = df['speed'].values * units.knots
     wind_dir = df['direction'].values * units.degrees
-    u, v = mpcalc.get_wind_components(wind_speed, wind_dir)
+    u, v = mpcalc.wind_components(wind_speed, wind_dir)
 
     # Create a new figure. The dimensions here give a good aspect ratio.
     fig = plt.figure(figsize=(9, 9))
