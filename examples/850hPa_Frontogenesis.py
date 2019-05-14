@@ -27,11 +27,13 @@ import xarray as xr
 
 
 ######################################################################
-# Access data using xarray
+# Use Xarray to access GFS data from THREDDS resource and uses
+# metpy accessor to parse file to make it easy to pull data using
+# common coordinate names (e.g., vertical) and attach units.
 #
 
 ds = xr.open_dataset('https://thredds.ucar.edu/thredds/dodsC/casestudies/'
-                     'python-gallery/GFS_20101026_1200.nc')
+                     'python-gallery/GFS_20101026_1200.nc').metpy.parse_cf()
 
 
 ######################################################################
@@ -47,20 +49,21 @@ lat_slice = slice(85, 10)
 lats = ds.lat.sel(lat=lat_slice).values
 lons = ds.lon.sel(lon=lon_slice).values
 
-hght_850 = ds.Geopotential_height_isobaric.sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0]
-tmpk_850 = ds.Temperature_isobaric.sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0] * units.K
-uwnd_850 = ds['u-component_of_wind_isobaric'].sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0] * (units.meter / units.seconds)
-vwnd_850 = ds['v-component_of_wind_isobaric'].sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0] * (units.meter / units.seconds)
+level = 850 * units.hPa
+hght_850 = ds.Geopotential_height_isobaric.metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).metpy.unit_array.squeeze()
+tmpk_850 = ds.Temperature_isobaric.metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).metpy.unit_array.squeeze()
+uwnd_850 = ds['u-component_of_wind_isobaric'].metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).metpy.unit_array.squeeze()
+vwnd_850 = ds['v-component_of_wind_isobaric'].metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).metpy.unit_array.squeeze()
 
 # Convert temperatures to degree Celsius for plotting purposes
 tmpc_850 = tmpk_850.to('degC')
 
 # Calculate potential temperature for frontogenesis calculation
-thta_850 = mpcalc.potential_temperature(850 * units.hPa, tmpk_850)
+thta_850 = mpcalc.potential_temperature(level, tmpk_850)
 
 # Get a sensible datetime format
 vtime = ds.time.data[0].astype('datetime64[ms]').astype('O')
@@ -97,8 +100,8 @@ convert_to_per_100km_3h = 1000*100*3600*3
 #
 
 # Set map projection
-mapcrs = ccrs.LambertConformal(
-    central_longitude=-100, central_latitude=35, standard_parallels=(30, 60))
+mapcrs = ccrs.LambertConformal(central_longitude=-100, central_latitude=35,
+                               standard_parallels=(30, 60))
 
 # Set projection of the data (GFS is lat/lon)
 datacrs = ccrs.PlateCarree()

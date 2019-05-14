@@ -25,13 +25,13 @@ import xarray as xr
 # Data Input
 # ----------
 #
-# Open dataset, select needed variables, smooth data, and prep for
-# calculation.
+# Use Xarray to access GFS data from THREDDS resource and uses
+# metpy accessor to parse file to make it easy to pull data using
+# common coordinate names (e.g., vertical) and attach units.
 #
 
-# Open dataset using xarray
 ds = xr.open_dataset('https://thredds.ucar.edu/thredds/dodsC/'
-                     'casestudies/python-gallery/NARR_19930313_1800.nc')
+                     'casestudies/python-gallery/NARR_19930313_1800.nc').metpy.parse_cf()
 
 # Get lat/lon data from file
 lats = ds.lat.data
@@ -41,28 +41,26 @@ lons = ds.lon.data
 dx, dy = mpcalc.lat_lon_grid_deltas(lons, lats)
 
 # Get 700-hPa data and smooth
-hght_700 = mpcalc.smooth_n_point(ds['Geopotential_height_isobaric'].sel(
-    isobaric1=700).data[0], 9) * units.meter
-tmpk_700 = mpcalc.smooth_n_point(ds['Temperature_isobaric'].sel(
-    isobaric1=700).data[0], 9) * units.kelvin
+level = 700 * units.hPa
+hght_700 = mpcalc.smooth_n_point(ds['Geopotential_height_isobaric'].metpy.sel(
+    vertical=level).squeeze(), 9)
+tmpk_700 = mpcalc.smooth_n_point(ds['Temperature_isobaric'].metpy.sel(
+    vertical=level).squeeze(), 9)
 uwnd_700 = mpcalc.smooth_n_point(
-    ds['u-component_of_wind_isobaric'].sel(isobaric1=700).data[0], 9) * (units.meter
-                                                                         / units.seconds)
+    ds['u-component_of_wind_isobaric'].metpy.sel(vertical=level).squeeze(), 9)
 vwnd_700 = mpcalc.smooth_n_point(
-    ds['v-component_of_wind_isobaric'].sel(isobaric1=700).data[0], 9) * (units.meter
-                                                                         / units.seconds)
+    ds['v-component_of_wind_isobaric'].metpy.sel(vertical=level).squeeze(), 9)
 
-# Get 300-hPa data and smooth
-hght_300 = mpcalc.smooth_n_point(ds['Geopotential_height_isobaric'].sel(
-    isobaric1=300).data[0], 9) * units.meter
-tmpk_300 = mpcalc.smooth_n_point(ds['Temperature_isobaric'].sel(
-    isobaric1=300).data[0], 9) * units.kelvin
+# Get 300-hPa data and
+level = 300 * units.hPa
+hght_300 = mpcalc.smooth_n_point(ds['Geopotential_height_isobaric'].metpy.sel(
+    vertical=level).squeeze(), 9)
+tmpk_300 = mpcalc.smooth_n_point(ds['Temperature_isobaric'].metpy.sel(
+    vertical=level).squeeze(), 9)
 uwnd_300 = mpcalc.smooth_n_point(
-    ds['u-component_of_wind_isobaric'].sel(isobaric1=300).data[0], 9) * (units.meter
-                                                                         / units.seconds)
+    ds['u-component_of_wind_isobaric'].metpy.sel(vertical=level).squeeze(), 9)
 vwnd_300 = mpcalc.smooth_n_point(
-    ds['v-component_of_wind_isobaric'].sel(isobaric1=300).data[0], 9) * (units.meter
-                                                                         / units.seconds)
+    ds['v-component_of_wind_isobaric'].metpy.sel(vertical=level).squeeze(), 9)
 
 # Convert Temperatures to degC
 tmpc_700 = tmpk_700.to('degC')
