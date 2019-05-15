@@ -70,7 +70,7 @@ def earth_relative_wind_components(da, ugrd, vgrd):
 
     xx, yy = np.meshgrid(x, y)
 
-    ut, vt = ccrs.PlateCarree().transform_vectors(datacrs, xx, yy, ugrd.m, vgrd.m)
+    ut, vt = ccrs.PlateCarree().transform_vectors(data_crs, xx, yy, ugrd.m, vgrd.m)
     uer = ut * ugrd.units
     ver = vt * vgrd.units
 
