@@ -29,9 +29,12 @@ import xarray as xr
 # function and prints the coordinate values that are associated with the
 # various variables contained within the file.
 #
+# This code uses the metpy accessor to parse file to make it easy to pull
+# data using common coordinate names (e.g., vertical) and attach units.
+#
 
 ds = xr.open_dataset('https://thredds.ucar.edu/thredds/dodsC/'
-                     'casestudies/python-gallery/GFS_20101026_1200.nc')
+                     'casestudies/python-gallery/GFS_20101026_1200.nc').metpy.parse_cf()
 
 
 ######################################################################
@@ -58,14 +61,14 @@ lons = ds.lon.sel(lon=lon_slice).values
 # Smooth with the gaussian filter from scipy
 pres = ds['isobaric3'].values[:] * units('Pa')
 
-tmpk_var = ds['Temperature_isobaric'].sel(lat=lat_slice, lon=lon_slice).values[0]
-tmpk = mpcalc.smooth_n_point(tmpk_var, 9, 2) * units.K
+tmpk_var = ds['Temperature_isobaric'].metpy.sel(lat=lat_slice, lon=lon_slice).squeeze()
+tmpk = mpcalc.smooth_n_point(tmpk_var, 9, 2)
 thta = mpcalc.potential_temperature(pres[:, None, None], tmpk)
 
-uwnd_var = ds['u-component_of_wind_isobaric'].sel(lat=lat_slice, lon=lon_slice).values[0]
-vwnd_var = ds['v-component_of_wind_isobaric'].sel(lat=lat_slice, lon=lon_slice).values[0]
-uwnd = mpcalc.smooth_n_point(uwnd_var, 9, 2) * (units.meter / units.second)
-vwnd = mpcalc.smooth_n_point(vwnd_var, 9, 2) * (units.meter / units.second)
+uwnd_var = ds['u-component_of_wind_isobaric'].metpy.sel(lat=lat_slice, lon=lon_slice).squeeze()
+vwnd_var = ds['v-component_of_wind_isobaric'].metpy.sel(lat=lat_slice, lon=lon_slice).squeeze()
+uwnd = mpcalc.smooth_n_point(uwnd_var, 9, 2)
+vwnd = mpcalc.smooth_n_point(vwnd_var, 9, 2)
 
 # Create a clean datetime object for plotting based on time of Geopotential heights
 vtime = ds.time.data[0].astype('datetime64[ms]').astype('O')

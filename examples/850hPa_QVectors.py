@@ -26,11 +26,13 @@ import xarray as xr
 
 
 ######################################################################
-# Use Xarray to access GFS data from THREDDS resource
+# Use Xarray to access GFS data from THREDDS resource and uses
+# metpy accessor to parse file to make it easy to pull data using
+# common coordinate names (e.g., vertical) and attach units.
 #
 
 ds = xr.open_dataset('https://thredds.ucar.edu/thredds/dodsC/casestudies/'
-                     'python-gallery/GFS_20101026_1200.nc')
+                     'python-gallery/GFS_20101026_1200.nc').metpy.parse_cf()
 
 
 ######################################################################
@@ -47,16 +49,15 @@ lats = ds.lat.sel(lat=lat_slice).values
 lons = ds.lon.sel(lon=lon_slice).values
 
 # Grab data and smooth using a nine-point filter applied 50 times to grab the synoptic signal
-hght_850 = mpcalc.smooth_n_point(ds.Geopotential_height_isobaric.sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0], 9, 50)
-tmpk_850 = mpcalc.smooth_n_point(ds.Temperature_isobaric.sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0], 9, 25) * units.K
-uwnd_850 = mpcalc.smooth_n_point(ds['u-component_of_wind_isobaric'].sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0], 9, 50) * (units.meter
-                                                                        / units.seconds)
-vwnd_850 = mpcalc.smooth_n_point(ds['v-component_of_wind_isobaric'].sel(
-    isobaric3=85000, lat=lat_slice, lon=lon_slice).values[0], 9, 50) * (units.meter
-                                                                        / units.seconds)
+level = 850 * units.hPa
+hght_850 = mpcalc.smooth_n_point(ds.Geopotential_height_isobaric.metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).squeeze(), 9, 50)
+tmpk_850 = mpcalc.smooth_n_point(ds.Temperature_isobaric.metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).squeeze(), 9, 25)
+uwnd_850 = mpcalc.smooth_n_point(ds['u-component_of_wind_isobaric'].metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).squeeze(), 9, 50)
+vwnd_850 = mpcalc.smooth_n_point(ds['v-component_of_wind_isobaric'].metpy.sel(
+    vertical=level, lat=lat_slice, lon=lon_slice).squeeze(), 9, 50)
 
 # Convert temperatures to degree Celsius for plotting purposes
 tmpc_850 = tmpk_850.to('degC')
