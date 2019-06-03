@@ -1,21 +1,16 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Hurricane Tracker with NHC Data
+===============================
 
-# In[5]:
+By: Aodhan Sweeney
 
-
-"""This program is a recreation of the 2014 hur_tracker.py
+This program is a recreation of the 2014 hur_tracker.py
 originally written by Unidata Intern Florita Rodriguez. The
-2019 version comes with updated interface and functionality, 
-as well as changing certain dependencies. 
+2019 version comes with updated interface and functionality,
+as well as changing certain dependencies.
 
-Aodhan Sweeney
-Unidata Summer Internship
-May 2019
-hurricane_tracker_2019.py
 """
 
-# Setting things up...
 import numpy as np
 from pandas import DataFrame
 import gzip
@@ -24,14 +19,10 @@ from io import StringIO
 import os
 
 import requests
-# Imports for plotting
 import cartopy.crs as ccrs
 import matplotlib
 import matplotlib.pyplot as plt
-# Imports for creating Widgets
 import ipywidgets as widgets
-
-
 
 def readUrlFile(url):
     """readUrlFile is a function created to read a .dat file from a given url
@@ -60,7 +51,7 @@ def readGZFile(url):
 
 def split_storm_info(storm_list):
     """split_storm_info takes a list of strings and creates a pandas dataframe
-    for the data set taken off the NHC archive. This function is called in the main to 
+    for the data set taken off the NHC archive. This function is called in the main to
     find all storms."""
 
     name, cycloneNum, year, stormType, basin, filename = [], [], [], [], [], []
@@ -77,16 +68,14 @@ def split_storm_info(storm_list):
                         "Year":np.array(year), "StormType":stormType, "Filename":filename})
     return(storms)
 
-
-
 class Storm_Selection_gui:
-    """Storm_Selection_gui is a graphic user interface object designed for selecting storms from the 
+    """Storm_Selection_gui is a graphic user interface object designed for selecting storms from the
     National Hurricane Center's storm list database."""
 
     def __init__(self):
         """__init__ is the initiation function for the Storm_Selection_gui object. This initiation creates
         a dataframe for the storm data from the National Hurricane Center. In addition, this initiation creates
-        widgets to select a specific storm from the National Hurricane Center database with both a widget for 
+        widgets to select a specific storm from the National Hurricane Center database with both a widget for
         a year selection and also for a track button which actually retrieves the models and tracks for a given
         storm. """
 
@@ -99,11 +88,10 @@ class Storm_Selection_gui:
         self.year_slider = widgets.IntSlider(min=1851, max=2019, value=2019, description='Storm Year: ')
         widgets.interact(self.get_storms_slider, year_slider=self.year_slider)
         # Button to retrieve storm tracks (track_button)
-        self.track_button = widgets.ToggleButton(value=False, description='Get Storm Tracks', disabled=False, 
+        self.track_button = widgets.ToggleButton(value=False, description='Get Storm Tracks', disabled=False,
                                                  button_style='info', tooltip='Description')
         widgets.interact(self.get_tracks, track_button = self.track_button)
 
-        
     def get_storms_slider(self, year_slider):
         """get_storms_slider is a function that is written to take a user defined year from
         1851 to 2019 and then trim the split_storms_info dataframe to just have
@@ -127,13 +115,11 @@ class Storm_Selection_gui:
         elif self.filename.empty is True:
             print('No file name data for this year.')
 
-
     def get_models(self, models):
         """get_models is a function that is linked to the selection widget which allows for multiple
         models to be selected to plot for a specific hurricane track."""
 
         self.model_selection_latlon(models)
-
 
     def time_slider(self, time_slide):
         """time_slider is a function which changes the time for which to plot the models for a given
@@ -141,12 +127,11 @@ class Storm_Selection_gui:
 
         time = self.date_times[time_slide]
 
-
     def get_tracks(self, track_button):
-        """get_tracks is a function that will create the url and pull the data for either the forecast 
-        track or best track for a given storm. The Url is made by using both the year and the filename. 
-        This function will then read the data and create a data frame for both the forecast and best 
-        tracks and compile these data frames into a dictionary. This function returns this dictionary 
+        """get_tracks is a function that will create the url and pull the data for either the forecast
+        track or best track for a given storm. The Url is made by using both the year and the filename.
+        This function will then read the data and create a data frame for both the forecast and best
+        tracks and compile these data frames into a dictionary. This function returns this dictionary
         of forecast and best tracks. """
 
         year = str(self.year_slider.value)
@@ -169,16 +154,19 @@ class Storm_Selection_gui:
                     if url.endswith(".dat"):
                         lines = readUrlFile(url)
                     else:
-                        lines = readGZFile(url)    
+                        lines = readGZFile(url)
 
                     # Splitting the method for which we will create the dataframe
-                    lat, lon, basin, cycloneNum, warnDT, model, forecast_hour = [], [], [], [], [], [], []
+                    lat, lon, basin, cycloneNum = [], [], [], []
+                    warnDT, model, forecast_hour = [], [], []
                     for line in lines:
                         line = str(line)
                         line = line[2:]
                         fields = line.split(",")
-                        #Joins together lattitude and longitude strings without directional letters.
-                        #Includes type conversion in order to divide by 10 to get the correct coordinate.
+                        #Joins together lattitude and longitude strings without
+                        #directional letters.
+                        #Includes type conversion in order to divide by 10 to
+                        #get the correct coordinate.
                         latSingle = int(fields[6][:-1])/10.0
                         lonSingle = -(int(fields[7][:-1])/10.0)
                         lat.append(latSingle)
@@ -191,8 +179,8 @@ class Storm_Selection_gui:
 
                         #Combining data from file into a Pandas Dataframe.
                         storm_data_frame = DataFrame({"Basin":basin, "CycloneNum":np.array(cycloneNum),
-                                                      "WarnDT":np.array(warnDT), "Model":model, 
-                                                      "Lat":np.array(lat), "Lon":np.array(lon), 
+                                                      "WarnDT":np.array(warnDT), "Model":model,
+                                                      "Lat":np.array(lat), "Lon":np.array(lon),
                                                       "forecast_hour":np.array(forecast_hour)})
                         #Adding this newly created DataFrame to a dictionary
                         if url_count == 0:
@@ -212,17 +200,16 @@ class Storm_Selection_gui:
             unique_models, unique_index = list(np.unique(forecast['Model'].values, return_index = True))
 
             # Selection tool to pick from available models to plot (model_select)
-            self.model_select = widgets.SelectMultiple(options=unique_models, value=[unique_models[0]], 
+            self.model_select = widgets.SelectMultiple(options=unique_models, value=[unique_models[0]],
                                                        description='Models: ', disabled=False)
             widgets.interact(self.get_models, models=self.model_select)
 
-
     def model_selection_latlon(self, models):
         """model_selection_latlon is a function that allows the user to select a model for a given storm
-        and whether the tracks are forecast or best tracks. The parameters for this are a string stating 
-        whether the user wants forecast or best tracks and also all model outputs for all forecasts and 
+        and whether the tracks are forecast or best tracks. The parameters for this are a string stating
+        whether the user wants forecast or best tracks and also all model outputs for all forecasts and
         best tracks compiled into a python dictionary. The latlon part of this function comes from taking
-        the users selected model and getting the latitudes and longitudes of all positions of the storm 
+        the users selected model and getting the latitudes and longitudes of all positions of the storm
         for this forecast. This function then returns these lats and lons as a pandas.Series"""
 
         if self.model_select.disabled is False:
@@ -241,11 +228,9 @@ class Storm_Selection_gui:
                 self.model_table.append(one_model_table)
 
             # Slider to choose time frame for which to plot models (plot_slider)
-            self.plot_slider = widgets.IntSlider(min=0, max=(len(self.date_times)-1), value=0, 
+            self.plot_slider = widgets.IntSlider(min=0, max=(len(self.date_times)-1), value=0,
                                                  description='Tracks Time', disabled=False)
             widgets.interact(self.plotting, plot_slider = self.plot_slider)
-
-
 
     def plotting(self, plot_slider):
         """plotting is a function that that plots the models tracks and best tracks for all selected models.
@@ -268,7 +253,7 @@ class Storm_Selection_gui:
             min_best_lon = min(self.best_lons)
             max_best_lon = max(self.best_lons)
 
-            # All code that follows is devoted to plotting the track above a NASA Blue Marble projection    
+            # All code that follows is devoted to plotting the track above a NASA Blue Marble projection
             current_path = os.getcwd()
             os.environ["CARTOPY_USER_BACKGROUNDS"] = current_path
             self.fig = plt.figure(figsize=(14, 11))
@@ -278,7 +263,7 @@ class Storm_Selection_gui:
             self.data_projection = ccrs.PlateCarree()
             self.ax.plot(self.best_lons, self.best_lats, marker='o', color='white', label='Best Track',
                          transform=self.data_projection)
-            self.ax.set_extent([(min_best_lon - 30), (max_best_lon + 30), 
+            self.ax.set_extent([(min_best_lon - 30), (max_best_lon + 30),
                                 (min_best_lat - 30), (max_best_lat + 30)])
 
             jet= plt.get_cmap('jet')
@@ -286,7 +271,8 @@ class Storm_Selection_gui:
             props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
             left = .1
             bottom = .1
-            self.ax.text(left, bottom, time_string, transform=self.ax.transAxes, fontsize=14, bbox=props) 
+            self.ax.text(left, bottom, time_string, transform=self.ax.transAxes,
+                         fontsize=14, bbox=props)
 
             for model_type in self.model_table:
                 one_model_time = model_type[model_type['WarnDT'] == self.date_times[plot_slider]]
@@ -294,20 +280,12 @@ class Storm_Selection_gui:
                 lons = one_model_time['Lon'].tolist()
                 if len(lats) != 0:
                     model_list = model_type['Model'].tolist()
-                    self.ax.plot(lons, lats, marker='o', color=next(colors), label=model_list[0])
+                    self.ax.plot(lons, lats, marker='o', color=next(colors),
+                                 label=model_list[0])
 
-            plt.title('Storm Name: {0} Year: {1}'.format(self.storm_names.value, str(self.year_slider.value)))
+            plt.title('Storm Name: {0} Year: {1}'.format(self.storm_names.value,
+                      str(self.year_slider.value)))
             plt.legend()
 
-
-# In[6]:
-
-
+######################################################################
 storm_selection = Storm_Selection_gui()
-
-
-# In[ ]:
-
-
-
-
