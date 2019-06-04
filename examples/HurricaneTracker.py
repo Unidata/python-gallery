@@ -14,7 +14,6 @@ as well as changing certain dependencies.
 import gzip
 from io import BytesIO
 from io import StringIO
-import os
 
 import cartopy.crs as ccrs
 import ipywidgets as widgets
@@ -149,11 +148,11 @@ class Storm_Selection_gui:
         data_dictionary = {}
         # Current year data is stored in a different location
         if year == '2019':
-            urlf = 'http://ftp.nhc.noaa.gov/atcf/aid_public/a%8s.dat.gz' % (filename)
-            urlb = 'http://ftp.nhc.noaa.gov/atcf/btk/b%8s.dat' % (filename)
+            urlf = 'http://ftp.nhc.noaa.gov/atcf/aid_public/a{}.dat.gz'.format(filename)
+            urlb = 'http://ftp.nhc.noaa.gov/atcf/btk/b{}.dat'.format(filename)
         else:
-            urlf = 'http://ftp.nhc.noaa.gov/atcf/archive/%4s/a%8s.dat.gz' % (year, filename)
-            urlb = 'http://ftp.nhc.noaa.gov/atcf/archive/%4s/b%8s.dat.gz' % (year, filename)
+            urlf = 'http://ftp.nhc.noaa.gov/atcf/archive/{}/a{}.dat.gz'.format(year, filename)
+            urlb = 'http://ftp.nhc.noaa.gov/atcf/archive/{}/b{}.dat.gz'.format(year, filename)
 
         url_links = [urlf, urlb]
         url_count = 0
@@ -202,7 +201,7 @@ class Storm_Selection_gui:
                             data_dictionary['best_track'] = storm_data_frame
 
                 else:
-                    print('url %s was not valid, select different storm.' % url)
+                    print('url {} was not valid, select different storm.'.format(url))
                     track_button = False
 
                 url_count += 1
@@ -271,12 +270,10 @@ class Storm_Selection_gui:
             min_best_lon = min(self.best_lons)
             max_best_lon = max(self.best_lons)
 
-            # Plotting the track above a NASA Blue Marble projection
-            current_path = os.getcwd()
-            os.environ['CARTOPY_USER_BACKGROUNDS'] = current_path
+            # Plotting the track on a cartopy stock image
             self.fig = plt.figure(figsize=(14, 11))
             self.ax = self.fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
-            self.ax.background_img(name='BM', resolution='low')
+            self.ax.stock_img()
 
             self.data_projection = ccrs.PlateCarree()
             self.ax.plot(self.best_lons, self.best_lats, marker='o', color='white',
@@ -289,7 +286,7 @@ class Storm_Selection_gui:
             left = .1
             bottom = .1
             self.ax.text(left, bottom, time_string, transform=self.ax.transAxes,
-                         fontsize=14, color='white')
+                         fontsize=14, color='black')
 
             for model_type in self.model_table:
                 one_model_time = model_type[model_type['WarnDT'] ==
