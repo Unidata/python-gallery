@@ -32,18 +32,18 @@ conda env create -f environment.yml
 
 ### From a Unix command line (e.g., OS X terminal)
 If your default shell is NOT bash, first type `bash`.
-To activate or switch to a conda environment, you can `source activate
+To activate or switch to a conda environment, you can `conda activate
 <environment>`. For example,
 
 ```sh
-source activate gallery
+conda activate gallery
 ```
 
 To switch and/or deactivate environments:
 
 ```sh
-source deactivate
-source activate <environment>
+conda deactivate
+conda activate <environment>
 ```
 
 ### From a Windows command line (e.g., cmd.exe)
