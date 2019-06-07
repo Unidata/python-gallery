@@ -86,6 +86,8 @@ Running an example
 * If you are running the example as a script, run `python the_script_name.py`
 * If you are running the example as a notebook start the jupyter environment
   with `jupyter notebook` or `jupyter lab`
+* When you want to return to the root environment, run the command `conda deactivate`
+  to exit the `gallery` environment.
 
 Contact Us
 ----------
