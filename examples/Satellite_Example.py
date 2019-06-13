@@ -51,27 +51,37 @@ gfscat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/'
 dataset = gfscat.datasets['Best GFS Half Degree Forecast Time Series']
 ncss = dataset.subset()
 
-query = ncss.query()
-query.variables('Geopotential_height_isobaric',
-                'u-component_of_wind_isobaric',
-                'v-component_of_wind_isobaric')
-query.add_lonlat().vertical_level(300 * 100)
-query.time(timestamp)  # Use the time from the GINI file
-query.lonlat_box(north=65, south=15, east=310, west=220)
-data = ncss.get_data(query)
+# First get wind components data
+query_wind = ncss.query()
+query_wind.variables('u-component_of_wind_isobaric',
+                     'v-component_of_wind_isobaric')
+query_wind.add_lonlat().vertical_level(300 * 100)
+query_wind.time(timestamp)  # Use the time from the GINI file
+query_wind.lonlat_box(north=65, south=15, east=310, west=220)
+data_wind = ncss.get_data(query_wind)
+
+# Second get Geopotential height data because it has a different number of levels
+query_hght = ncss.query()
+query_hght.variables('Geopotential_height_isobaric')
+query_hght.add_lonlat().vertical_level(300 * 100)
+query_hght.time(timestamp)  # Use the time from the GINI file
+query_hght.lonlat_box(north=65, south=15, east=310, west=220)
+data_hght = ncss.get_data(query_hght)
 
 ##############################################
 # Pull out specific variables and attach units.
 
-hght_300 = data.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
-uwnd_300 = units('m/s') * data.variables['u-component_of_wind_isobaric'][:].squeeze()
-vwnd_300 = units('m/s') * data.variables['v-component_of_wind_isobaric'][:].squeeze()
+hght_300 = data_hght.variables['Geopotential_height_isobaric'][:].squeeze() * units.meter
+uwnd_300 = data_wind.variables['u-component_of_wind_isobaric'][:].squeeze()
+vwnd_300 = data_wind.variables['v-component_of_wind_isobaric'][:].squeeze()
 
 Z_300 = ndimage.gaussian_filter(hght_300, sigma=4, order=0)
+U_300 = units('m/s') * ndimage.gaussian_filter(uwnd_300, sigma=4, order=0)
+V_300 = units('m/s') * ndimage.gaussian_filter(vwnd_300, sigma=4, order=0)
 
-lon = data.variables['lon'][:]
-lat = data.variables['lat'][:]
-time = data.variables[data.variables['Geopotential_height_isobaric'].dimensions[0]]
+lon = data_hght.variables['lon'][:]
+lat = data_hght.variables['lat'][:]
+time = data_hght.variables[data_hght.variables['Geopotential_height_isobaric'].dimensions[0]]
 vtime = num2date(time[:], time.units)
 
 ##############################################
@@ -103,7 +113,7 @@ cs = ax.contour(lon, lat, Z_300, colors='black', transform=ccrs.PlateCarree())
 ax.clabel(cs, fontsize=12, colors='k', inline=1, inline_spacing=8,
           fmt='%i', rightside_up=True, use_clabeltext=True)
 
-ax.barbs(lon, lat, uwnd_300.to('knots').m, vwnd_300.to('knots').m, color='tab:red',
+ax.barbs(lon, lat, U_300.to('knots').m, V_300.to('knots').m, color='tab:red',
          length=7, regrid_shape=15, pivot='middle', transform=ccrs.PlateCarree())
 
 ax.set_title('300-hPa Geo Heights (m; black) and Wind Barbs (kt)', loc='left')
