@@ -254,7 +254,6 @@ class Storm_Selection_gui:
         selected models. These tracks are then plotted on the Blue Marble projection. """
 
         if self.plot_slider.disabled is False:
-
             # Identifying the time associated with the models for time text box
             year = self.date_times[plot_slider][0: 4]
             month = self.date_times[plot_slider][4: 6]
@@ -274,20 +273,17 @@ class Storm_Selection_gui:
             self.fig = plt.figure(figsize=(14, 11))
             self.ax = self.fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
             self.ax.stock_img()
-
             self.data_projection = ccrs.PlateCarree()
             self.ax.plot(self.best_lons, self.best_lats, marker='o', color='white',
                          label='Best Track', transform=self.data_projection)
             self.ax.set_extent([(min_best_lon - 30), (max_best_lon + 30),
                                 (min_best_lat - 30), (max_best_lat + 30)])
-
             jet = plt.get_cmap('jet')
             colors = iter(jet(np.linspace(0.2, 1, (len(self.model_select.value)+1))))
             left = .1
             bottom = .1
             self.ax.text(left, bottom, time_string, transform=self.ax.transAxes,
                          fontsize=14, color='black')
-
             for model_type in self.model_table:
                 one_model_time = model_type[model_type['WarnDT'] ==
                                             self.date_times[plot_slider]]
@@ -297,7 +293,6 @@ class Storm_Selection_gui:
                     model_list = model_type['Model'].tolist()
                     self.ax.plot(lons, lats, marker='o', color=next(colors),
                                  label=model_list[0])
-
             plt.title('Storm Name: {0} Year: {1}'.format(self.storm_names.value,
                       str(self.year_slider.value)))
             plt.legend()
