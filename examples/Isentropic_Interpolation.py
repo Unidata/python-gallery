@@ -51,14 +51,18 @@ gfsdata.lonlat_box(-150, -50, 15, 65)
 data = ncss.get_data(gfsdata)
 
 dtime = data.variables['Temperature_isobaric'].dimensions[0]
-dlev = data.variables['Temperature_isobaric'].dimensions[1]
+dlev_hght = data.variables['Temperature_isobaric'].dimensions[1]
+dlev_uwnd = data.variables['u-component_of_wind_isobaric'].dimensions[1]
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
-lev = data.variables[dlev][:] * units.Pa
+lev_hght = data.variables[dlev_hght][:] * units.Pa
+lev_uwnd = data.variables[dlev_uwnd][:] * units.Pa
+# Due to a different number of vertical levels find where they are common
+_, _, common_ind = np.intersect1d(lev_uwnd, lev_hght, return_indices=True)
 times = data.variables[dtime]
 vtimes = num2date(times[:], times.units)
 temps = data.variables['Temperature_isobaric']
-tmp = temps[:] * units.kelvin
+tmp = temps[:, common_ind, :, :] * units.kelvin
 uwnd = data.variables['u-component_of_wind_isobaric'][:] * units.meter / units.second
 vwnd = data.variables['v-component_of_wind_isobaric'][:] * units.meter / units.second
 relh = data.variables['Relative_humidity_isobaric'][:]
@@ -78,7 +82,8 @@ isentlevs = np.arange(310, 316, 5) * units.kelvin
 # temperature be input. Any additional inputs (in this case relative humidity, u, and v wind
 # components) will be linearly interpolated to isentropic space.
 
-isent_anal = metpy.calc.isentropic_interpolation(isentlevs, lev, tmp, relh, uwnd, vwnd, axis=1)
+isent_anal = metpy.calc.isentropic_interpolation(isentlevs, lev_uwnd, tmp,
+                                                 relh, uwnd, vwnd, axis=1)
 
 ####################
 # The output is a list, so now we will separate the variables to different names before
@@ -108,13 +113,13 @@ clons, clats = np.meshgrid(lon, lat)
 
 # Get data to plot state and province boundaries
 states_provinces = cfeature.NaturalEarthFeature(
-        category='cultural',
-        name='admin_1_states_provinces_lakes',
-        scale='50m',
-        facecolor='none')
+    category='cultural',
+    name='admin_1_states_provinces_lakes',
+    scale='50m',
+    facecolor='none')
 level = 0
 FH = 0
-fig = plt.figure(1, figsize=(17., 12.))
+fig = plt.figure(1, figsize=(14., 12.))
 ax = plt.subplot(111, projection=crs)
 
 # Set plot extent
@@ -133,13 +138,16 @@ plt.clabel(cs, fontsize=10, inline=1, inline_spacing=7,
 cf = ax.contourf(clons, clats, isentrh[FH, level, :, :], range(10, 106, 5),
                  transform=ccrs.PlateCarree(),
                  cmap=plt.cm.gist_earth_r)
-plt.colorbar(cf, orientation='horizontal', extend=max, aspect=65, shrink=0.5, pad=0,
+plt.colorbar(cf, orientation='horizontal', extend=max, aspect=65, pad=0,
              extendrect='True')
 
-ax.barbs(clons, clats, isentu[FH, level, :, :].m, isentv[FH, level, :, :].m, length=6,
-         transform=ccrs.PlateCarree(), regrid_shape=20)
+wind_slice = [FH, level, slice(None, None, 5), slice(None, None, 5)]
+ax.barbs(clons[wind_slice[2:]], clats[wind_slice[2:]],
+         isentu[wind_slice].m, isentv[wind_slice].m, length=6,
+         transform=ccrs.PlateCarree())
 
 # Make some titles
 plt.title('{:.0f} K Isentropic Level'.format(isentlevs[level].m), loc='left')
 plt.title('VALID: {:s} UTC'.format(str(vtimes[FH])), loc='right')
-plt.tight_layout()
+
+plt.show()
