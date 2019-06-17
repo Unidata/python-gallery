@@ -41,17 +41,15 @@ import xarray as xr
 # wind.
 #
 
-def earth_relative_wind_components(da, ugrd, vgrd):
+def earth_relative_wind_components(ugrd, vgrd):
     """Calculate the north-relative components of the wind from the grid-relative
     components using Cartopy transform_vectors.
 
     Parameters
     ----------
-        ds : Xarray DataArray
-            Either of u- or v-component of the wind
-        ugrd : (M, N) Quantity
+        ugrd : Xarray DataArray (M, N)
             grid relative u-component of the wind
-        vgrd : (M, N) Quantity
+        vgrd : Xarray DataArray (M, N)
             grid relative v-component of the wind
 
     Returns
@@ -60,19 +58,20 @@ def earth_relative_wind_components(da, ugrd, vgrd):
             The north-relative wind components in the X (East-West) and Y (North-South)
             directions, respectively.
     """
-    if 'crs' not in list(da.coords):
+    if 'crs' not in list(ugrd.coords):
         raise ValueError('No CRS in coordinate, be sure to use the MetPy accessor parse_cf()')
 
-    data_crs = da.metpy.cartopy_crs
+    data_crs = ugrd.metpy.cartopy_crs
 
-    x = da.x.values
-    y = da.y.values
+    x = ugrd.x.values
+    y = ugrd.y.values
 
     xx, yy = np.meshgrid(x, y)
 
-    ut, vt = ccrs.PlateCarree().transform_vectors(data_crs, xx, yy, ugrd.m, vgrd.m)
-    uer = ut * ugrd.units
-    ver = vt * vgrd.units
+    ut, vt = ccrs.PlateCarree().transform_vectors(data_crs, xx, yy, ugrd.values, vgrd.values)
+
+    uer = ut * units(ugrd.units)
+    ver = vt * units(vgrd.units)
 
     return uer, ver
 
@@ -101,8 +100,8 @@ ds = xr.open_dataset('https://thredds.ucar.edu/thredds/dodsC/casestudies/'
 lats = ds.lat.data
 lons = ds.lon.data
 
-# Grab x, y data and make 2D for wind component plotting
-# because u- and v-components are grid relative
+# Grab x, y data and make 2D for wind component plotting because
+# u- and v-components are grid relative
 x = ds['u-component_of_wind_isobaric'].x
 y = ds['u-component_of_wind_isobaric'].y
 
@@ -111,18 +110,21 @@ xx, yy = np.meshgrid(x, y)
 # Grab Cartopy CRS from metadata for plotting wind barbs
 datacrs = ds['u-component_of_wind_isobaric'].metpy.cartopy_crs
 
-# Select and grab 500-hPa geopotential heights and wind components, smooth with gaussian_filter
+# Select and grab 500-hPa geopotential heights and smooth with n-point smoother
 level = 500 * units.hPa
 hght_500 = mpcalc.smooth_n_point(ds.Geopotential_height_isobaric.metpy.sel(
     vertical=level).squeeze(), 9, 50)
-uwnd_500 = mpcalc.smooth_n_point(ds['u-component_of_wind_isobaric'].metpy.sel(
-    vertical=level).squeeze(), 9, 50)
-vwnd_500 = mpcalc.smooth_n_point(ds['v-component_of_wind_isobaric'].metpy.sel(
-    vertical=level).squeeze(), 9, 50)
+
+# Select and grab 500-hPa wind components
+uwnd_500 = ds['u-component_of_wind_isobaric'].metpy.sel(vertical=level).squeeze()
+vwnd_500 = ds['v-component_of_wind_isobaric'].metpy.sel(vertical=level).squeeze()
 
 # Compute north-relative wind components for plotting purposes
-uwnd_er, vwnd_er = earth_relative_wind_components(
-    ds['u-component_of_wind_isobaric'], uwnd_500, vwnd_500)
+uwnd_er, vwnd_er = earth_relative_wind_components(uwnd_500, vwnd_500)
+
+# Smooth wind components as desired
+uwnd_er = mpcalc.smooth_n_point(uwnd_er, 9, 50)
+vwnd_er = mpcalc.smooth_n_point(vwnd_er, 9, 50)
 
 # Create a clean datetime object for plotting based on time of Geopotential heights
 vtime = ds.time.data[0].astype('datetime64[ms]').astype('O')
