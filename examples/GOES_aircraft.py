@@ -42,9 +42,8 @@ def get_plane_data():
 
 def get_goes_image(date=datetime.utcnow(), channel=8, region='CONUS'):
     """Return dataset of GOES-16 data."""
-    cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/'
-                     'catalog/satellite/goes16/GOES16/'
-                     '{}/Channel{:02d}/{:%Y%m%d}/'
+    cat = TDSCatalog('https://thredds.ucar.edu/thredds/catalog/satellite/goes/east/products/'
+                     'CloudAndMoistureImagery/{}/Channel{:02d}/{:%Y%m%d}/'
                      'catalog.xml'.format(region, channel, date))
 
     ds = cat.datasets[-1]  # Get most recent dataset
