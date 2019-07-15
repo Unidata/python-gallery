@@ -13,6 +13,8 @@
    - sphinx-gallery
    - sphinx_rtd_theme
    - xarray
+   - boto3
+   - botocore
    # Fix issues with pint 0.9
    - pint != 0.9
    - pip:
