@@ -68,7 +68,7 @@ class SPC_GUI:
         """
         self.spc_data_table = []
         for storm_type in stormpicker:
-            one_storm_type = spc.SPCD(storm_type, self.date_string)
+            one_storm_type = spc.SPC(storm_type, self.date_string)
             # Storm must be after year 2011
             if int(self.date_string[:4]) < 2011:
                 raise ValueError('SPC GUI does not support events before 2012.')
