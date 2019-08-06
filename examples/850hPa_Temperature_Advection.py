@@ -97,10 +97,6 @@ lon_2d[lon_2d > 180] = lon_2d[lon_2d > 180] - 360
 # between lat/lon grid points
 dx, dy = mpcalc.lat_lon_grid_deltas(lon_var, lat_var)
 
-# Because of the way the data are returned we need a negative spacing. This
-# will be easier in the next version of MetPy.
-dy *= -1
-
 # Calculate temperature advection using metpy function
 adv = mpcalc.advection(temp_850 * units.kelvin, [u_wind_850, v_wind_850],
                        (dx, dy), dim_order='yx') * units('K/sec')
