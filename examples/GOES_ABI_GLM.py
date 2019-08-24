@@ -114,4 +114,4 @@ text_time_glm.set_path_effects(outline_effect)
 # ax.set_extent(lat_lon_box)
 ax.gridlines(linestyle=':', color='black', linewidth=2)
 
-plt.savefig('sat_image.png')
+plt.show()
