@@ -111,7 +111,4 @@ outline_effect = [patheffects.withStroke(linewidth=15, foreground='black')]
 text_time.set_path_effects(outline_effect)
 text_time_glm.set_path_effects(outline_effect)
 
-# ax.set_extent(lat_lon_box)
-ax.gridlines(linestyle=':', color='black', linewidth=2)
-
 plt.show()
