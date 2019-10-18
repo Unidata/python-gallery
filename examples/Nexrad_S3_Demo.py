@@ -12,7 +12,6 @@ By accessing it in the cloud, you can save time and space from downloading the d
 import boto3
 import botocore
 from botocore.client import Config
-from io import BytesIO
 import matplotlib.pyplot as plt
 from metpy.io import Level2File
 from metpy.plots import add_timestamp, ctables
@@ -20,23 +19,19 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import numpy as np
 
 ######################################################################
-# Access the data in the AWS cloud. Note that you'll need an AWS account (free at
-# https://aws.amazon.com/) and then set up security keys under the "My Security Credentials"
-# tab. Following that, you'll need to set up your credentials locally. Follow the instructions
-# here: http://boto3.readthedocs.io/en/latest/guide/quickstart.html#configuration. In this
-# example, we're plotting data from the Evansville, IN radar, which had convection within its
+# Access the data in the AWS cloud. In this example, we're plotting data
+# from the Evansville, IN radar, which had convection within its
 # domain on 06/26/2019.
 #
 
-s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED, user_agent_extra='Resource'))
+s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED,
+                                        user_agent_extra='Resource'))
 bucket = s3.Bucket('noaa-nexrad-level2')
-for obj in bucket.objects.filter(Prefix="2019/06/26/KVWX/KVWX20190626_221105_V06"):
+for obj in bucket.objects.filter(Prefix='2019/06/26/KVWX/KVWX20190626_221105_V06'):
     print(obj.key)
-    data = obj.get()['Body'].read()
-    bytestream = BytesIO(obj.get()['Body'].read())
 
-    #Use MetPy to read the file
-    f = Level2File(bytestream)
+    # Use MetPy to read the file
+    f = Level2File(obj.get()['Body'])
 
 
 ######################################################################
@@ -80,8 +75,8 @@ ref_norm, ref_cmap = ctables.registry.get_with_steps('NWSReflectivity', 5, 5)
 
 # Plot the data!
 fig, axes = plt.subplots(2, 2, figsize=(15, 15))
-for var_data, var_range, colors, lbl, ax in zip((ref, rho, zdr, phi), (ref_range, rho_range,
-                                                                       zdr_range, phi_range),
+for var_data, var_range, colors, lbl, ax in zip((ref, rho, zdr, phi),
+                                                (ref_range, rho_range, zdr_range, phi_range),
                                                 (ref_cmap, 'plasma', 'viridis', 'viridis'),
                                                 ('REF (dBZ)', 'RHO', 'ZDR (dBZ)', 'PHI'),
                                                 axes.flatten()):
@@ -94,10 +89,7 @@ for var_data, var_range, colors, lbl, ax in zip((ref, rho, zdr, phi), (ref_range
     ylocs = var_range * np.cos(np.deg2rad(az[:, np.newaxis]))
 
     # Define norm for reflectivity
-    if var_data[0][0] == ref[0][0]:
-        norm = ref_norm
-    else:
-        norm = None
+    norm = ref_norm if colors == ref_cmap else None
 
     # Plot the data
     a = ax.pcolormesh(xlocs, ylocs, data, cmap=colors, norm=norm)

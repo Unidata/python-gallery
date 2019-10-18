@@ -15,7 +15,6 @@
    - xarray
    - boto3
    - botocore
-   # Fix issues with pint 0.9
-   - pint != 0.9
+   - pint
    - pip:
        - sphinx-markdown-tables
