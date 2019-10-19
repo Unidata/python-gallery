@@ -24,7 +24,7 @@ from netCDF4 import Dataset
 ###############################
 # Download the data from the National Weather Service.
 dt = datetime.utcnow() - timedelta(days=1)  # This should always be available
-url = 'https://water.weather.gov/precip/downloads/{dt:%Y/%m/%d}/nws_precip_1day_'\
+url = 'http://water.weather.gov/precip/downloads/{dt:%Y/%m/%d}/nws_precip_1day_'\
       '{dt:%Y%m%d}_conus.nc'.format(dt=dt)
 data = urlopen(url).read()
 nc = Dataset('data', memory=data)
