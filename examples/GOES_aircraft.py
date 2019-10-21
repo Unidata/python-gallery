@@ -98,7 +98,7 @@ u, v = mpcalc.wind_components(1 * units('m/s'),
 u, v = proj.transform_vectors(ccrs.PlateCarree(), np.array([data['longitude']]),
                               np.array([data['latitude']]), np.array([u.m]),
                               np.array([v.m]))
-map_direction = -mpcalc.wind_direction(u, v).to('degrees')
+map_direction = -mpcalc.wind_direction(u * units('m/s'), v * units('m/s')).to('degrees')
 map_direction = map_direction[0].m
 
 ax.scatter(data['longitude'], data['latitude'],
