@@ -51,7 +51,7 @@ vwnd = ds['v-component_of_wind_isobaric']
 wspd = mpcalc.wind_speed(uwnd, vwnd)
 
 # Place wind speed (wspd) into xarray dataset and attach needed attributes
-ds = ds.assign(wind_speed=(tuple(uwnd.coords)[:4], wspd.m,
+ds = ds.assign(wind_speed=(tuple(uwnd.dims)[:4], wspd.m,
                            {'grid_mapping': uwnd.attrs['grid_mapping'],
                             'units': str(wspd.units)}))
 
