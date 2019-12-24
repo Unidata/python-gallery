@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hurricane Tracker with NHC Data &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Useful Python Tools" href="../useful_tools.html" />
+    <link rel="prev" title="GOES-16: True Color Recipe" href="mapping_GOES16_TrueColor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Declarative_300hPa.html">MetPy Declarative - 300 hPa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS_Widget.html">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Observational_Data_Cross_Section.html">Real Data Cross-Section Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miller_composite.html">Miller Composite Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Upperair_Obs.html">DIFAX Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping_GOES16_TrueColor.html">GOES-16: True Color Recipe</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>Hurricane Tracker with NHC Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/HurricaneTracker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-hurricanetracker-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="hurricane-tracker-with-nhc-data">
+<span id="sphx-glr-examples-hurricanetracker-py"></span><h1>Hurricane Tracker with NHC Data<a class="headerlink" href="#hurricane-tracker-with-nhc-data" title="Permalink to this headline">¶</a></h1>
+<p>By: Aodhan Sweeney</p>
+<p>This program is a recreation of the 2014 hur_tracker.py
+originally written by Unidata Intern Florita Rodriguez. The
+2019 version comes with updated interface and functionality,
+as well as changing certain dependencies.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">readUrlFile</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;readUrlFile is a function created to read a .dat file from a given url</span>
+<span class="sd">    and compile it into a list of strings with given headers.&quot;&quot;&quot;</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Unidata Python Client Test&#39;</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="c1"># Store data response in a string buffer</span>
+    <span class="n">string_buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Read from the string buffer as if it were a physical file</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">string_buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">readGZFile</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;readGZFile is a function which opens and reads zipped files. In this case it takes in a</span>
+<span class="sd">    .gzfile containing information on each storm and returns a byte buffer split based on</span>
+<span class="sd">    lines.&quot;&quot;&quot;</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Unidata Python Client Test&#39;</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="c1"># Store data response in a bytes buffer</span>
+    <span class="n">bio_buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="c1"># Read from the string buffer as if it were a physical file</span>
+    <span class="n">gzf</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">bio_buffer</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">gzf</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">split_storm_info</span><span class="p">(</span><span class="n">storm_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;split_storm_info takes a list of strings and creates a pandas dataframe</span>
+<span class="sd">    for the data set taken off the NHC archive. This function is called in the main to</span>
+<span class="sd">    find all storms.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">,</span> <span class="n">cycloneNum</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">stormType</span><span class="p">,</span> <span class="n">basin</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">storm_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">basin</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">cycloneNum</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">stormType</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">filename</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="n">storms</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Basin&#39;</span><span class="p">:</span> <span class="n">basin</span><span class="p">,</span> <span class="s1">&#39;CycloneNum&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">cycloneNum</span><span class="p">),</span>
+                        <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="s1">&#39;StormType&#39;</span><span class="p">:</span> <span class="n">stormType</span><span class="p">,</span>
+                        <span class="s1">&#39;Filename&#39;</span><span class="p">:</span> <span class="n">filename</span><span class="p">})</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">storms</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Storm_Selection_gui</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Storm_Selection_gui is a graphic user interface object designed for selecting storms</span>
+<span class="sd">    from the National Hurricane Center&#39;s storm list database.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;__init__ is the initiation function for the Storm_Selection_gui object. This</span>
+<span class="sd">        initiation creates a dataframe for the storm data from the National Hurricane</span>
+<span class="sd">        Center. In addition, this initiation creates widgets to select a specific storm</span>
+<span class="sd">        from the National Hurricane Center database with both a widget for a year</span>
+<span class="sd">        selection and also for a track button which actually retrieves the models</span>
+<span class="sd">        and tracks for a given storm. &quot;&quot;&quot;</span>
+
+        <span class="c1"># Setting up storm object table</span>
+        <span class="n">fileLines</span> <span class="o">=</span> <span class="n">readUrlFile</span><span class="p">(</span><span class="s1">&#39;http://ftp.nhc.noaa.gov/atcf/index/storm_list.txt&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storm_table</span> <span class="o">=</span> <span class="n">split_storm_info</span><span class="p">(</span><span class="n">fileLines</span><span class="p">)</span>
+
+        <span class="c1"># Creation of widgets</span>
+        <span class="c1"># Year Selector Slider (year_slider)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1851</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">2019</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2019</span><span class="p">,</span>
+                                             <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Storm Year: &#39;</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_storms_slider</span><span class="p">,</span> <span class="n">year_slider</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">year_slider</span><span class="p">)</span>
+        <span class="c1"># Button to retrieve storm tracks (track_button)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">ToggleButton</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Get Storm Tracks&#39;</span><span class="p">,</span>
+                                                 <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
+                                                 <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Description&#39;</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_tracks</span><span class="p">,</span> <span class="n">track_button</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">track_button</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_storms_slider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_slider</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;get_storms_slider is a function that is written to take a user defined year from</span>
+<span class="sd">        1851 to 2019 and then trim the split_storms_info dataframe to just have</span>
+<span class="sd">        storms from that year. This takes in the interactive widget called year_slider.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_year_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storm_table</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">storm_table</span><span class="o">.</span><span class="n">Year</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">year_slider</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storm_names</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">one_year_table</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span>
+                                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Storm Names: &#39;</span><span class="p">)</span>
+        <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_name_dropdown</span><span class="p">,</span> <span class="n">storm_names</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">storm_names</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_name_dropdown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">storm_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;get_name_dropdown is a function that allows for selection of a specific storm</span>
+<span class="sd">        based on its name. This function returns the filename of a given storm. This</span>
+<span class="sd">        function interacts with the widget called forecast_select.&quot;&quot;&quot;</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storm_names</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">one_storm_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">one_year_table</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">one_year_table</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">one_storm_row</span><span class="o">.</span><span class="n">Filename</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">empty</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">file_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">empty</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No file name data for this year.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_models</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;get_models is a function that is linked to the selection widget which allows for</span>
+<span class="sd">        multiple models to be selected to plot for a specific hurricane track.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_selection_latlon</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">time_slider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_slide</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;time_slider is a function which changes the time for which to plot the models for</span>
+<span class="sd">        a given hurricane track.&quot;&quot;&quot;</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">[</span><span class="n">time_slide</span><span class="p">]</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_tracks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track_button</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;get_tracks is a function that will create the url and pull the data for either</span>
+<span class="sd">        the forecast track or best track for a given storm. The Url is made by using both</span>
+<span class="sd">        the year and the filename. This function will then read the data and create a data</span>
+<span class="sd">        frame for both the forecast and best tracks and compile these data frames into a</span>
+<span class="sd">        dictionary. This function returns this dictionary of forecast and best tracks. &quot;&quot;&quot;</span>
+
+        <span class="n">year</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year_slider</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span>
+        <span class="n">data_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Current year data is stored in a different location</span>
+        <span class="k">if</span> <span class="n">year</span> <span class="o">==</span> <span class="s1">&#39;2019&#39;</span><span class="p">:</span>
+            <span class="n">urlf</span> <span class="o">=</span> <span class="s1">&#39;http://ftp.nhc.noaa.gov/atcf/aid_public/a</span><span class="si">{}</span><span class="s1">.dat.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">urlb</span> <span class="o">=</span> <span class="s1">&#39;http://ftp.nhc.noaa.gov/atcf/btk/b</span><span class="si">{}</span><span class="s1">.dat&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">urlf</span> <span class="o">=</span> <span class="s1">&#39;http://ftp.nhc.noaa.gov/atcf/archive/</span><span class="si">{}</span><span class="s1">/a</span><span class="si">{}</span><span class="s1">.dat.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="n">urlb</span> <span class="o">=</span> <span class="s1">&#39;http://ftp.nhc.noaa.gov/atcf/archive/</span><span class="si">{}</span><span class="s1">/b</span><span class="si">{}</span><span class="s1">.dat.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="n">url_links</span> <span class="o">=</span> <span class="p">[</span><span class="n">urlf</span><span class="p">,</span> <span class="n">urlb</span><span class="p">]</span>
+        <span class="n">url_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">track_button</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">url_links</span><span class="p">:</span>
+                <span class="c1"># Checking if url is valid, if status_code is 200 then website is active</span>
+                <span class="k">if</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.dat&#39;</span><span class="p">):</span>
+                        <span class="n">lines</span> <span class="o">=</span> <span class="n">readUrlFile</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">lines</span> <span class="o">=</span> <span class="n">readGZFile</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+                    <span class="c1"># Splitting the method for which we will create the dataframe</span>
+                    <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">basin</span><span class="p">,</span> <span class="n">cycloneNum</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+                    <span class="n">warnDT</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">forecast_hour</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+                        <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+                        <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                        <span class="c1"># Joins together lattitude and longitude strings without</span>
+                        <span class="c1"># directional letters.</span>
+                        <span class="c1"># Includes type conversion in order to divide by 10 to</span>
+                        <span class="c1"># get the correct coordinate.</span>
+                        <span class="n">latSingle</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">6</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">10.0</span>
+                        <span class="n">lonSingle</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">7</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+                        <span class="n">lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">latSingle</span><span class="p">)</span>
+                        <span class="n">lon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lonSingle</span><span class="p">)</span>
+                        <span class="n">basin</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">forecast_hour</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+                        <span class="n">cycloneNum</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                        <span class="n">warnDT</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                        <span class="n">model</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+                        <span class="c1"># Combining data from file into a Pandas Dataframe.</span>
+                        <span class="n">storm_data_frame</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Basin&#39;</span><span class="p">:</span> <span class="n">basin</span><span class="p">,</span>
+                                                      <span class="s1">&#39;CycloneNum&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">cycloneNum</span><span class="p">),</span>
+                                                      <span class="s1">&#39;WarnDT&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">warnDT</span><span class="p">),</span>
+                                                      <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="s1">&#39;Lat&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">lat</span><span class="p">),</span>
+                                                      <span class="s1">&#39;Lon&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">lon</span><span class="p">),</span>
+                                                      <span class="s1">&#39;forecast_hour&#39;</span><span class="p">:</span>
+                                                      <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">forecast_hour</span><span class="p">)})</span>
+                        <span class="c1"># Adding this newly created DataFrame to a dictionary</span>
+                        <span class="k">if</span> <span class="n">url_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">data_dictionary</span><span class="p">[</span><span class="s1">&#39;forecast&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">storm_data_frame</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">data_dictionary</span><span class="p">[</span><span class="s1">&#39;best_track&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">storm_data_frame</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;url </span><span class="si">{}</span><span class="s1"> was not valid, select different storm.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+                    <span class="n">track_button</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="n">url_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">storm_dictionary</span> <span class="o">=</span> <span class="n">data_dictionary</span>
+            <span class="n">forecast</span> <span class="o">=</span> <span class="n">data_dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;forecast&#39;</span><span class="p">)</span>
+
+            <span class="n">unique_models</span><span class="p">,</span> <span class="n">unique_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.unique.html#numpy.unique" title="View documentation for numpy.unique"><span class="n">np</span><span class="o">.</span><span class="n">unique</span></a><span class="p">(</span><span class="n">forecast</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                               <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+            <span class="c1"># Selection tool to pick from available models to plot (model_select)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_select</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">unique_models</span><span class="p">,</span>
+                                                       <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">unique_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                                                       <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Models: &#39;</span><span class="p">,</span>
+                                                       <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_models</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_select</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">model_selection_latlon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;model_selection_latlon is a function that allows the user to select a model for</span>
+<span class="sd">        a given storm and whether the tracks are forecast or best tracks. The parameters</span>
+<span class="sd">        for this are a string stating whether the user wants forecast or best tracks and</span>
+<span class="sd">        also all model outputs for all forecasts and best tracks compiled into a python</span>
+<span class="sd">        dictionary. The latlon part of this function comes from taking the users selected</span>
+<span class="sd">        model and getting the latitudes and longitudes of all positions of the storm for</span>
+<span class="sd">        this forecast. This function then returns these lats and lons as a pandas.Series&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_select</span><span class="o">.</span><span class="n">disabled</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># We will always plot best track, and thus must save the coordinates for plotting</span>
+            <span class="n">best_track</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storm_dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;best_track&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span> <span class="o">=</span> <span class="n">best_track</span><span class="p">[</span><span class="s1">&#39;WarnDT&#39;</span><span class="p">]</span>
+            <span class="n">lats</span> <span class="o">=</span> <span class="n">best_track</span><span class="p">[</span><span class="s1">&#39;Lat&#39;</span><span class="p">]</span>
+            <span class="n">lons</span> <span class="o">=</span> <span class="n">best_track</span><span class="p">[</span><span class="s1">&#39;Lon&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">best_track_coordinates</span> <span class="o">=</span> <span class="p">[</span><span class="n">lats</span><span class="p">,</span> <span class="n">lons</span><span class="p">]</span>
+
+            <span class="n">model_tracks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storm_dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;forecast&#39;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_table</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+                <span class="n">one_model_table</span> <span class="o">=</span> <span class="n">model_tracks</span><span class="p">[</span><span class="n">model_tracks</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">model</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">one_model_table</span><span class="p">)</span>
+
+            <span class="c1"># Slider to choose time frame for which to plot models (plot_slider)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                                                 <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tracks Time&#39;</span><span class="p">,</span>
+                                                 <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plotting</span><span class="p">,</span> <span class="n">plot_slider</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_slider</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">plotting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_slider</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;plotting is a function that that plots the models tracks and best tracks for all</span>
+<span class="sd">        selected models. These tracks are then plotted on the Blue Marble projection. &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_slider</span><span class="o">.</span><span class="n">disabled</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># Identifying the time associated with the models for time text box</span>
+            <span class="n">year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">[</span><span class="n">plot_slider</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="n">month</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">[</span><span class="n">plot_slider</span><span class="p">][</span><span class="mi">4</span><span class="p">:</span> <span class="mi">6</span><span class="p">]</span>
+            <span class="n">day</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">[</span><span class="n">plot_slider</span><span class="p">][</span><span class="mi">6</span><span class="p">:</span> <span class="mi">8</span><span class="p">]</span>
+            <span class="n">hour</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">[</span><span class="n">plot_slider</span><span class="p">][</span><span class="mi">8</span><span class="p">:</span> <span class="mi">10</span><span class="p">]</span>
+            <span class="n">time_string</span> <span class="o">=</span> <span class="s1">&#39;Date: </span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">/</span><span class="si">{2}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> Hour: </span><span class="si">{3}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">hour</span><span class="p">)</span>
+
+            <span class="c1"># Finding data for best track, and extremes for which to base axis extent on</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">best_lats</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_track_coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">best_lons</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_track_coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">min_best_lat</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_lats</span><span class="p">)</span>
+            <span class="n">max_best_lat</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_lats</span><span class="p">)</span>
+            <span class="n">min_best_lon</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_lons</span><span class="p">)</span>
+            <span class="n">max_best_lon</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_lons</span><span class="p">)</span>
+
+            <span class="c1"># Plotting the track on a cartopy stock image</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">stock_img</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_lons</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_lats</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Best Track&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_projection</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([(</span><span class="n">min_best_lon</span> <span class="o">-</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="n">max_best_lon</span> <span class="o">+</span> <span class="mi">30</span><span class="p">),</span>
+                                <span class="p">(</span><span class="n">min_best_lat</span> <span class="o">-</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="n">max_best_lat</span> <span class="o">+</span> <span class="mi">30</span><span class="p">)])</span>
+            <span class="n">jet</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">jet</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html#numpy.linspace" title="View documentation for numpy.linspace"><span class="n">np</span><span class="o">.</span><span class="n">linspace</span></a><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_select</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))))</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+            <span class="n">bottom</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">time_string</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                         <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">model_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_table</span><span class="p">:</span>
+                <span class="n">one_model_time</span> <span class="o">=</span> <span class="n">model_type</span><span class="p">[</span><span class="n">model_type</span><span class="p">[</span><span class="s1">&#39;WarnDT&#39;</span><span class="p">]</span> <span class="o">==</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">date_times</span><span class="p">[</span><span class="n">plot_slider</span><span class="p">]]</span>
+                <span class="n">lats</span> <span class="o">=</span> <span class="n">one_model_time</span><span class="p">[</span><span class="s1">&#39;Lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">lons</span> <span class="o">=</span> <span class="n">one_model_time</span><span class="p">[</span><span class="s1">&#39;Lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lats</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">model_list</span> <span class="o">=</span> <span class="n">model_type</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span>
+                                 <span class="n">label</span><span class="o">=</span><span class="n">model_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Storm Name: </span><span class="si">{0}</span><span class="s1"> Year: </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storm_names</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                      <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year_slider</span><span class="o">.</span><span class="n">value</span><span class="p">)))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">storm_selection</span> <span class="o">=</span> <span class="n">Storm_Selection_gui</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>interactive(children=(IntSlider(value=2019, description=&#39;Storm Year: &#39;, max=2019, min=1851), Output()), _dom_classes=(&#39;widget-interact&#39;,))
+interactive(children=(ToggleButton(value=False, button_style=&#39;info&#39;, description=&#39;Get Storm Tracks&#39;, tooltip=&#39;Description&#39;), Output()), _dom_classes=(&#39;widget-interact&#39;,))
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.227 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-hurricanetracker-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/52e10a7d8c56b589c498b38ffdd5d219/HurricaneTracker.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">HurricaneTracker.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/8bec8b3cf62edfbcf9e673f8860f9ea1/HurricaneTracker.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">HurricaneTracker.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../useful_tools.html" class="btn btn-neutral float-right" title="Useful Python Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mapping_GOES16_TrueColor.html" class="btn btn-neutral float-left" title="GOES-16: True Color Recipe" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

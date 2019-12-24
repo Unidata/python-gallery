@@ -1,0 +1,1052 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GOES-16: True Color Recipe &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hurricane Tracker with NHC Data" href="HurricaneTracker.html" />
+    <link rel="prev" title="DIFAX Replication" href="Upperair_Obs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Declarative_300hPa.html">MetPy Declarative - 300 hPa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS_Widget.html">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Observational_Data_Cross_Section.html">Real Data Cross-Section Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miller_composite.html">Miller Composite Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Upperair_Obs.html">DIFAX Replication</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GOES-16: True Color Recipe</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#first-import-the-libraries-we-will-use">First, import the libraries we will use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-the-goes-16-netcdf-file">Open the GOES-16 NetCDF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#date-and-time-information">Date and Time Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#true-color-rgb-recipe">True Color RGB Recipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-image">Simple Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-with-cartopy-geostationary-projection">Plot with <cite>Cartopy</cite> Geostationary Projection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-other-projections">Using other projections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-with-cartopy-plate-carree-cylindrical-projection">Plot with <cite>Cartopy</cite>: Plate Carrée  Cylindrical Projection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overlay-nighttime-ir-when-dark">Overlay Nighttime IR when dark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-the-clear-ir-10-3-m-channel-band-13">Load the Clear IR  10.3 µm channel (Band 13)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-the-true-color-and-clean-ir-images">Show the true color and clean IR images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjust-image-contrast">Adjust Image Contrast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-we-make-plots-for-a-mesoscale-scan">Can we make plots for a Mesoscale scan?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-we-do-this-for-a-full-disk-scan-it-s-possible">Can we do this for a Full Disk Scan? It’s possible…</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="HurricaneTracker.html">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>GOES-16: True Color Recipe</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/mapping_GOES16_TrueColor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-mapping-goes16-truecolor-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="goes-16-true-color-recipe">
+<span id="sphx-glr-examples-mapping-goes16-truecolor-py"></span><h1>GOES-16: True Color Recipe<a class="headerlink" href="#goes-16-true-color-recipe" title="Permalink to this headline">¶</a></h1>
+<p>By: [Brian Blaylock](<a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html">http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html</a>)
+with help from Julien Chastang (UCAR-Unidata).</p>
+<p>Additional notebooks analyzing GOES-16 and other data can be found in [Brian’s
+GitHub repository](<a class="reference external" href="https://github.com/blaylockbk/pyBKB_v3/">https://github.com/blaylockbk/pyBKB_v3/</a>).</p>
+<p>This notebook shows how to make a true color image from the GOES-16
+Advanced Baseline Imager (ABI) level 2 data. We will plot the image with
+matplotlib and Cartopy. The methods shown here are stitched together from the
+following online resources:</p>
+<ul class="simple">
+<li><p>[<strong>CIMSS True Color RGB Quick Guide</strong>](<a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf</a>)</p></li>
+<li><p>[ABI Bands Quick Information Guides](<a class="reference external" href="https://www.goes-r.gov/education/ABI-bands-quick-info.html">https://www.goes-r.gov/education/ABI-bands-quick-info.html</a>)</p></li>
+<li><p>[Open Commons Consortium](<a class="reference external" href="http://edc.occ-data.org/goes16/python/">http://edc.occ-data.org/goes16/python/</a>)</p></li>
+<li><p>[GeoNetCast Blog](<a class="reference external" href="https://geonetcast.wordpress.com/2017/07/25/geonetclass-manipulating-goes-16-data-with-python-part-vi/">https://geonetcast.wordpress.com/2017/07/25/geonetclass-manipulating-goes-16-data-with-python-part-vi/</a>)</p></li>
+<li><p>[Proj documentation](<a class="reference external" href="https://proj4.org/operations/projections/geos.html?highlight=geostationary">https://proj4.org/operations/projections/geos.html?highlight=geostationary</a>)</p></li>
+</ul>
+<p>True color images are an RGB composite of the following three channels:</p>
+<p>&lt;table border=”1” class=”docutils”&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;–&lt;/th&gt;
+&lt;th&gt;Wavelength&lt;/th&gt;
+&lt;th&gt;Channel&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Red&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;0.64 &amp;#181;m&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Red Visible&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Green&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;0.86 &amp;#181;m&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Veggie Near-IR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Blue&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;0.47 &amp;#181;m&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Blue Visible&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</p>
+<p>For this demo, we use the <strong>Level 2 Multichannel formated data</strong> (ABI-L2-MCMIP)
+for the CONUS domain. This file contains all sixteen channels on the ABI fixed
+grid (~2 km grid spacing).</p>
+<p>GOES-16 data is downloaded from Unidata, but you may also
+download GOES-16 or 17 files from NOAA’s GOES archive on [Amazon S3](<a class="reference external" href="https://aws.amazon.com/public-datasets/goes/">https://aws.amazon.com/public-datasets/goes/</a>).
+I created a [web interface](<a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi?source=aws&amp;satellite=noaa-goes16&amp;domain=C&amp;product=ABI-L2-MCMIP">http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi?source=aws&amp;satellite=noaa-goes16&amp;domain=C&amp;product=ABI-L2-MCMIP</a>)
+to easily download files from the Amazon archive. For scripted or bulk
+downloads, you should use <cite>rclone</cite> or <cite>AWS CLI</cite>. You may also download files
+from the [Environmental Data Commons](<a class="reference external" href="http://edc.occ-data.org/goes16/getdata/">http://edc.occ-data.org/goes16/getdata/</a>)
+and [NOAA
+CLASS](<a class="reference external" href="https://www.avl.class.noaa.gov/saa/products/search?sub_id=0&amp;datatype_family=GRABIPRD&amp;submit.x=25&amp;submit.y=9">https://www.avl.class.noaa.gov/saa/products/search?sub_id=0&amp;datatype_family=GRABIPRD&amp;submit.x=25&amp;submit.y=9</a>).</p>
+<p>File names have the following format…</p>
+<p><cite>OR_ABI-L2-MCMIPC-M3_G16_s20181781922189_e20181781924562_c20181781925075.nc</cite></p>
+<p><cite>OR</cite>     - Indicates the system is operational</p>
+<p><cite>ABI</cite>    - Instrument type</p>
+<p><cite>L2</cite>     - Level 2 Data</p>
+<p><cite>MCMIP</cite>  - Multichannel Cloud and Moisture Imagery products</p>
+<p><cite>c</cite>      - CONUS file (created every 5 minutes).</p>
+<p><cite>M3</cite>     - Scan mode</p>
+<p><cite>G16</cite>    - GOES-16</p>
+<p><cite>sYYYYJJJHHMMSSZ</cite> - Scan start: 4 digit year, 3 digit day of year (Julian day), hour, minute, second, tenth second</p>
+<p><cite>eYYYYJJJHHMMSSZ</cite> - Scan end</p>
+<p><cite>cYYYYJJJHHMMSSZ</cite> - File Creation
+<cite>.nc</cite>    - NetCDF file extension</p>
+<div class="section" id="first-import-the-libraries-we-will-use">
+<h2>First, import the libraries we will use<a class="headerlink" href="#first-import-the-libraries-we-will-use" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">metpy</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="open-the-goes-16-netcdf-file">
+<h2>Open the GOES-16 NetCDF File<a class="headerlink" href="#open-the-goes-16-netcdf-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the file with xarray.</span>
+<span class="c1"># The opened file is assigned to &quot;C&quot; for the CONUS domain.</span>
+
+<span class="n">FILE</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://ramadda-jetstream.unidata.ucar.edu/repository/opendap&#39;</span>
+        <span class="s1">&#39;/4ef52e10-a7da-4405-bff4-e48f68bb6ba2/entry.das#fillmismatch&#39;</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <a href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="View documentation for xarray.open_dataset"><span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span></a><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="date-and-time-information">
+<h2>Date and Time Information<a class="headerlink" href="#date-and-time-information" title="Permalink to this headline">¶</a></h2>
+<p>Each file represents the data collected during one scan sequence for the
+domain. There are several different time stamps in this file, which are also
+found in the file’s name.
+I’m not a fan of numpy datetime, so I convert it to a regular datetime</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scan&#39;s start time, converted to datetime object</span>
+<span class="n">scan_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">time_coverage_start</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># Scan&#39;s end time, converted to datetime object</span>
+<span class="n">scan_end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">time_coverage_end</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># File creation time, convert to datetime object</span>
+<span class="n">file_created</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">date_created</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># The &#39;t&#39; variable is the scan&#39;s midpoint time</span>
+<span class="n">midpoint</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)[:</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">scan_mid</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">midpoint</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan Start    : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan midpoint : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_mid</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan End      : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_end</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;File Created  : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_created</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan Duration : </span><span class="si">{:.2f}</span><span class="s1"> minutes&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">scan_end</span><span class="o">-</span><span class="n">scan_start</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span><span class="o">/</span><span class="mi">60</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Scan Start    : 2018-10-10 14:32:20.300000
+Scan midpoint : 2018-10-10 14:33:38.900000
+Scan End      : 2018-10-10 14:34:57.600000
+File Created  : 2018-10-10 14:35:08.800000
+Scan Duration : 2.62 minutes
+</pre></div>
+</div>
+</div>
+<div class="section" id="true-color-rgb-recipe">
+<h2>True Color RGB Recipe<a class="headerlink" href="#true-color-rgb-recipe" title="Permalink to this headline">¶</a></h2>
+<p>Color images are a Red-Green-Blue (RGB) composite of three different
+channels. To make a “Natural True Color” image we assign the following
+channels as our R, G, and B values:</p>
+<p>&lt;table border=”1” class=”docutils”&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;–&lt;/th&gt;
+&lt;th&gt;RED&lt;/th&gt;
+&lt;th&gt;GREEN&lt;/th&gt;
+&lt;th&gt;BLUE&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Name&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Red Visible&lt;/td&gt;
+&lt;td&gt;Near-IR Veggie&lt;/td&gt;
+&lt;td&gt;Blue Visible&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Wavelength&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;0.64 µm&lt;/td&gt;
+&lt;td&gt;0.86 µm&lt;/td&gt;
+&lt;td&gt;0.47 µm&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Channel&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Units&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Reflectance&lt;/td&gt;
+&lt;td&gt;Reflectance&lt;/td&gt;
+&lt;td&gt;Reflectance&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Range of Values&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;0-1&lt;/td&gt;
+&lt;td&gt;0-1&lt;/td&gt;
+&lt;td&gt;0-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Gamma Correction&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;2.2&lt;/td&gt;
+&lt;td&gt;2.2&lt;/td&gt;
+&lt;td&gt;2.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</p>
+<p>Some important details to know about…</p>
+<p><strong>Value Range</strong>: The data units of channel 1, 2, and 3 are in reflectance and
+have a range of values between 0 and 1. RGB values must also be between 0 and
+1.</p>
+<p><strong>Gamma Correction</strong>: A gamma correction is applied to control the brightness
+and make the image not look too dark.
+<cite>corrected_value = value^(1/gamma)</cite>.
+Most displays have a decoding gamma of 2.2. Read more about gamma correction
+at the following links…
+[source1](<a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">https://en.wikipedia.org/wiki/Gamma_correction</a>) and
+[source2](<a class="reference external" href="https://www.cambridgeincolour.com/tutorials/gamma-correction.htm">https://www.cambridgeincolour.com/tutorials/gamma-correction.htm</a>)).</p>
+<p><strong>True Green</strong>: The GREEN “veggie” channel on GOES-16 does not measure
+visible green light. Instead, it measures a near-infrared band sensitive to
+chlorophyll. We could use that channel in place of green, but it would make
+the green in our image appear too vibrant. Instead, we will tone-down the
+green channel by interpolating the value to simulate a natural green color.</p>
+<blockquote>
+<div><p><cite>TrueGreen = (0.45*RED) + (0.1*GREEN) + (0.45*BLUE)</cite></p>
+</div></blockquote>
+<p>Now we can begin putting the pieces together…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Confirm that each band is the wavelength we are interested in</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is </span><span class="si">{:.2f}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">C</span><span class="p">[</span><span class="s1">&#39;band_wavelength_C</span><span class="si">{:02d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">band</span><span class="p">)]</span><span class="o">.</span><span class="n">long_name</span><span class="p">,</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="s1">&#39;band_wavelength_C</span><span class="si">{:02d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">band</span><span class="p">)][</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="n">C</span><span class="p">[</span><span class="s1">&#39;band_wavelength_C</span><span class="si">{:02d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">band</span><span class="p">)]</span><span class="o">.</span><span class="n">units</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ABI band 2 central wavelength is 0.64 um
+ABI band 3 central wavelength is 0.87 um
+ABI band 1 central wavelength is 0.47 um
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C03&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply a gamma correction to the image to correct ABI detector brightness</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the &quot;True&quot; Green</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <span class="mf">0.45</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">+</span> <span class="mf">0.45</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># apply limits again, just in case.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simple-image">
+<h2>Simple Image<a class="headerlink" href="#simple-image" title="Permalink to this headline">¶</a></h2>
+<p>Use <cite>plt.imshow</cite> to get a quick look at the channels and RGB composite we
+created.</p>
+<p>First, plot each channel individually. The deeper the color means the
+satellite is observing more light in that channel. Clouds appear white because
+they reflect lots of red, green, and blue light. Notice that the land reflects
+a lot of “green” in the veggie channel because this channel is sensitive to
+the chlorophyll.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">([</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">])</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Veggie&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&quot;True&quot; Green&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=.</span><span class="mi">02</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_001.png" />
+<p>The addition of the three channels results in a color image. Combine the three
+channels with a stacked array and display the image with <cite>imshow</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The RGB array with the raw veggie band</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_veggie</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">])</span>
+
+<span class="c1"># The RGB array for the true color image</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># The RGB using the raw veggie band</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_veggie</span></a><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GOES-16 RGB Raw Veggie&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+              <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">)),</span>
+              <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># The RGB for the true color image</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GOES-16 RGB True Color&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+              <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">)),</span>
+              <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_002.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_002.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(-0.5, 2499.5, 1499.5, -0.5)
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-with-cartopy-geostationary-projection">
+<h2>Plot with <cite>Cartopy</cite> Geostationary Projection<a class="headerlink" href="#plot-with-cartopy-geostationary-projection" title="Permalink to this headline">¶</a></h2>
+<p>The image above is not georeferenced. You can see the land and oceans, but we
+do have enough information to draw state and country boundaries. Use the
+<cite>metpy.io</cite> package to obtain the projection information from the file.  Then
+use <cite>Cartopy</cite> to plot the image on a map. The GOES data and image is on a
+[geostationary projection
+](<a class="reference external" href="https://proj4.org/operations/projections/geos.html?highlight=geostationary">https://proj4.org/operations/projections/geos.html?highlight=geostationary</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We&#39;ll use the `CMI_C02` variable as a &#39;hook&#39; to get the CF metadata.</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">(</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">)</span>
+
+<span class="n">geos</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">cartopy_crs</span>
+
+<span class="c1"># We also need the x (north/south) and y (east/west) axis sweep of the ABI data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>The geostationary projection is the easiest way to plot the image on a
+map. Essentially, we are stretching the image across a map with the same
+projection and dimensions as the data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Create axis with Geostationary projection</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="c1"># Add the RGB image to the figure. The data is in the same projection as the</span>
+<span class="c1"># axis we just created.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="c1"># Add Coastlines and States</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">)),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_003.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_003.png" />
+</div>
+<div class="section" id="using-other-projections">
+<h2>Using other projections<a class="headerlink" href="#using-other-projections" title="Permalink to this headline">¶</a></h2>
+<p>Changing the projections with <cite>Cartopy</cite> is straightforward. Here we display
+the GOES-16 data on a Lambert Conformal projection.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Generate an Cartopy projection</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mf">97.5</span><span class="p">,</span> <span class="n">standard_parallels</span><span class="o">=</span><span class="p">(</span><span class="mf">38.5</span><span class="p">,</span>
+                                                                        <span class="mf">38.5</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">lc</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">135</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+          <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">,</span>
+          <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">)),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_004.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_004.png" />
+</div>
+<div class="section" id="plot-with-cartopy-plate-carree-cylindrical-projection">
+<h2>Plot with <cite>Cartopy</cite>: Plate Carrée  Cylindrical Projection<a class="headerlink" href="#plot-with-cartopy-plate-carree-cylindrical-projection" title="Permalink to this headline">¶</a></h2>
+<p>It is often useful to zoom on a specific location. This image will zoom in on
+Utah.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">pc</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">pc</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mf">114.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">108.25</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">43</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">pc</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+          <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">,</span>
+          <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">)),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_005.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_005.png" />
+</div>
+<div class="section" id="overlay-nighttime-ir-when-dark">
+<h2>Overlay Nighttime IR when dark<a class="headerlink" href="#overlay-nighttime-ir-when-dark" title="Permalink to this headline">¶</a></h2>
+<p>At nighttime, the visible wavelengths do not measure anything and is just
+black. There is information, however, from other channels we can use to see
+clouds at night. To view clouds in portions of the domain experiencing
+nighttime, we will overlay the clean infrared (IR) channel over the true color
+image.</p>
+<p>First, open a file where the scan shows partial night area and create the true
+color RGB as before.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># A GOES-16 file with half day and half night</span>
+
+<span class="n">FILE</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://ramadda-jetstream.unidata.ucar.edu/repository/opendap&#39;</span>
+        <span class="s1">&#39;/85da3304-b910-472b-aedf-a6d8c1148131/entry.das#fillmismatch&#39;</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <a href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="View documentation for xarray.open_dataset"><span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span></a><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
+
+<span class="c1"># Scan&#39;s start time, converted to datetime object</span>
+<span class="n">scan_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">time_coverage_start</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create the RGB like we did before</span>
+
+<span class="c1"># Load the three channels into appropriate R, G, and B</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C03&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Apply the gamma correction</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+
+<span class="c1"># Calculate the &quot;True&quot; Green</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <span class="mf">0.45</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">+</span> <span class="mf">0.45</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># The final RGB array :)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-the-clear-ir-10-3-m-channel-band-13">
+<h2>Load the Clear IR  10.3 µm channel (Band 13)<a class="headerlink" href="#load-the-clear-ir-10-3-m-channel-band-13" title="Permalink to this headline">¶</a></h2>
+<p>When you print the contents of channel 13, notice that the unit of the clean
+IR channel is <em>brightness temperature</em>, NOT reflectance. We need to normalize
+the values between 0 and 1 before we can use it in our RGB image.  In this
+case, we normalize the values between 90 Kelvin and 313 Kelvin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C13&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;CMI_C13&#39; (y: 1500, x: 2500)&gt;
+[3750000 values with dtype=float32]
+Coordinates:
+    t        datetime64[ns] ...
+  * y        (y) float32 0.128212 0.128156 ... 0.044324003 0.044268005
+  * x        (x) float32 -0.101332 -0.101276 ... 0.038556002 0.038612
+    y_image  float32 ...
+    x_image  float32 ...
+Attributes:
+    long_name:              ABI Cloud and Moisture Imagery brightness tempera...
+    standard_name:          toa_brightness_temperature
+    sensor_band_bit_depth:  12
+    valid_range:            [   0 4095]
+    units:                  K
+    resolution:             y: 0.000056 rad x: 0.000056 rad
+    grid_mapping:           goes_imager_projection
+    cell_methods:           t: point area: point
+    ancillary_variables:    DQF_C13
+    _ChunkSizes:            [250 250]
+</pre></div>
+</div>
+<p>Apply the normalization…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C13&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Normalize the channel between a range.</span>
+<span class="c1">#       cleanIR = (cleanIR-minimumValue)/(maximumValue-minimumValue)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="o">-</span><span class="mi">90</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">313</span><span class="o">-</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># Apply range limits to make sure values are between 0 and 1</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Invert colors so that cold clouds are white</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a>
+
+<span class="c1"># Lessen the brightness of the coldest clouds so they don&#39;t appear so bright</span>
+<span class="c1"># when we overlay it on the true color image.</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="o">/</span><span class="mf">1.4</span>
+
+<span class="c1"># Yes, we still need 3 channels as RGB values. This will be a grey image.</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_cleanIR</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-the-true-color-and-clean-ir-images">
+<h2>Show the true color and clean IR images<a class="headerlink" href="#show-the-true-color-and-clean-ir-images" title="Permalink to this headline">¶</a></h2>
+<p>We want to overlay these two images, so the clean IR fills in the night sky
+on the True Color image. This way we can still see the clouds at night.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;True Color&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Clean IR&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_cleanIR</span></a><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_006.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_006.png" />
+<p>To fill in the dark area on the true color image, we will set each RGB channel
+to equal the maximum value between the visible channels and the IR
+channels. When this is done, where RGB values are black in the true color
+image RGB = (0,0,0), it will be replaced with a higher value of the <cite>cleanIR
+RGB</cite>.</p>
+<p>Note that if the clean IR has really bright, cold clouds in the daylight, they
+will replace the color values in the true color image making the clouds appear
+more white. Still, it makes a nice plot and let’s you see clouds when it is
+night.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maximize the RGB values between the True Color Image and Clean IR image</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_ColorIR</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">np</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">),</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">np</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">),</span>
+                         <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">np</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_ColorIR</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+          <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color and Night IR&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M UTC </span><span class="si">%d</span><span class="s1"> %B %Y&#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">),</span>
+          <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_007.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_007.png" />
+</div>
+<div class="section" id="adjust-image-contrast">
+<h2>Adjust Image Contrast<a class="headerlink" href="#adjust-image-contrast" title="Permalink to this headline">¶</a></h2>
+<p>I think the color looks a little dull. We could get complicated and make a
+Rayleigh correction to the data to fix the blue light scattering, but that can
+be intense. More simply, we can make the colors pop out by adjusting the image
+contrast. Adjusting image contrast is easy to do in Photoshop, and also easy
+to do in Python.</p>
+<p>We are still using the RGB values from the day/night GOES-16 ABI scan.</p>
+<p>Note: you should adjust the contrast _before_ you add in the Clean IR channel.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">contrast_correction</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">contrast</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modify the contrast of an RGB</span>
+<span class="sd">    See:</span>
+<span class="sd">    https://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-5-contrast-adjustment/</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">        color    - an array representing the R, G, and/or B channel</span>
+<span class="sd">        contrast - contrast correction level</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="p">(</span><span class="mi">259</span><span class="o">*</span><span class="p">(</span><span class="n">contrast</span> <span class="o">+</span> <span class="mi">255</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mf">255.</span><span class="o">*</span><span class="mi">259</span><span class="o">-</span><span class="n">contrast</span><span class="p">)</span>
+    <span class="n">COLOR</span> <span class="o">=</span> <span class="n">F</span><span class="o">*</span><span class="p">(</span><span class="n">color</span><span class="o">-.</span><span class="mi">5</span><span class="p">)</span><span class="o">+.</span><span class="mi">5</span>
+    <span class="n">COLOR</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><span class="n">COLOR</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Force value limits 0 through 1.</span>
+    <span class="k">return</span> <span class="n">COLOR</span>
+
+<span class="c1"># Amount of contrast</span>
+<span class="n">contrast_amount</span> <span class="o">=</span> <span class="mi">105</span>
+
+<span class="c1"># Apply contrast correction</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_contrast</span></a> <span class="o">=</span> <span class="n">contrast_correction</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">contrast_amount</span><span class="p">)</span>
+
+<span class="c1"># Add in clean IR to the contrast-corrected True Color image</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_contrast_IR</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">np</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_contrast</span></a><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">),</span>
+                             <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">np</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_contrast</span></a><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">),</span>
+                             <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">np</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_contrast</span></a><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">cleanIR</span></a><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot on map with Cartopy</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_ColorIR</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+           <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;True Color and Night IR&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB_contrast_IR</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+           <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Contrast Correction = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">contrast_amount</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=.</span><span class="mi">02</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_008.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_008.png" />
+</div>
+<div class="section" id="can-we-make-plots-for-a-mesoscale-scan">
+<h2>Can we make plots for a Mesoscale scan?<a class="headerlink" href="#can-we-make-plots-for-a-mesoscale-scan" title="Permalink to this headline">¶</a></h2>
+<p>Yes. Yes we can.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># M1 is for the Mesoscale1 NetCDF file</span>
+
+<span class="n">FILE</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://ramadda-jetstream.unidata.ucar.edu/repository/opendap&#39;</span>
+        <span class="s1">&#39;/5e02eafa-5cee-4d00-9f58-6e201e69b014/entry.das#fillmismatch&#39;</span><span class="p">)</span>
+<span class="n">M1</span> <span class="o">=</span> <a href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="View documentation for xarray.open_dataset"><span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span></a><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
+
+<span class="c1"># Load the RGB arrays</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <span class="n">M1</span><span class="p">[</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <span class="n">M1</span><span class="p">[</span><span class="s1">&#39;CMI_C03&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <span class="n">M1</span><span class="p">[</span><span class="s1">&#39;CMI_C01&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Apply the gamma correction</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+
+<span class="c1"># Calculate the &quot;True&quot; Green</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <span class="mf">0.45</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">+</span> <span class="mf">0.45</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># The final RGB array :)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">])</span>
+
+<span class="c1"># Scan&#39;s start time, converted to datetime object</span>
+<span class="n">scan_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">M1</span><span class="o">.</span><span class="n">time_coverage_start</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># We&#39;ll use the `CMI_C02` variable as a &#39;hook&#39; to get the CF metadata.</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">M1</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">(</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">)</span>
+
+<span class="c1"># Need the satellite sweep x and y values, too.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">lc</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+          <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mesoscale Section 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M UTC </span><span class="si">%d</span><span class="s1"> %B %Y&#39;</span><span class="p">)),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_009.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_009.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+          <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mesoscale Section 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M UTC </span><span class="si">%d</span><span class="s1"> %B %Y&#39;</span><span class="p">)),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_010.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_010.png" />
+</div>
+<div class="section" id="can-we-do-this-for-a-full-disk-scan-it-s-possible">
+<h2>Can we do this for a Full Disk Scan? It’s possible…<a class="headerlink" href="#can-we-do-this-for-a-full-disk-scan-it-s-possible" title="Permalink to this headline">¶</a></h2>
+<p>but data files are so large that plotting is very slow.  Feel free to
+experiment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FILE</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://ramadda-jetstream.unidata.ucar.edu/repository/opendap&#39;</span>
+        <span class="s1">&#39;/deb91f58-f997-41a3-a077-987529bf02b3/entry.das#fillmismatch&#39;</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <a href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="View documentation for xarray.open_dataset"><span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span></a><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
+
+<span class="c1"># Load the RGB arrays</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="s1">&#39;CMI_C03&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="s1">&#39;CMI_C01&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Apply the gamma correction</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+
+<span class="c1"># Calculate the &quot;True&quot; Green</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <span class="mf">0.48358168</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a> <span class="o">+</span> <span class="mf">0.45706946</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a> <span class="o">+</span> <span class="mf">0.06038137</span> <span class="o">*</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G</span></a>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">np</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># The final RGB array :)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack" title="View documentation for numpy.dstack"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span></a><span class="p">([</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">R</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">G_true</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">B</span></a><span class="p">])</span>
+
+<span class="c1"># We&#39;ll use the `CMI_C02` variable as a &#39;hook&#39; to get the CF metadata.</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">(</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>Geostationary projection is easy…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">RGB</span></a><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+          <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Full Disk</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M UTC </span><span class="si">%d</span><span class="s1"> %B %Y&#39;</span><span class="p">)),</span>
+          <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_mapping_GOES16_TrueColor_011.png" class="sphx-glr-single-img" src="../_images/sphx_glr_mapping_GOES16_TrueColor_011.png" />
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  44.406 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-mapping-goes16-truecolor-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/8c28fee21217632032a7bcb5ba74f81b/mapping_GOES16_TrueColor.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapping_GOES16_TrueColor.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/d0318f04853087327b67e521b8385e00/mapping_GOES16_TrueColor.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">mapping_GOES16_TrueColor.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="HurricaneTracker.html" class="btn btn-neutral float-right" title="Hurricane Tracker with NHC Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Upperair_Obs.html" class="btn btn-neutral float-left" title="DIFAX Replication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Miller Composite Chart &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DIFAX Replication" href="Upperair_Obs.html" />
+    <link rel="prev" title="Real Data Cross-Section Example" href="Observational_Data_Cross_Section.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Declarative_300hPa.html">MetPy Declarative - 300 hPa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS_Widget.html">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Observational_Data_Cross_Section.html">Real Data Cross-Section Example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Miller Composite Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Upperair_Obs.html">DIFAX Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping_GOES16_TrueColor.html">GOES-16: True Color Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HurricaneTracker.html">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>Miller Composite Chart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/miller_composite.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-miller-composite-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="miller-composite-chart">
+<span id="sphx-glr-examples-miller-composite-py"></span><h1>Miller Composite Chart<a class="headerlink" href="#miller-composite-chart" title="Permalink to this headline">¶</a></h1>
+<p>Create a Miller Composite chart based on Miller 1972 in Python with MetPy and
+Matplotlib.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">import</span> <span class="nn">matplotlib.lines</span> <span class="k">as</span> <span class="nn">lines</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">metpy.calc</span> <span class="k">as</span> <span class="nn">mpcalc</span>
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">num2date</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="k">as</span> <span class="nn">ma</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a>
+<span class="kn">from</span> <span class="nn">siphon.ncss</span> <span class="kn">import</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">NCSS</span></a>
+</pre></div>
+</div>
+<p><strong>Get the data</strong></p>
+<p>This example will use data from the North American Mesoscale Model Analysis
+(<a class="reference external" href="https://nomads.ncdc.gov/">https://nomads.ncdc.gov/</a>) for 12 UTC 27 April 2011.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.ncei.noaa.gov/thredds/ncss/grid/namanl/&#39;</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2011</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">27</span><span class="p">)</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">NCSS</span></a><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">{dt:%Y%m}/{dt:%Y%m</span><span class="si">%d</span><span class="s1">}/namanl_218_{dt:%Y%m</span><span class="si">%d</span><span class="s1">}_&#39;</span>
+            <span class="s1">&#39;1800_000.grb&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">))</span>
+
+<span class="c1"># Query for required variables</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">all_times</span><span class="p">()</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a><span class="o">.</span><span class="n">variables</span><span class="p">(</span><span class="s1">&#39;Geopotential_height_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;u-component_of_wind_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;v-component_of_wind_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Temperature_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Relative_humidity_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Best_4_layer_lifted_index_layer_between_two_pressure_&#39;</span>
+                  <span class="s1">&#39;difference_from_ground_layer&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Absolute_vorticity_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Pressure_reduced_to_MSL_msl&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Dew_point_temperature_height_above_ground&#39;</span>
+                  <span class="p">)</span><span class="o">.</span><span class="n">add_lonlat</span><span class="p">()</span>
+
+<span class="c1"># Set the lat/lon box for the data to pull in.</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a><span class="o">.</span><span class="n">lonlat_box</span><span class="p">(</span><span class="o">-</span><span class="mi">135</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+
+<span class="c1"># Actually getting the data</span>
+<span class="n">data</span> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a><span class="p">)</span>
+
+<span class="c1"># Assign variable names to collected data</span>
+<span class="n">dtime</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Geopotential_height_isobaric&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dlev</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Geopotential_height_isobaric&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
+<span class="n">lev</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">hPa</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">dlev</span><span class="p">][:]</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">dtime</span><span class="p">]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">vtimes</span></a> <span class="o">=</span> <span class="n">num2date</span><span class="p">(</span><span class="n">times</span><span class="p">[:],</span> <span class="n">times</span><span class="o">.</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">)</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Temperature_isobaric&#39;</span><span class="p">]</span>
+<span class="n">tmp</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">kelvin</span> <span class="o">*</span> <span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">uwnd</span> <span class="o">=</span> <span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">meter</span> <span class="o">/</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">second</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;u-component_of_wind_isobaric&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">vwnd</span> <span class="o">=</span> <span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">meter</span> <span class="o">/</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">second</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;v-component_of_wind_isobaric&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">hgt</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">meter</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Geopotential_height_isobaric&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">relh</span></a> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Relative_humidity_isobaric&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lifted_index</span></a> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Best_4_layer_lifted_index_layer_between_two_&#39;</span>
+                               <span class="s1">&#39;pressure_difference_from_ground_layer&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span>
+                <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Best_4_layer_lifted_index_layer_between_two_&#39;</span>
+                                     <span class="s1">&#39;pressure_difference_from_ground_layer&#39;</span><span class="p">]</span><span class="o">.</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">))</span>
+<span class="n">Td_sfc</span> <span class="o">=</span> <span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Dew_point_temperature_height_above_ground&#39;</span><span class="p">]</span><span class="o">.</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">)</span> <span class="o">*</span>
+          <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Dew_point_temperature_height_above_ground&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">avor</span></a> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Absolute_vorticity_isobaric&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;1/s&#39;</span><span class="p">)</span>
+<span class="n">pmsl</span> <span class="o">=</span> <span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Pressure_reduced_to_MSL_msl&#39;</span><span class="p">]</span><span class="o">.</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">)</span> <span class="o">*</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Pressure_reduced_to_MSL_msl&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+<p>Query for 00 UTC to calculate pressure falls and height change</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss2</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">NCSS</span></a><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">{dt:%Y%m}/{dt:%Y%m</span><span class="si">%d</span><span class="s1">}/namanl_218_{dt:%Y%m</span><span class="si">%d</span><span class="s1">}_&#39;</span>
+             <span class="s1">&#39;0600_000.grb&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">))</span>
+
+<span class="c1"># Query for required variables</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">all_times</span><span class="p">()</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a><span class="o">.</span><span class="n">variables</span><span class="p">(</span><span class="s1">&#39;Geopotential_height_isobaric&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Pressure_reduced_to_MSL_msl&#39;</span><span class="p">,</span>
+                  <span class="p">)</span><span class="o">.</span><span class="n">add_lonlat</span><span class="p">()</span>
+
+<span class="c1"># Set the lat/lon box for the data you want to pull in.</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a><span class="o">.</span><span class="n">lonlat_box</span><span class="p">(</span><span class="o">-</span><span class="mi">135</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+
+<span class="c1"># Actually getting the data</span>
+<span class="n">data2</span> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss2</span></a><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">gfsdata</span></a><span class="p">)</span>
+
+<span class="n">hgt_00z</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Geopotential_height_isobaric&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">meter</span>
+<span class="n">pmsl_00z</span> <span class="o">=</span> <span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Pressure_reduced_to_MSL_msl&#39;</span><span class="p">]</span><span class="o">.</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">)</span> <span class="o">*</span>
+            <span class="n">data2</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Pressure_reduced_to_MSL_msl&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+<p><strong>Subset the Data</strong></p>
+<p>With the data pulled in, we will now subset to the specific levels desired</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 300 hPa, index 28</span>
+<span class="n">idx_300</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">lev</span> <span class="o">==</span> <span class="mf">300.</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">hPa</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u_300</span> <span class="o">=</span> <span class="n">uwnd</span><span class="p">[</span><span class="n">idx_300</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+<span class="n">v_300</span> <span class="o">=</span> <span class="n">vwnd</span><span class="p">[</span><span class="n">idx_300</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+
+<span class="c1"># 500 hPa, index 20</span>
+<span class="n">idx_500</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">lev</span> <span class="o">==</span> <span class="mf">500.</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">hPa</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">avor_500</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">avor</span></a><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">u_500</span> <span class="o">=</span> <span class="n">uwnd</span><span class="p">[</span><span class="n">idx_500</span><span class="p">,</span> <span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+<span class="n">v_500</span> <span class="o">=</span> <span class="n">vwnd</span><span class="p">[</span><span class="n">idx_500</span><span class="p">,</span> <span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+<span class="n">hgt_500</span> <span class="o">=</span> <span class="n">hgt</span><span class="p">[</span><span class="n">idx_500</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">hgt_500_00z</span> <span class="o">=</span> <span class="n">hgt_00z</span><span class="p">[</span><span class="n">idx_500</span><span class="p">,</span> <span class="p">]</span>
+
+<span class="c1"># 700 hPa, index 12</span>
+<span class="n">idx_700</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">lev</span> <span class="o">==</span> <span class="mf">700.</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">hPa</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">tmp_700</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">idx_700</span><span class="p">,</span> <span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;degC&#39;</span><span class="p">)</span>
+<span class="n">rh_700</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">relh</span></a><span class="p">[</span><span class="n">idx_700</span><span class="p">,</span> <span class="p">]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">percent</span>
+
+<span class="c1"># 850 hPa, index 6</span>
+<span class="n">idx_850</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">lev</span> <span class="o">==</span> <span class="mf">850.</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="o">.</span><span class="n">hPa</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u_850</span> <span class="o">=</span> <span class="n">uwnd</span><span class="p">[</span><span class="n">idx_850</span><span class="p">,</span> <span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+<span class="n">v_850</span> <span class="o">=</span> <span class="n">vwnd</span><span class="p">[</span><span class="n">idx_850</span><span class="p">,</span> <span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Prepare Variables for Plotting</strong></p>
+<p>With the data queried and subset, we will make any needed calculations in preparation for
+plotting.</p>
+<p><strong>The following fields should be plotted:</strong></p>
+<blockquote>
+<div><p>500-hPa cyclonic vorticity advection</p>
+<p>Surface-based Lifted Index</p>
+<p>The axis of the 300-hPa, 500-hPa, and 850-hPa jets</p>
+<p>Surface dewpoint</p>
+<p>700-hPa dewpoint depression</p>
+<p>12-hr surface pressure falls and 500-hPa height changes</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 500 hPa CVA</span>
+<span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.lat_lon_grid_deltas.html#metpy.calc.lat_lon_grid_deltas" title="View documentation for metpy.calc.lat_lon_grid_deltas"><span class="n">mpcalc</span><span class="o">.</span><span class="n">lat_lon_grid_deltas</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">)</span>
+<span class="n">vort_adv_500</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.advection.html#metpy.calc.advection" title="View documentation for metpy.calc.advection"><span class="n">mpcalc</span><span class="o">.</span><span class="n">advection</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">avor_500</span></a><span class="p">,</span> <span class="p">[</span><span class="n">u_500</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">),</span> <span class="n">v_500</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">)],</span>
+                                <span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">),</span> <span class="n">dim_order</span><span class="o">=</span><span class="s1">&#39;yx&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e9</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">vort_adv_500_smooth</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a><span class="p">(</span><span class="n">vort_adv_500</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the jet axes, we will calculate the windspeed at each level, and plot the highest values</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_300</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a><span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.wind_speed.html#metpy.calc.wind_speed" title="View documentation for metpy.calc.wind_speed"><span class="n">mpcalc</span><span class="o">.</span><span class="n">wind_speed</span></a><span class="p">(</span><span class="n">u_300</span><span class="p">,</span> <span class="n">v_300</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_500</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a><span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.wind_speed.html#metpy.calc.wind_speed" title="View documentation for metpy.calc.wind_speed"><span class="n">mpcalc</span><span class="o">.</span><span class="n">wind_speed</span></a><span class="p">(</span><span class="n">u_500</span><span class="p">,</span> <span class="n">v_500</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_850</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a><span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.wind_speed.html#metpy.calc.wind_speed" title="View documentation for metpy.calc.wind_speed"><span class="n">mpcalc</span><span class="o">.</span><span class="n">wind_speed</span></a><span class="p">(</span><span class="n">u_850</span><span class="p">,</span> <span class="n">v_850</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>700-hPa dewpoint depression will be calculated from Temperature_isobaric and RH</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Td_dep_700</span> <span class="o">=</span> <span class="n">tmp_700</span> <span class="o">-</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.dewpoint_rh.html#metpy.calc.dewpoint_rh" title="View documentation for metpy.calc.dewpoint_rh"><span class="n">mpcalc</span><span class="o">.</span><span class="n">dewpoint_rh</span></a><span class="p">(</span><span class="n">tmp_700</span><span class="p">,</span> <span class="n">rh_700</span> <span class="o">/</span> <span class="mf">100.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>12-hr surface pressure falls and 500-hPa height changes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pmsl_change</span> <span class="o">=</span> <span class="n">pmsl</span> <span class="o">-</span> <span class="n">pmsl_00z</span>
+<span class="n">hgt_500_change</span> <span class="o">=</span> <span class="n">hgt_500</span> <span class="o">-</span> <span class="n">hgt_500_00z</span>
+</pre></div>
+</div>
+<p>To plot the jet axes, we will mask the wind fields below the upper 1/3 of windspeed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_500</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.masked_less_equal.html#numpy.ma.masked_less_equal" title="View documentation for numpy.ma.masked_less_equal"><span class="n">ma</span><span class="o">.</span><span class="n">masked_less_equal</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_500</span></a><span class="p">,</span> <span class="mf">0.66</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_500</span></a><span class="p">))</span><span class="o">.</span><span class="n">mask</span>
+<span class="n">u_500</span><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_500</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a>
+<span class="n">v_500</span><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_500</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a>
+
+<span class="c1"># 300 hPa</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_300</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.masked_less_equal.html#numpy.ma.masked_less_equal" title="View documentation for numpy.ma.masked_less_equal"><span class="n">ma</span><span class="o">.</span><span class="n">masked_less_equal</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_300</span></a><span class="p">,</span> <span class="mf">0.66</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_300</span></a><span class="p">))</span><span class="o">.</span><span class="n">mask</span>
+<span class="n">u_300</span><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_300</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a>
+<span class="n">v_300</span><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_300</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a>
+
+<span class="c1"># 850 hPa</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_850</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.masked_less_equal.html#numpy.ma.masked_less_equal" title="View documentation for numpy.ma.masked_less_equal"><span class="n">ma</span><span class="o">.</span><span class="n">masked_less_equal</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_850</span></a><span class="p">,</span> <span class="mf">0.66</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">wspd_850</span></a><span class="p">))</span><span class="o">.</span><span class="n">mask</span>
+<span class="n">u_850</span><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_850</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a>
+<span class="n">v_850</span><span class="p">[</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">mask_850</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a>
+</pre></div>
+</div>
+<p><strong>Create the Plot</strong></p>
+<p>With the data now ready, we will create the plot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up our projection</span>
+<span class="n">crs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mf">45.0</span><span class="p">)</span>
+
+<span class="c1"># Coordinates to limit map area</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">122.</span><span class="p">,</span> <span class="o">-</span><span class="mf">75.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">,</span> <span class="mf">50.</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Plot the composite</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># Plot Lifted Index</span>
+<span class="n">cs1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lifted_index</span></a><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                 <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">cs1</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inline_spacing</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+           <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rightside_up</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_clabeltext</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot Surface pressure falls</span>
+<span class="n">cs2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <span class="n">pmsl_change</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;hPa&#39;</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+                 <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                 <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">cs2</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inline_spacing</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+           <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rightside_up</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_clabeltext</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot 500-hPa height falls</span>
+<span class="n">cs3</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <span class="n">hgt_500_change</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">29</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+                 <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+                 <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">cs3</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inline_spacing</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+           <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rightside_up</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_clabeltext</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot surface pressure</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <span class="n">pmsl</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;hPa&#39;</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">990</span><span class="p">,</span> <span class="mi">1011</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot surface dewpoint</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <span class="n">Td_sfc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;degF&#39;</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Plot 700-hPa dewpoint depression</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <span class="n">Td_dep_700</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;tan&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Plot Vorticity Advection</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">vort_adv_500_smooth</span></a><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;BlueViolet&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Define a skip to reduce the barb point density</span>
+<span class="n">skip_300</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">skip_500</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">skip_850</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># 300-hPa wind barbs</span>
+<span class="n">jet300</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">[</span><span class="n">skip_300</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">[</span><span class="n">skip_300</span><span class="p">],</span> <span class="n">u_300</span><span class="p">[</span><span class="n">skip_300</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">v_300</span><span class="p">[</span><span class="n">skip_300</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                  <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;300-hPa Jet Core Winds (kt)&#39;</span><span class="p">)</span>
+
+<span class="c1"># 500-hPa wind barbs</span>
+<span class="n">jet500</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">[</span><span class="n">skip_500</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">[</span><span class="n">skip_500</span><span class="p">],</span> <span class="n">u_500</span><span class="p">[</span><span class="n">skip_500</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">v_500</span><span class="p">[</span><span class="n">skip_500</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                  <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;500-hPa Jet Core Winds (kt)&#39;</span><span class="p">)</span>
+
+<span class="c1"># 850-hPa wind barbs</span>
+<span class="n">jet850</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">[</span><span class="n">skip_850</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">[</span><span class="n">skip_850</span><span class="p">],</span> <span class="n">u_850</span><span class="p">[</span><span class="n">skip_850</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">v_850</span><span class="p">[</span><span class="n">skip_850</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                  <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;850-hPa Jet Core Winds (kt)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Legend</span>
+<span class="n">purple</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;BlueViolet&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cyclonic Absolute Vorticity Advection&#39;</span><span class="p">)</span>
+<span class="n">yellow</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Surface MSLP &lt; 1010 hPa&#39;</span><span class="p">)</span>
+<span class="n">green</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Surface Td &gt; 65 F&#39;</span><span class="p">)</span>
+<span class="n">tan</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;tan&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;700 hPa Dewpoint Depression &gt; 15 C&#39;</span><span class="p">)</span>
+<span class="n">red_line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Best Lifted Index (C)&#39;</span><span class="p">)</span>
+<span class="n">dashed_black_line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;12-hr Surface Pressure Falls (hPa)&#39;</span><span class="p">)</span>
+<span class="n">black_line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                          <span class="n">label</span><span class="o">=</span><span class="s1">&#39;12-hr 500-hPa Height Falls (m)&#39;</span><span class="p">)</span>
+<span class="n">leg</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">jet300</span><span class="p">,</span> <span class="n">jet500</span><span class="p">,</span> <span class="n">jet850</span><span class="p">,</span> <span class="n">dashed_black_line</span><span class="p">,</span> <span class="n">black_line</span><span class="p">,</span> <span class="n">red_line</span><span class="p">,</span>
+                          <span class="n">purple</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">yellow</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Analysis Valid: </span><span class="si">{:s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">vtimes</span></a><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+                 <span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">leg</span><span class="o">.</span><span class="n">set_zorder</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_miller_composite_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_miller_composite_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/cartopy/mpl/geoaxes.py:1833: RuntimeWarning: invalid value encountered in less
+  u, v = self.projection.transform_vectors(t, x, y, u, v)
+/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/cartopy/mpl/geoaxes.py:1833: RuntimeWarning: invalid value encountered in greater
+  u, v = self.projection.transform_vectors(t, x, y, u, v)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.263 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-miller-composite-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/6babc645a9c61577b217495096e44d3b/miller_composite.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">miller_composite.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/a505830526d6219df486bcaa4034e9b0/miller_composite.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">miller_composite.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Upperair_Obs.html" class="btn btn-neutral float-right" title="DIFAX Replication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Observational_Data_Cross_Section.html" class="btn btn-neutral float-left" title="Real Data Cross-Section Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

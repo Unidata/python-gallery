@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MetPy Declarative - 300 hPa &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using Xarray for Data read and selection" href="xarray_500hPa_map.html" />
+    <link rel="prev" title="Skew-T Analysis" href="SkewT_Example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MetPy Declarative - 300 hPa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calculate-variable-and-add-to-dataset">Calculate Variable and Add to Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#declarative-plot">Declarative Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS_Widget.html">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Observational_Data_Cross_Section.html">Real Data Cross-Section Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miller_composite.html">Miller Composite Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Upperair_Obs.html">DIFAX Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping_GOES16_TrueColor.html">GOES-16: True Color Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HurricaneTracker.html">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>MetPy Declarative - 300 hPa</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/Declarative_300hPa.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-declarative-300hpa-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="metpy-declarative-300-hpa">
+<span id="sphx-glr-examples-declarative-300hpa-py"></span><h1>MetPy Declarative - 300 hPa<a class="headerlink" href="#metpy-declarative-300-hpa" title="Permalink to this headline">¶</a></h1>
+<p>By: Kevin Goebbert</p>
+<p>This example uses the declarative syntax available through the MetPy
+package to allow a more convenient method for creating simple maps of
+atmospheric data. The key thing the declarative language does is to
+reduce the number of packages that users will need to know in detail and
+instead allow them to set key parameters to get the map they desire. One
+key element is the use of xarray as the data object, which allows
+coordinate information to be associated with atmospheric variables.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">metpy.calc</span> <span class="k">as</span> <span class="nn">mpcalc</span>
+<span class="kn">import</span> <span class="nn">metpy.plots</span> <span class="k">as</span> <span class="nn">mpplots</span>
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+</pre></div>
+</div>
+<p>Open dataset using xarray module and subset global GFS to be over the
+CONUS.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <a href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="View documentation for xarray.open_dataset"><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span></a><span class="p">(</span><span class="s1">&#39;https://thredds.ucar.edu/thredds/dodsC/casestudies/python-gallery/&#39;</span>
+                     <span class="s1">&#39;GFS_20101026_1200.nc&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">360</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">360</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                                                 <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="section" id="calculate-variable-and-add-to-dataset">
+<h2>Calculate Variable and Add to Dataset<a class="headerlink" href="#calculate-variable-and-add-to-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Here it is demonstrated how you can calculate a new variable and add it
+to the xarray dataset (ds) so that it can be plotted with the
+declarative syntax. The key to adding a variable to an xarray dataset
+for use in the declarative syntax is the need to add a <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code>
+and <code class="docutils literal notranslate"><span class="pre">units</span></code> attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate New Variables and place into Xarray Dataset</span>
+<span class="n">uwnd</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;u-component_of_wind_isobaric&#39;</span><span class="p">]</span>
+<span class="n">vwnd</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;v-component_of_wind_isobaric&#39;</span><span class="p">]</span>
+
+<span class="c1"># Compute wind speed using MetPy</span>
+<span class="n">wspd</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.wind_speed.html#metpy.calc.wind_speed" title="View documentation for metpy.calc.wind_speed"><span class="n">mpcalc</span><span class="o">.</span><span class="n">wind_speed</span></a><span class="p">(</span><span class="n">uwnd</span><span class="p">,</span> <span class="n">vwnd</span><span class="p">)</span>
+
+<span class="c1"># Place wind speed (wspd) into xarray dataset and attach needed attributes</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">wind_speed</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">uwnd</span><span class="o">.</span><span class="n">coords</span><span class="p">)[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">wspd</span><span class="o">.</span><span class="n">m</span><span class="p">,</span>
+                           <span class="p">{</span><span class="s1">&#39;grid_mapping&#39;</span><span class="p">:</span> <span class="n">uwnd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;grid_mapping&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">wspd</span><span class="o">.</span><span class="n">units</span><span class="p">)}))</span>
+
+<span class="c1"># Convert wind speed units to knots within the dataset</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">wind_speed</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+<span class="n">ds</span><span class="p">[</span><span class="s1">&#39;u-component_of_wind_isobaric&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+<span class="n">ds</span><span class="p">[</span><span class="s1">&#39;v-component_of_wind_isobaric&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="s1">&#39;kt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="declarative-plot">
+<h2>Declarative Plot<a class="headerlink" href="#declarative-plot" title="Permalink to this headline">¶</a></h2>
+<p>The following settings create a single panel map plot of 300 hPa
+geopotential heights, wind speed, and wind barbs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Countour Plot of Geopotential Heights</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">mpplots</span><span class="o">.</span><span class="n">ContourPlot</span></a><span class="p">()</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">ds</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="s1">&#39;Geopotential_height_isobaric&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">linecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">clabels</span> <span class="o">=</span> <span class="kc">True</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="o">.</span><span class="n">contours</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">120</span><span class="p">))</span>
+
+<span class="c1"># Colorfilled Plot of Wind Speed</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">mpplots</span><span class="o">.</span><span class="n">FilledContourPlot</span></a><span class="p">()</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">ds</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="s1">&#39;wind_speed&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="o">.</span><span class="n">colormap</span> <span class="o">=</span> <span class="s1">&#39;BuPu&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="o">.</span><span class="n">contours</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="o">.</span><span class="n">colorbar</span> <span class="o">=</span> <span class="s1">&#39;vertical&#39;</span>
+
+<span class="c1"># Plot wind barbs</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">mpplots</span><span class="o">.</span><span class="n">BarbPlot</span></a><span class="p">()</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">ds</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;u-component_of_wind_isobaric&#39;</span><span class="p">,</span> <span class="s1">&#39;v-component_of_wind_isobaric&#39;</span><span class="p">]</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">barblength</span> <span class="o">=</span> <span class="mf">6.5</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="o">.</span><span class="n">earth_relative</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Panel for plot with Map features</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">mpplots</span><span class="o">.</span><span class="n">MapPanel</span></a><span class="p">()</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">124</span><span class="p">,</span> <span class="o">-</span><span class="mi">72</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">53</span><span class="p">)</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;lcc&#39;</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;coastline&#39;</span><span class="p">,</span> <span class="s1">&#39;borders&#39;</span><span class="p">,</span> <span class="s1">&#39;states&#39;</span><span class="p">,</span> <span class="s1">&#39;land&#39;</span><span class="p">]</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a><span class="o">.</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.FilledContourPlot.html#metpy.plots.FilledContourPlot" title="View documentation for metpy.plots.FilledContourPlot"><span class="n">cfill</span></a><span class="p">,</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.ContourPlot.html#metpy.plots.ContourPlot" title="View documentation for metpy.plots.ContourPlot"><span class="n">contour</span></a><span class="p">,</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.BarbPlot.html#metpy.plots.BarbPlot" title="View documentation for metpy.plots.BarbPlot"><span class="n">barb</span></a><span class="p">]</span>
+
+<span class="c1"># Bringing it all together</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.PanelContainer.html#metpy.plots.PanelContainer" title="View documentation for metpy.plots.PanelContainer"><span class="n">pc</span></a> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.PanelContainer.html#metpy.plots.PanelContainer" title="View documentation for metpy.plots.PanelContainer"><span class="n">mpplots</span><span class="o">.</span><span class="n">PanelContainer</span></a><span class="p">()</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.PanelContainer.html#metpy.plots.PanelContainer" title="View documentation for metpy.plots.PanelContainer"><span class="n">pc</span></a><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.PanelContainer.html#metpy.plots.PanelContainer" title="View documentation for metpy.plots.PanelContainer"><span class="n">pc</span></a><span class="o">.</span><span class="n">panels</span> <span class="o">=</span> <span class="p">[</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.MapPanel.html#metpy.plots.MapPanel" title="View documentation for metpy.plots.MapPanel"><span class="n">panel</span></a><span class="p">]</span>
+
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.PanelContainer.html#metpy.plots.PanelContainer" title="View documentation for metpy.plots.PanelContainer"><span class="n">pc</span></a><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_Declarative_300hPa_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_Declarative_300hPa_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Could not find variable corresponding to the value of grid_mapping: LatLon_Projection
+Found lat/lon values, assuming latitude_longitude for projection grid_mapping variable
+Could not find variable corresponding to the value of grid_mapping: LatLon_Projection
+Found lat/lon values, assuming latitude_longitude for projection grid_mapping variable
+Could not find variable corresponding to the value of grid_mapping: LatLon_Projection
+Found lat/lon values, assuming latitude_longitude for projection grid_mapping variable
+Could not find variable corresponding to the value of grid_mapping: LatLon_Projection
+Found lat/lon values, assuming latitude_longitude for projection grid_mapping variable
+/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/cartopy/io/__init__.py:260: DownloadWarning: Downloading: http://naciscdn.org/naturalearth/50m/physical/ne_50m_land.zip
+  warnings.warn(&#39;Downloading: {}&#39;.format(url), DownloadWarning)
+/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/cartopy/io/__init__.py:260: DownloadWarning: Downloading: http://naciscdn.org/naturalearth/50m/physical/ne_50m_coastline.zip
+  warnings.warn(&#39;Downloading: {}&#39;.format(url), DownloadWarning)
+/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/cartopy/io/__init__.py:260: DownloadWarning: Downloading: http://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_0_boundary_lines_land.zip
+  warnings.warn(&#39;Downloading: {}&#39;.format(url), DownloadWarning)
+/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/cartopy/io/__init__.py:260: DownloadWarning: Downloading: http://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_1_states_provinces_lakes.zip
+  warnings.warn(&#39;Downloading: {}&#39;.format(url), DownloadWarning)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.020 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-declarative-300hpa-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/0aa05a7e49d86006baca144e337e550d/Declarative_300hPa.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Declarative_300hPa.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/32a377e8fbd55836f693ca552c807d88/Declarative_300hPa.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Declarative_300hPa.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="xarray_500hPa_map.html" class="btn btn-neutral float-right" title="Using Xarray for Data read and selection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SkewT_Example.html" class="btn btn-neutral float-left" title="Skew-T Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

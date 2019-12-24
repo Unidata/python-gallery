@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Jupyter Notebook Widget Example &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Smoothing Contours" href="Smoothing_Contours.html" />
+    <link rel="prev" title="850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds" href="850hPa_Frontogenesis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Declarative_300hPa.html">MetPy Declarative - 300 hPa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Observational_Data_Cross_Section.html">Real Data Cross-Section Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miller_composite.html">Miller Composite Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Upperair_Obs.html">DIFAX Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping_GOES16_TrueColor.html">GOES-16: True Color Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HurricaneTracker.html">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>Jupyter Notebook Widget Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/GFS_Widget.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-gfs-widget-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="jupyter-notebook-widget-example">
+<span id="sphx-glr-examples-gfs-widget-py"></span><h1>Jupyter Notebook Widget Example<a class="headerlink" href="#jupyter-notebook-widget-example" title="Permalink to this headline">¶</a></h1>
+<p>An example of using widgets in a Jupyter Notebook.</p>
+<p>This example is only intended to be run in a Jupyter Notebook running a Python
+kernel as it displays the ability to use widgets and make an interactive plot.
+The interactive plot has the ability to display three different variables, a couple
+of different times, and use four different color maps.</p>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/dodsC/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;WCS&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/wcs/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;WMS&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/wms/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;NetcdfSubset&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/ncss/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;CdmRemote&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/cdmremote/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;NCML&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/ncml/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;UDDC&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/uddc/grib/NCEP/GFS/Global_0p5deg/Best&#39;, &#39;ISO&#39;: &#39;http://thredds-jetstream.unidata.ucar.edu/thredds/iso/grib/NCEP/GFS/Global_0p5deg/Best&#39;}
+[&#39;Temperature_surface&#39;, &#39;reftime9&#39;, &#39;time9&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;LatLon_Projection&#39;, &#39;Relative_humidity_entire_atmosphere_single_layer&#39;, &#39;reftime64&#39;, &#39;time64&#39;, &#39;Wind_speed_gust_surface&#39;, &#39;reftime24&#39;, &#39;time24&#39;]
+interactive(children=(Dropdown(description=&#39;Variable&#39;, options={&#39;Temperature&#39;: &#39;Temperature_surface&#39;, &#39;Relative Humidity&#39;: &#39;Relative_humidity_entire_atmosphere_single_layer&#39;, &#39;Wind Speed&#39;: &#39;Wind_speed_gust_surface&#39;}, value=&#39;Temperature_surface&#39;), SelectionSlider(description=&#39;Time&#39;, options=(&#39;12/24 18:00&#39;, &#39;12/24 21:00&#39;, &#39;12/25 00:00&#39;, &#39;12/25 03:00&#39;), value=&#39;12/24 18:00&#39;), RadioButtons(description=&#39;Colormap&#39;, options=(&#39;viridis&#39;, &#39;coolwarm&#39;, &#39;YlGnBu&#39;, &#39;RdPu&#39;), value=&#39;viridis&#39;), Output()), _dom_classes=(&#39;widget-interact&#39;,))
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">num2date</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">siphon.catalog</span> <span class="kn">import</span> <a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.TDSCatalog" title="View documentation for siphon.catalog.TDSCatalog"><span class="n">TDSCatalog</span></a>
+<span class="kn">from</span> <span class="nn">siphon.ncss</span> <span class="kn">import</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">NCSS</span></a>
+
+<span class="c1"># Request the GFS data from the thredds server</span>
+<a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.TDSCatalog" title="View documentation for siphon.catalog.TDSCatalog"><span class="n">gfs</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.TDSCatalog" title="View documentation for siphon.catalog.TDSCatalog"><span class="n">TDSCatalog</span></a><span class="p">(</span><span class="s1">&#39;http://thredds-jetstream.unidata.ucar.edu/thredds/catalog/grib/&#39;</span>
+                 <span class="s1">&#39;NCEP/GFS/Global_0p5deg/catalog.xml&#39;</span><span class="p">)</span>
+<a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.Dataset" title="View documentation for siphon.catalog.Dataset"><span class="n">dataset</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.TDSCatalog" title="View documentation for siphon.catalog.TDSCatalog"><span class="n">gfs</span></a><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.Dataset" title="View documentation for siphon.catalog.Dataset"><span class="n">dataset</span></a><span class="o">.</span><span class="n">access_urls</span><span class="p">)</span>
+
+<span class="c1"># Create NCSS object to access the NetcdfSubset</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">NCSS</span></a><span class="p">(</span><a href="https://unidata.github.io/siphon/latest/api/catalog.html#siphon.catalog.Dataset" title="View documentation for siphon.catalog.Dataset"><span class="n">dataset</span></a><span class="o">.</span><span class="n">access_urls</span><span class="p">[</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">])</span>
+
+<span class="c1"># get current date and time</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">now</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
+
+<span class="c1"># define time range you want the data for</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">now</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">now</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a><span class="o">.</span><a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="p">()</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="o">.</span><span class="n">time_range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="o">.</span><span class="n">lonlat_box</span><span class="p">(</span><span class="n">north</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">south</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">east</span><span class="o">=</span><span class="mi">310</span><span class="p">,</span> <span class="n">west</span><span class="o">=</span><span class="mi">230</span><span class="p">)</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="s1">&#39;netcdf4&#39;</span><span class="p">)</span>
+<a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="o">.</span><span class="n">variables</span><span class="p">(</span><span class="s1">&#39;Temperature_surface&#39;</span><span class="p">,</span> <span class="s1">&#39;Relative_humidity_entire_atmosphere_single_layer&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Wind_speed_gust_surface&#39;</span><span class="p">)</span>
+
+<span class="c1"># Helper function for finding proper time variable</span>
+<span class="k">def</span> <span class="nf">find_time_var</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">time_basename</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">coord_name</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">coord_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">time_basename</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">coord_name</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No time variable found for &#39;</span> <span class="o">+</span> <span class="n">var</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># Request data for the variables you want to use</span>
+<span class="n">data</span> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSS" title="View documentation for siphon.ncss.NCSS"><span class="n">ncss</span></a><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><a href="https://unidata.github.io/siphon/latest/api/ncss.html#siphon.ncss.NCSSQuery" title="View documentation for siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">))</span>
+
+<span class="c1"># Pull out the lat and lon data</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Get time into a datetime object</span>
+<span class="n">time_var</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">find_time_var</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Temperature_surface&#39;</span><span class="p">])]</span>
+<span class="n">time_var</span> <span class="o">=</span> <span class="n">num2date</span><span class="p">(</span><span class="n">time_var</span><span class="p">[:],</span> <span class="n">time_var</span><span class="o">.</span><span class="n">units</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">time_strings</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time_var</span><span class="p">]</span>
+
+<span class="c1"># Combine 1D latitude and longitudes into a 2D grid of locations</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon_2d</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat_2d</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.meshgrid.html#numpy.meshgrid" title="View documentation for numpy.meshgrid"><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat</span></a><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">varname</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][:]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="mf">235.</span><span class="p">,</span> <span class="mf">290.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">55.</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GFS 12-Hour Forecast&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="c1"># Add state/country boundaries to plot</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">varname</span> <span class="o">==</span> <span class="s1">&#39;Temperature_surface&#39;</span><span class="p">:</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="p">(</span><span class="n">variable</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">kelvin</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;degF&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Contour based on variable chosen</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lon_2d</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="View documentation for numpy.ma.MaskedArray"><span class="n">lat_2d</span></a><span class="p">,</span> <span class="n">variable</span><span class="p">[</span><span class="n">time_strings</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">time</span><span class="p">)],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">colormap</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">varname</span> <span class="o">==</span> <span class="s1">&#39;Temperature_surface&#39;</span><span class="p">:</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$^</span><span class="si">{o}</span><span class="s1">F$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">varname</span> <span class="o">==</span> <span class="s1">&#39;Relative_humidity_entire_atmosphere_single_layer&#39;</span><span class="p">:</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\%$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">varname</span> <span class="o">==</span> <span class="s1">&#39;Wind_speed_gust_surface&#39;</span><span class="p">:</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$m/s$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">)</span>
+
+<span class="n">var_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;Temperature_surface&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Relative Humidity&#39;</span><span class="p">:</span> <span class="s1">&#39;Relative_humidity_entire_atmosphere_single_layer&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Wind Speed&#39;</span><span class="p">:</span> <span class="s1">&#39;Wind_speed_gust_surface&#39;</span><span class="p">},</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">alignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">time_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">SelectionSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">time_strings</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;40%&#39;</span><span class="p">)</span>
+<span class="n">colormap_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">RadioButtons</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Colormap&#39;</span><span class="p">,</span>
+                                       <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span> <span class="s1">&#39;RdPu&#39;</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">varname</span><span class="o">=</span><span class="n">var_widget</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time_widget</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="n">colormap_widget</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.886 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gfs-widget-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/aabc6eb54684a8fb637b6c56509f1495/GFS_Widget.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">GFS_Widget.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1e31aecfa601867ee4ce2aec0a62cef3/GFS_Widget.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">GFS_Widget.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Smoothing_Contours.html" class="btn btn-neutral float-right" title="Smoothing Contours" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="850hPa_Frontogenesis.html" class="btn btn-neutral float-left" title="850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,701 @@
+:orphan:
+
+
+
+.. _sphx_glr_examples:
+
+.. _examples-index:
+
+Unidata Python Gallery
+======================
+
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Classic skew-T/log-p plot using data from University of Wyoming.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_SkewT_Example_thumb.png
+
+     :ref:`sphx_glr_examples_SkewT_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/SkewT_Example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="By: Kevin Goebbert">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Declarative_300hPa_thumb.png
+
+     :ref:`sphx_glr_examples_Declarative_300hPa.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Declarative_300hPa
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Xarray module to read in model data from nomads server.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_xarray_500hPa_map_thumb.png
+
+     :ref:`sphx_glr_examples_xarray_500hPa_map.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/xarray_500hPa_map
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Access NEXRAD radar data via Amazon Web Services and plot with MetPy">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Nexrad_S3_Demo_thumb.png
+
+     :ref:`sphx_glr_examples_Nexrad_S3_Demo.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Nexrad_S3_Demo
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Classic 500-hPa plot using NAM analysis file.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_500hPa_HGHT_Winds_thumb.png
+
+     :ref:`sphx_glr_examples_500hPa_HGHT_Winds.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/500hPa_HGHT_Winds
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot a 1-day precipitation map using a netCDF file from the National Weather Service.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Precipitation_Map_thumb.png
+
+     :ref:`sphx_glr_examples_Precipitation_Map.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Precipitation_Map
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Classic 850-hPa with Geopotential Heights, Temperature, and Winds">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_850hPa_TMPC_Winds_thumb.png
+
+     :ref:`sphx_glr_examples_850hPa_TMPC_Winds.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/850hPa_TMPC_Winds
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="By: Kevin Goebbert">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Hovmoller_Diagram_thumb.png
+
+     :ref:`sphx_glr_examples_Hovmoller_Diagram.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Hovmoller_Diagram
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Classic 700-hPa Map that displays Relative Humidity">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_700hPa_RELH_Winds_thumb.png
+
+     :ref:`sphx_glr_examples_700hPa_RELH_Winds.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/700hPa_RELH_Winds
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Frontogenesis at 850-hPa with Geopotential Heights, Temperature, and Winds">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_850hPa_Frontogenesis_thumb.png
+
+     :ref:`sphx_glr_examples_850hPa_Frontogenesis.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/850hPa_Frontogenesis
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="An example of using widgets in a Jupyter Notebook.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_GFS_Widget_thumb.png
+
+     :ref:`sphx_glr_examples_GFS_Widget.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/GFS_Widget
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Demonstrate how to smooth contour values from a higher resolution model field.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Smoothing_Contours_thumb.png
+
+     :ref:`sphx_glr_examples_Smoothing_Contours.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Smoothing_Contours
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Computing Q-vectors and Q-vector divergence for a real case.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_850hPa_QVectors_thumb.png
+
+     :ref:`sphx_glr_examples_850hPa_QVectors.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/850hPa_QVectors
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Classic baroclinic potential vorticity plot at 250 hPa using GFS analysis file.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_PV_baroclinic_isobaric_thumb.png
+
+     :ref:`sphx_glr_examples_PV_baroclinic_isobaric.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/PV_baroclinic_isobaric
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example plots the most recent GOES-16 data with an overlay of the current position of the ...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_GOES_aircraft_thumb.png
+
+     :ref:`sphx_glr_examples_GOES_aircraft.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/GOES_aircraft
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot a Gini Satellite file and overlay GFS-based data.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Satellite_Example_thumb.png
+
+     :ref:`sphx_glr_examples_Satellite_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Satellite_Example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example plots a hemispheric plot of GFS 250-hPa Geopotential Heights and wind speed in kno...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_250hPa_Hemispheric_Plot_thumb.png
+
+     :ref:`sphx_glr_examples_250hPa_Hemispheric_Plot.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/250hPa_Hemispheric_Plot
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The MetPy function metpy.calc.isentropic_interpolation allows for isentropic analysis from mode...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Isentropic_Interpolation_thumb.png
+
+     :ref:`sphx_glr_examples_Isentropic_Interpolation.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Isentropic_Interpolation
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot an 500-hPa map with calculating vorticity advection using MetPy calculations.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_500hPa_Vorticity_Advection_thumb.png
+
+     :ref:`sphx_glr_examples_500hPa_Vorticity_Advection.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/500hPa_Vorticity_Advection
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot an surface map with mean sea level pressure (MSLP), 2m Temperature (F), and Wind Barbs (kt...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_MSLP_temp_winds_thumb.png
+
+     :ref:`sphx_glr_examples_MSLP_temp_winds.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/MSLP_temp_winds
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot a 1000-hPa map calculating the geostrophic from MetPy and finding the ageostrophic wind fr...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Ageostrophic_Wind_Example_thumb.png
+
+     :ref:`sphx_glr_examples_Ageostrophic_Wind_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Ageostrophic_Wind_Example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot an 850 hPa map with calculating advection using MetPy.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_850hPa_Temperature_Advection_thumb.png
+
+     :ref:`sphx_glr_examples_850hPa_Temperature_Advection.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/850hPa_Temperature_Advection
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example plots calculates the 850-500 hPa Bulk Wind Shear">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Wind_Shear_Vectors_Example_thumb.png
+
+     :ref:`sphx_glr_examples_Wind_Shear_Vectors_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Wind_Shear_Vectors_Example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Classic 500-hPa absolute vorticity plot using NAM analysis file.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_500hPa_Absolute_Vorticity_winds_thumb.png
+
+     :ref:`sphx_glr_examples_500hPa_Absolute_Vorticity_winds.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/500hPa_Absolute_Vorticity_winds
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Analytic 300-hPa Trough">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Analytic_300hPa_Trough_thumb.png
+
+     :ref:`sphx_glr_examples_Analytic_300hPa_Trough.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Analytic_300hPa_Trough
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot MSLP, calculate and plot 1000-500 hPa thickness, and plot H and L markers. Beyond just plo...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_HILO_Symbol_Plot_thumb.png
+
+     :ref:`sphx_glr_examples_HILO_Symbol_Plot.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/HILO_Symbol_Plot
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="**This should be run as a script from the command line - not as a notebook.**">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Sounding_Plotter_thumb.png
+
+     :ref:`sphx_glr_examples_Sounding_Plotter.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Sounding_Plotter
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="By: Kevin Goebbert">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Differential_Temperature_Advection_thumb.png
+
+     :ref:`sphx_glr_examples_Differential_Temperature_Advection.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Differential_Temperature_Advection
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Cross-section using real data from soundings.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Observational_Data_Cross_Section_thumb.png
+
+     :ref:`sphx_glr_examples_Observational_Data_Cross_Section.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Observational_Data_Cross_Section
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Miller Composite Chart">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_miller_composite_thumb.png
+
+     :ref:`sphx_glr_examples_miller_composite.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/miller_composite
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example replicates the traditional DIFAX images for upper-level observations.">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_Upperair_Obs_thumb.png
+
+     :ref:`sphx_glr_examples_Upperair_Obs.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Upperair_Obs
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Additional notebooks analyzing GOES-16 and other data can be found in [Brian&#x27;s GitHub repositor...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_mapping_GOES16_TrueColor_thumb.png
+
+     :ref:`sphx_glr_examples_mapping_GOES16_TrueColor.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/mapping_GOES16_TrueColor
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="By: Aodhan Sweeney">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_HurricaneTracker_thumb.png
+
+     :ref:`sphx_glr_examples_HurricaneTracker.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/HurricaneTracker
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-gallery
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Python source code: examples_python.zip <//home/travis/build/Unidata/python-gallery/website/examples/examples_python.zip>`
+
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/travis/build/Unidata/python-gallery/website/examples/examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

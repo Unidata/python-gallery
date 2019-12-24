@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Real Data Cross-Section Example &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Miller Composite Chart" href="miller_composite.html" />
+    <link rel="prev" title="Differential Temperature Advection with NARR Data" href="Differential_Temperature_Advection.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Declarative_300hPa.html">MetPy Declarative - 300 hPa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS_Widget.html">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Real Data Cross-Section Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vertical-interpolation-function">Vertical Interpolation Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#radiosonde-observation-interpolation-function">Radiosonde Observation Interpolation Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stations-and-time">Stations and Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-radiosonde-data">Get Radiosonde Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-interpolated-fields">Create Interpolated fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calculate-variables-for-plotting">Calculate Variables for Plotting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-cross-section">Plot Cross Section</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="miller_composite.html">Miller Composite Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Upperair_Obs.html">DIFAX Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping_GOES16_TrueColor.html">GOES-16: True Color Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HurricaneTracker.html">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>Real Data Cross-Section Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/Observational_Data_Cross_Section.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-observational-data-cross-section-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="real-data-cross-section-example">
+<span id="sphx-glr-examples-observational-data-cross-section-py"></span><h1>Real Data Cross-Section Example<a class="headerlink" href="#real-data-cross-section-example" title="Permalink to this headline">¶</a></h1>
+<p>Cross-section using real data from soundings.</p>
+<p>This example uses actual soundings to create a cross-section. There are
+two functions defined to help interpolate radiosonde observations, which
+won’t all be at the same level, to a standard grid. The vertical
+interpolation assumes a log-linear relationship. Each radisosonde
+vertical profile is interpolated first, then the
+<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.griddata</span></code> function is used to generate a full 2D
+(x, p) grid between each station. Pyproj is used to calculate the
+distance between each station and the standard atmosphere is used to
+convert the elevation of each station to a pressure value for plotting
+purposes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">metpy.calc</span> <span class="k">as</span> <span class="nn">mpcalc</span>
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Geod</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata" title="View documentation for scipy.interpolate.griddata"><span class="n">griddata</span></a>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a>
+<span class="kn">from</span> <span class="nn">siphon.simplewebservice.wyoming</span> <span class="kn">import</span> <span class="n">WyomingUpperAir</span>
+</pre></div>
+</div>
+<div class="section" id="vertical-interpolation-function">
+<h2>Vertical Interpolation Function<a class="headerlink" href="#vertical-interpolation-function" title="Permalink to this headline">¶</a></h2>
+<p>Function interpolates to given pressure level data to set grid.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vertical_interpolate</span><span class="p">(</span><span class="n">vcoord_data</span><span class="p">,</span> <span class="n">interp_var</span><span class="p">,</span> <span class="n">interp_levels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A function to interpolate sounding data from each station to</span>
+<span class="sd">    every millibar. Assumes a log-linear relationship.</span>
+
+<span class="sd">    Input</span>
+<span class="sd">    -----</span>
+<span class="sd">    vcoord_data : A 1D array of vertical level values (e.g., pressure from a radiosonde)</span>
+<span class="sd">    interp_var : A 1D array of the variable to be interpolated to all pressure levels</span>
+<span class="sd">    vcoord_interp_levels : A 1D array containing veritcal levels to interpolate to</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    interp_data : A 1D array that contains the interpolated variable on the interp_levels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Make veritcal coordinate data and grid level log variables</span>
+    <span class="n">lnp</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.log.html#numpy.log" title="View documentation for numpy.log"><span class="n">np</span><span class="o">.</span><span class="n">log</span></a><span class="p">(</span><span class="n">vcoord_data</span><span class="p">)</span>
+    <span class="n">lnp_intervals</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.log.html#numpy.log" title="View documentation for numpy.log"><span class="n">np</span><span class="o">.</span><span class="n">log</span></a><span class="p">(</span><span class="n">interp_levels</span><span class="p">)</span>
+
+    <span class="c1"># Use numpy to interpolate from observed levels to grid levels</span>
+    <span class="n">interp_data</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.interp.html#numpy.interp" title="View documentation for numpy.interp"><span class="n">np</span><span class="o">.</span><span class="n">interp</span></a><span class="p">(</span><span class="n">lnp_intervals</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lnp</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">interp_var</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Mask for missing data (generally only near the surface)</span>
+    <span class="n">mask_low</span> <span class="o">=</span> <span class="n">interp_levels</span> <span class="o">&gt;</span> <span class="n">vcoord_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mask_high</span> <span class="o">=</span> <span class="n">interp_levels</span> <span class="o">&lt;</span> <span class="n">vcoord_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">interp_data</span><span class="p">[</span><span class="n">mask_low</span><span class="p">]</span> <span class="o">=</span> <span class="n">interp_var</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">interp_data</span><span class="p">[</span><span class="n">mask_high</span><span class="p">]</span> <span class="o">=</span> <span class="n">interp_var</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">interp_data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="radiosonde-observation-interpolation-function">
+<h2>Radiosonde Observation Interpolation Function<a class="headerlink" href="#radiosonde-observation-interpolation-function" title="Permalink to this headline">¶</a></h2>
+<p>This function interpolates given radiosonde data into a 2D array for all
+meteorological variables given in dataframe. Returns a dictionary that
+will have requesite data for plotting a cross section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">radisonde_cross_section</span><span class="p">(</span><span class="n">stns</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function takes a list of radiosonde observation sites with a</span>
+<span class="sd">    dictionary of Pandas Dataframes with the requesite data for each station.</span>
+
+<span class="sd">    Input</span>
+<span class="sd">    -----</span>
+<span class="sd">    stns : List of statition three-letter identifiers</span>
+<span class="sd">    data : A dictionary of Pandas Dataframes containing the radiosonde observations</span>
+<span class="sd">    for the stations</span>
+<span class="sd">    start : interpolation start value, optional (default = 1000 hPa)</span>
+<span class="sd">    end : Interpolation end value, optional (default = 100 hPa)</span>
+<span class="sd">    step : Interpolation interval, option (default = 10 hPa)</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    cross_section : A dictionary that contains the following variables</span>
+
+<span class="sd">        grid_data : An interpolated grid with 100 points between the first and last station,</span>
+<span class="sd">        with the corresponding number of vertical points based on start, end, and interval</span>
+<span class="sd">        (default is 90)</span>
+<span class="sd">        obs_distance : An array of distances between each radiosonde observation location</span>
+<span class="sd">        x_grid : A 2D array of horizontal direction grid points</span>
+<span class="sd">        p_grid : A 2D array of vertical pressure levels</span>
+<span class="sd">        ground_elevation : A representation of the terrain between radiosonde observation sites</span>
+<span class="sd">        based on the elevation of each station converted to pressure using the standard</span>
+<span class="sd">        atmosphere</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Set up vertical grid, largest value first (high pressure nearest surface)</span>
+    <span class="n">vertical_levels</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html#numpy.arange" title="View documentation for numpy.arange"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">step</span><span class="p">)</span>
+
+    <span class="c1"># Number of vertical levels and stations</span>
+    <span class="n">plevs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vertical_levels</span><span class="p">)</span>
+    <span class="n">nstns</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">stns</span><span class="p">)</span>
+
+    <span class="c1"># Create dictionary of interpolated values and include neccsary attribute data</span>
+    <span class="c1"># including lat, lon, and elevation of each station</span>
+    <span class="n">lats</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elev</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">stns</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">()[:</span><span class="mi">8</span><span class="p">]</span>
+    <span class="n">tmp_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+
+    <span class="c1"># Interpolate all variables for each radiosonde observation</span>
+    <span class="c1"># Temperature, Dewpoint, U-wind, V-wind</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">tmp_grid</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">tmp_grid</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.empty.html#numpy.empty" title="View documentation for numpy.empty"><span class="n">np</span><span class="o">.</span><span class="n">empty</span></a><span class="p">((</span><span class="n">nstns</span><span class="p">,</span> <span class="n">plevs</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">station</span><span class="p">,</span> <span class="n">loc</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">stns</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstns</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;pressure&#39;</span><span class="p">:</span>
+                <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">elev</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span><span class="o">.</span><span class="n">elevation</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">tmp_grid</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">loc</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vertical_levels</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tmp_grid</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">loc</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vertical_interpolate</span><span class="p">(</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                    <span class="n">vertical_levels</span><span class="p">)</span>
+
+    <span class="c1"># Compute distance between each station using Pyproj</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">Geod</span><span class="p">(</span><span class="n">ellps</span><span class="o">=</span><span class="s1">&#39;sphere&#39;</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">nstns</span><span class="o">*</span><span class="p">[</span><span class="n">lons</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">nstns</span><span class="o">*</span><span class="p">[</span><span class="n">lats</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">lons</span><span class="p">[:],</span> <span class="n">lats</span><span class="p">[:])</span>
+
+    <span class="c1"># Compute sudo ground elevation in pressure from standard atmsophere and the elevation</span>
+    <span class="c1"># of each station</span>
+    <span class="n">ground_elevation</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.height_to_pressure_std.html#metpy.calc.height_to_pressure_std" title="View documentation for metpy.calc.height_to_pressure_std"><span class="n">mpcalc</span><span class="o">.</span><span class="n">height_to_pressure_std</span></a><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">elev</span><span class="p">)</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;meters&#39;</span><span class="p">))</span>
+
+    <span class="c1"># Set up grid for 2D interpolation</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html#numpy.linspace" title="View documentation for numpy.linspace"><span class="n">np</span><span class="o">.</span><span class="n">linspace</span></a><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">pp</span><span class="p">,</span> <span class="n">xx</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.meshgrid.html#numpy.meshgrid" title="View documentation for numpy.meshgrid"><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span></a><span class="p">(</span><span class="n">vertical_levels</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">pdist</span><span class="p">,</span> <span class="n">ddist</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.meshgrid.html#numpy.meshgrid" title="View documentation for numpy.meshgrid"><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span></a><span class="p">(</span><span class="n">vertical_levels</span><span class="p">,</span> <span class="n">dist</span><span class="p">)</span>
+
+    <span class="c1"># Interpolate to 2D grid using scipy.interpolate.griddata</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">grid</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.empty.html#numpy.empty" title="View documentation for numpy.empty"><span class="n">np</span><span class="o">.</span><span class="n">empty</span></a><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">plevs</span><span class="p">))</span>
+        <span class="n">grid</span><span class="p">[</span><span class="n">key</span><span class="p">][:]</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata" title="View documentation for scipy.interpolate.griddata"><span class="n">griddata</span></a><span class="p">((</span><span class="n">ddist</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">pdist</span><span class="o">.</span><span class="n">flatten</span><span class="p">()),</span>
+                                <span class="n">tmp_grid</span><span class="p">[</span><span class="n">key</span><span class="p">][:]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+                                <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">pp</span><span class="p">),</span>
+                                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Gather needed data in dictionary for return</span>
+    <span class="n">cross_section</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;grid_data&#39;</span><span class="p">:</span> <span class="n">grid</span><span class="p">,</span> <span class="s1">&#39;obs_distance&#39;</span><span class="p">:</span> <span class="n">dist</span><span class="p">,</span>
+                     <span class="s1">&#39;x_grid&#39;</span><span class="p">:</span> <span class="n">xx</span><span class="p">,</span> <span class="s1">&#39;p_grid&#39;</span><span class="p">:</span> <span class="n">pp</span><span class="p">,</span> <span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <span class="n">ground_elevation</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">cross_section</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stations-and-time">
+<h2>Stations and Time<a class="headerlink" href="#stations-and-time" title="Permalink to this headline">¶</a></h2>
+<p>Select cross section stations by creating a list of three-letter
+identifiers and choose a date by creating a datetime object</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># A roughly east-west cross section</span>
+<span class="n">stn_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DNR&#39;</span><span class="p">,</span> <span class="s1">&#39;LBF&#39;</span><span class="p">,</span> <span class="s1">&#39;OAX&#39;</span><span class="p">,</span> <span class="s1">&#39;DVN&#39;</span><span class="p">,</span> <span class="s1">&#39;DTX&#39;</span><span class="p">,</span> <span class="s1">&#39;BUF&#39;</span><span class="p">]</span>
+
+<span class="c1"># Set a date and hour of your choosing</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-radiosonde-data">
+<h2>Get Radiosonde Data<a class="headerlink" href="#get-radiosonde-data" title="Permalink to this headline">¶</a></h2>
+<p>This example is built around the data from the University of Wyoming
+sounding archive and using the Siphon package to remotely access that
+data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up empty dictionary to fill with Wyoming Sounding data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Loop over stations to get data and put into dictionary</span>
+<span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stn_list</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">station</span><span class="p">]</span> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="View documentation for siphon.simplewebservice.wyoming.WyomingUpperAir.request_data"><span class="n">WyomingUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-interpolated-fields">
+<h2>Create Interpolated fields<a class="headerlink" href="#create-interpolated-fields" title="Permalink to this headline">¶</a></h2>
+<p>Use the function <code class="docutils literal notranslate"><span class="pre">radisonde_cross_section</span></code> to generate the 2D grid (x,
+p) for all radiosonde variables including, Temperature, Dewpoint,
+u-component of the wind, and v-component of the wind.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xsect</span> <span class="o">=</span> <span class="n">radisonde_cross_section</span><span class="p">(</span><span class="n">stn_list</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="calculate-variables-for-plotting">
+<h2>Calculate Variables for Plotting<a class="headerlink" href="#calculate-variables-for-plotting" title="Permalink to this headline">¶</a></h2>
+<p>Use MetPy to calculate common variables for plotting a cross section,
+specifically potential temperature and mixing ratio</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">potemp</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.potential_temperature.html#metpy.calc.potential_temperature" title="View documentation for metpy.calc.potential_temperature"><span class="n">mpcalc</span><span class="o">.</span><span class="n">potential_temperature</span></a><span class="p">(</span>
+    <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;p_grid&#39;</span><span class="p">]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;hPa&#39;</span><span class="p">),</span> <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;grid_data&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;degC&#39;</span><span class="p">))</span>
+
+<span class="n">relhum</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.relative_humidity_from_dewpoint.html#metpy.calc.relative_humidity_from_dewpoint" title="View documentation for metpy.calc.relative_humidity_from_dewpoint"><span class="n">mpcalc</span><span class="o">.</span><span class="n">relative_humidity_from_dewpoint</span></a><span class="p">(</span>
+    <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;grid_data&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;degC&#39;</span><span class="p">),</span>
+    <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;grid_data&#39;</span><span class="p">][</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;degC&#39;</span><span class="p">))</span>
+
+<span class="n">mixrat</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.mixing_ratio_from_relative_humidity.html#metpy.calc.mixing_ratio_from_relative_humidity" title="View documentation for metpy.calc.mixing_ratio_from_relative_humidity"><span class="n">mpcalc</span><span class="o">.</span><span class="n">mixing_ratio_from_relative_humidity</span></a><span class="p">(</span><span class="n">relhum</span><span class="p">,</span>
+                                                    <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;grid_data&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">*</span>
+                                                    <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;degC&#39;</span><span class="p">),</span>
+                                                    <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;p_grid&#39;</span><span class="p">]</span> <span class="o">*</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.units.html#metpy.units.units" title="View documentation for metpy.units.units"><span class="n">units</span></a><span class="p">(</span><span class="s1">&#39;hPa&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-cross-section">
+<h2>Plot Cross Section<a class="headerlink" href="#plot-cross-section" title="Permalink to this headline">¶</a></h2>
+<p>Use standard Matplotlib to plot the now 2D cross section grid using the
+data from xsect and those calculated above. Additionally, the actualy
+radiosonde wind observations are plotted as barbs on this plot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start Figure, set big size for cross section</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+
+<span class="c1"># Specify plotting axis (single panel)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="c1"># Set y-scale to be log since pressure decreases exponentially with height</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set limits, tickmarks, and ticklabels for y-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">1030</span><span class="p">,</span> <span class="mi">101</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># Invert the y-axis since pressure decreases with increasing height</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+<span class="c1"># Plot the sudo elevation on the cross section</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;obs_distance&#39;</span><span class="p">],</span> <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;elevation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="mi">1030</span><span class="p">,</span>
+                <span class="n">where</span><span class="o">=</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;elevation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">m</span> <span class="o">&lt;=</span> <span class="mi">1030</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span>
+                <span class="n">interpolate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># Don&#39;t plot xticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([],</span> <span class="p">[])</span>
+
+<span class="c1"># Plot wind barbs for each sounding location</span>
+<span class="k">for</span> <span class="n">stn</span><span class="p">,</span> <span class="n">stn_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stn_list</span><span class="p">)),</span> <span class="n">stn_list</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;obs_distance&#39;</span><span class="p">][</span><span class="n">stn</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;obs_distance&#39;</span><span class="p">][</span><span class="n">stn</span><span class="p">],</span> <span class="mi">1100</span><span class="p">,</span> <span class="n">stn_name</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;obs_distance&#39;</span><span class="p">][</span><span class="n">stn</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">stn_name</span><span class="p">][</span><span class="s1">&#39;pressure&#39;</span><span class="p">][::</span><span class="mi">2</span><span class="p">],</span>
+             <span class="n">df</span><span class="p">[</span><span class="n">stn_name</span><span class="p">][</span><span class="s1">&#39;u_wind&#39;</span><span class="p">][::</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+             <span class="n">df</span><span class="p">[</span><span class="n">stn_name</span><span class="p">][</span><span class="s1">&#39;v_wind&#39;</span><span class="p">][::</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Plot smoothed potential temperature grid (K)</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;x_grid&#39;</span><span class="p">],</span> <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;p_grid&#39;</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a><span class="p">(</span>
+    <span class="n">potemp</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot smoothed mixing ratio grid (g/kg)</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;x_grid&#39;</span><span class="p">],</span> <span class="n">xsect</span><span class="p">[</span><span class="s1">&#39;p_grid&#39;</span><span class="p">],</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html#scipy.ndimage.gaussian_filter" title="View documentation for scipy.ndimage.gaussian_filter"><span class="n">gaussian_filter</span></a><span class="p">(</span>
+    <span class="n">mixrat</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add some informative titles</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cross-Section from DNR to BUF Potential Temp. &#39;</span>
+          <span class="s1">&#39;(K; red) and Mix. Rat. (g/kg; green)&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_Observational_Data_Cross_Section_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_Observational_Data_Cross_Section_001.png" />
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.995 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-observational-data-cross-section-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/392769f35b4729d6bae49d65d11fc084/Observational_Data_Cross_Section.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Observational_Data_Cross_Section.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/ea900300195dae68679ff86326643c70/Observational_Data_Cross_Section.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Observational_Data_Cross_Section.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="miller_composite.html" class="btn btn-neutral float-right" title="Miller Composite Chart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Differential_Temperature_Advection.html" class="btn btn-neutral float-left" title="Differential Temperature Advection with NARR Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

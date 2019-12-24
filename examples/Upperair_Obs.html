@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DIFAX Replication &mdash; Unidata Python Gallery</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GOES-16: True Color Recipe" href="mapping_GOES16_TrueColor.html" />
+    <link rel="prev" title="Miller Composite Chart" href="miller_composite.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Unidata Python Gallery
+          
+
+          
+            
+            <img src="../_static/Unidata_logo_vertical_400x400_alpha.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Unidata Python Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SkewT_Example.html">Skew-T Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Declarative_300hPa.html">MetPy Declarative - 300 hPa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_500hPa_map.html">Using Xarray for Data read and selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nexrad_S3_Demo.html">Plotting AWS-hosted NEXRAD Level 2 Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_HGHT_Winds.html">500 hPa Geopotential Heights and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Precipitation_Map.html">NWS Precipitation Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_TMPC_Winds.html">850-hPa Geopotential Heights, Temperature, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hovmoller_Diagram.html">Hovmoller Diagram Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="700hPa_RELH_Winds.html">700-hPa Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Frontogenesis.html">850-hPa Geopotential Heights, Temperature, Frontogenesis, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GFS_Widget.html">Jupyter Notebook Widget Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoothing_Contours.html">Smoothing Contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_QVectors.html">QVector Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PV_baroclinic_isobaric.html">Baroclinic Potential Vorticity Analysis, Divergence, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GOES_aircraft.html">GOES Aircraft Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Satellite_Example.html">WV Satellite Overlay Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250hPa_Hemispheric_Plot.html">A 250-hPa Hemispheric Map using Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Isentropic_Interpolation.html">Isentropic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Vorticity_Advection.html">500 hPa Vorticity Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSLP_temp_winds.html">Model Surface Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ageostrophic_Wind_Example.html">Geostrophic and Ageostrophic Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="850hPa_Temperature_Advection.html">850 hPa Temperature Advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wind_Shear_Vectors_Example.html">Calculating Wind Shear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="500hPa_Absolute_Vorticity_winds.html">500 hPa Geopotential Heights, Absolute Vorticity, and Winds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytic_300hPa_Trough.html">Analytic 300-hPa Trough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HILO_Symbol_Plot.html">MSLP and 1000-500 hPa Thickness with High and Low Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sounding_Plotter.html">Sounding Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Differential_Temperature_Advection.html">Differential Temperature Advection with NARR Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Observational_Data_Cross_Section.html">Real Data Cross-Section Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miller_composite.html">Miller Composite Chart</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DIFAX Replication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plotting-high-low-symbols">Plotting High/Low Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#station-information">Station Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#observation-data">Observation Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subset-observational-data">Subset Observational Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gridded-data">Gridded Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-difax-replication">Create DIFAX Replication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapping_GOES16_TrueColor.html">GOES-16: True Color Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HurricaneTracker.html">Hurricane Tracker with NHC Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful Python Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unidata Python Gallery</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Unidata Python Gallery</a> &raquo;</li>
+        
+      <li>DIFAX Replication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/Upperair_Obs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-upperair-obs-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="difax-replication">
+<span id="sphx-glr-examples-upperair-obs-py"></span><h1>DIFAX Replication<a class="headerlink" href="#difax-replication" title="Permalink to this headline">¶</a></h1>
+<p>This example replicates the traditional DIFAX images for upper-level
+observations.</p>
+<p>By: Kevin Goebbert</p>
+<p>Observation data comes from Iowa State Archive, accessed through the
+Siphon package. Contour data comes from the GFS 0.5 degree analysis.
+Classic upper-level data of Geopotential Height and Temperature are
+plotted.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">metpy.calc</span> <span class="k">as</span> <span class="nn">mpcalc</span>
+<span class="kn">from</span> <span class="nn">metpy.plots</span> <span class="kn">import</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">StationPlot</span></a>
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">siphon.simplewebservice.iastate</span> <span class="kn">import</span> <span class="n">IAStateUpperAir</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+</pre></div>
+</div>
+<div class="section" id="plotting-high-low-symbols">
+<h2>Plotting High/Low Symbols<a class="headerlink" href="#plotting-high-low-symbols" title="Permalink to this headline">¶</a></h2>
+<p>A helper function to plot a text symbol (e.g., H, L) for relative
+maximum/minimum for a given field (e.g., geopotential height).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_maxmin_points</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">extrema</span><span class="p">,</span> <span class="n">nsize</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                       <span class="n">plotValue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function will find and plot relative maximum and minimum for a 2D grid. The function</span>
+<span class="sd">    can be used to plot an H for maximum values (e.g., High pressure) and an L for minimum</span>
+<span class="sd">    values (e.g., low pressue). It is best to used filetered data to obtain  a synoptic scale</span>
+<span class="sd">    max/min value. The symbol text can be set to a string value and optionally the color of the</span>
+<span class="sd">    symbol and any plotted value can be set with the parameter color.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        lon : 2D array</span>
+<span class="sd">            Plotting longitude values</span>
+<span class="sd">        lat : 2D array</span>
+<span class="sd">            Plotting latitude values</span>
+<span class="sd">        data : 2D array</span>
+<span class="sd">            Data that you wish to plot the max/min symbol placement</span>
+<span class="sd">        extrema : str</span>
+<span class="sd">            Either a value of max for Maximum Values or min for Minimum Values</span>
+<span class="sd">        nsize : int</span>
+<span class="sd">            Size of the grid box to filter the max and min values to plot a reasonable number</span>
+<span class="sd">        symbol : str</span>
+<span class="sd">            Text to be placed at location of max/min value</span>
+<span class="sd">        color : str</span>
+<span class="sd">            Name of matplotlib colorname to plot the symbol (and numerical value, if plotted)</span>
+<span class="sd">        plot_value : Boolean (True/False)</span>
+<span class="sd">            Whether to plot the numeric value of max/min point</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">        The max/min symbol will be plotted on the current axes within the bounding frame</span>
+<span class="sd">        (e.g., clip_on=True)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">scipy.ndimage.filters</span> <span class="kn">import</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.maximum_filter.html#scipy.ndimage.maximum_filter" title="View documentation for scipy.ndimage.maximum_filter"><span class="n">maximum_filter</span></a><span class="p">,</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.minimum_filter.html#scipy.ndimage.minimum_filter" title="View documentation for scipy.ndimage.minimum_filter"><span class="n">minimum_filter</span></a>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">extrema</span> <span class="o">==</span> <span class="s1">&#39;max&#39;</span><span class="p">):</span>
+        <span class="n">data_ext</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.maximum_filter.html#scipy.ndimage.maximum_filter" title="View documentation for scipy.ndimage.maximum_filter"><span class="n">maximum_filter</span></a><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nsize</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">extrema</span> <span class="o">==</span> <span class="s1">&#39;min&#39;</span><span class="p">):</span>
+        <span class="n">data_ext</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.minimum_filter.html#scipy.ndimage.minimum_filter" title="View documentation for scipy.ndimage.minimum_filter"><span class="n">minimum_filter</span></a><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nsize</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Value for hilo must be either max or min&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">lon</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.meshgrid.html#numpy.meshgrid" title="View documentation for numpy.meshgrid"><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span></a><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+
+    <span class="n">mxx</span><span class="p">,</span> <span class="n">mxy</span> <span class="o">=</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">np</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">data_ext</span> <span class="o">==</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mxy</span><span class="p">)):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lat</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span>
+                <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lat</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
+                <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]])),</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lat</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+                <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lat</span><span class="p">[</span><span class="n">mxx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mxy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
+                <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="station-information">
+<h2>Station Information<a class="headerlink" href="#station-information" title="Permalink to this headline">¶</a></h2>
+<p>A helper function for obtaining radiosonde station information (e.g.,
+latitude/longitude) requried to plot data obtained from each station.
+Original code by github user sgdecker.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">station_info</span><span class="p">(</span><span class="n">stid</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Provide information about weather stations.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    stid: str or iterable object containing strs</span>
+<span class="sd">         The ICAO or IATA code(s) for which station information is requested.</span>
+<span class="sd">    with_units: bool</span>
+<span class="sd">         Whether to include units for values that have them. Default True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    info: dict</span>
+<span class="sd">         Information about the station(s) within a dictionary with these keys:</span>
+<span class="sd">             &#39;state&#39;: Two-character ID of the state/province where the station is located,</span>
+<span class="sd">                       if applicable</span>
+<span class="sd">             &#39;name&#39;: The name of the station</span>
+<span class="sd">             &#39;lat&#39;: The latitude of the station [deg]</span>
+<span class="sd">             &#39;lon&#39;: The longitude of the station [deg]</span>
+<span class="sd">             &#39;elevation&#39;: The elevation of the station [m]</span>
+<span class="sd">             &#39;country&#39;: Two-character ID of the country where the station is located</span>
+
+<span class="sd">    Modified code from Steven Decker, Rutgers University</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Provide a helper function for later usage</span>
+    <span class="k">def</span> <span class="nf">str2latlon</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">deg</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">mn</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span> <span class="ow">or</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+            <span class="n">deg</span> <span class="o">=</span> <span class="o">-</span><span class="n">deg</span>
+            <span class="n">mn</span> <span class="o">=</span> <span class="o">-</span><span class="n">mn</span>
+        <span class="k">return</span> <span class="n">deg</span> <span class="o">+</span> <span class="n">mn</span> <span class="o">/</span> <span class="mf">60.</span>
+
+    <span class="c1"># Various constants describing the underlying data</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.aviationweather.gov/docs/metar/stations.txt&#39;</span>
+    <span class="c1"># file = &#39;stations.txt&#39;</span>
+    <span class="n">state_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">name_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+    <span class="n">icao_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+    <span class="n">iata_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span>
+    <span class="n">lat_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">39</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
+    <span class="n">lon_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">47</span><span class="p">,</span> <span class="mi">54</span><span class="p">)</span>
+    <span class="n">z_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">59</span><span class="p">)</span>
+    <span class="n">cntry_bnds</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">81</span><span class="p">,</span> <span class="mi">83</span><span class="p">)</span>
+
+    <span class="c1"># Generalize to any number of IDs</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stid</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">stid</span> <span class="o">=</span> <span class="p">[</span><span class="n">stid</span><span class="p">]</span>
+
+    <span class="c1"># Get the station dataset</span>
+    <span class="n">infile</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="c1">#     infile = open(file, &#39;rb&#39;)</span>
+<span class="c1">#     data = infile.readlines()</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cntry</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stid</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">line_bytes</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+            <span class="n">icao</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">icao_bnds</span><span class="p">]</span>
+            <span class="n">iata</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">iata_bnds</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">iata</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">icao</span><span class="p">:</span>
+                <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">state_bnds</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                <span class="n">name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">name_bnds</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                <span class="n">lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str2latlon</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">lat_bnds</span><span class="p">]))</span>
+                <span class="n">lon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str2latlon</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">lon_bnds</span><span class="p">]))</span>
+                <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">z_bnds</span><span class="p">]))</span>
+                <span class="n">cntry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">cntry_bnds</span><span class="p">])</span>
+
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;NA&#39;</span><span class="p">)</span>
+            <span class="n">name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;NA&#39;</span><span class="p">)</span>
+            <span class="n">lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a><span class="p">)</span>
+            <span class="n">lon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a><span class="p">)</span>
+            <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.nan" title="View documentation for numpy.nan"><span class="n">np</span><span class="o">.</span><span class="n">nan</span></a><span class="p">)</span>
+            <span class="n">cntry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;NA&#39;</span><span class="p">)</span>
+
+    <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;state&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">lat</span><span class="p">),</span>
+            <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">lon</span><span class="p">),</span> <span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="s1">&#39;country&#39;</span><span class="p">:</span> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">cntry</span><span class="p">),</span>
+            <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="observation-data">
+<h2>Observation Data<a class="headerlink" href="#observation-data" title="Permalink to this headline">¶</a></h2>
+<p>Set a date and time for upper-air observations (should only be 00 or 12
+UTC for the hour).</p>
+<p>Request all data from Iowa State using the Siphon package. The result is
+a pandas DataFrame containing all of the sounding data from all
+available stations.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set date for desired UPA data</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+<span class="c1"># Go back one day to ensure data availability</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Request data using Siphon request for data from Iowa State Archive</span>
+<span class="n">data</span> <span class="o">=</span> <a href="https://unidata.github.io/siphon/latest/api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data" title="View documentation for siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data"><span class="n">IAStateUpperAir</span><span class="o">.</span><span class="n">request_all_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="subset-observational-data">
+<h2>Subset Observational Data<a class="headerlink" href="#subset-observational-data" title="Permalink to this headline">¶</a></h2>
+<p>From the request above will give all levels from all radisonde sites
+available through the service. For plotting a pressure surface map there
+is only need to have the data from that level. Below the data is subset
+and a few parameters set based on the level chosen. Additionally, the
+station information is obtained and latitude and longitude data is added
+to the DataFrame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">level</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">level</span> <span class="o">==</span> <span class="mi">925</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">level</span> <span class="o">==</span> <span class="mi">850</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">level</span> <span class="o">==</span> <span class="mi">700</span><span class="p">):</span>
+    <span class="n">cint</span> <span class="o">=</span> <span class="mi">30</span>
+    <span class="k">def</span> <span class="nf">hght_format</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> <span class="k">return</span> <span class="nb">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.0f&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">500</span><span class="p">:</span>
+    <span class="n">cint</span> <span class="o">=</span> <span class="mi">60</span>
+    <span class="k">def</span> <span class="nf">hght_format</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> <span class="k">return</span> <span class="nb">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.0f&#39;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">300</span><span class="p">:</span>
+    <span class="n">cint</span> <span class="o">=</span> <span class="mi">120</span>
+    <span class="k">def</span> <span class="nf">hght_format</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> <span class="k">return</span> <span class="nb">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.0f&#39;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">level</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">:</span>
+    <span class="n">cint</span> <span class="o">=</span> <span class="mi">120</span>
+    <span class="k">def</span> <span class="nf">hght_format</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> <span class="k">return</span> <span class="nb">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.0f&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># Create subset of all data for a given level</span>
+<span class="n">data_subset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pressure</span> <span class="o">==</span> <span class="n">level</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data_subset</span><span class="p">]</span>
+
+<span class="c1"># Get station lat/lon from look-up file; add to Dataframe</span>
+<span class="n">stn_info</span> <span class="o">=</span> <span class="n">station_info</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">station</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="n">stn_info</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">stn_info</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gridded-data">
+<h2>Gridded Data<a class="headerlink" href="#gridded-data" title="Permalink to this headline">¶</a></h2>
+<p>Obtain GFS gridded output for contour plotting. Specifically,
+geopotential height and temperature data for the given level and subset
+for over North America. Data are smoothed for aesthetic reasons.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get GFS data and subset to North America for Geopotential Height and Temperature</span>
+<span class="n">ds</span> <span class="o">=</span> <a href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="View documentation for xarray.open_dataset"><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span></a><span class="p">(</span><span class="s1">&#39;https://thredds.ucar.edu/thredds/dodsC/grib/NCEP/GFS/Global_0p5deg_ana/&#39;</span>
+                     <span class="s1">&#39;GFS_Global_0p5deg_ana_{0:%Y%m</span><span class="si">%d</span><span class="s1">}_{0:%H}00.grib2&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                         <span class="n">date</span><span class="p">))</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">parse_cf</span><span class="p">()</span>
+
+<span class="c1"># Geopotential height and smooth</span>
+<span class="n">hght</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Geopotential_height_isobaric</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+    <span class="n">vertical</span><span class="o">=</span><span class="n">level</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">360</span><span class="o">-</span><span class="mi">145</span><span class="p">,</span> <span class="mi">360</span><span class="o">-</span><span class="mi">50</span><span class="p">))</span>
+<span class="n">smooth_hght</span> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.smooth_n_point.html#metpy.calc.smooth_n_point" title="View documentation for metpy.calc.smooth_n_point"><span class="n">mpcalc</span><span class="o">.</span><span class="n">smooth_n_point</span></a><span class="p">(</span><span class="n">hght</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Temperature, smooth, and convert to Celsius</span>
+<span class="n">tmpk</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Temperature_isobaric</span><span class="o">.</span><span class="n">metpy</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+    <span class="n">vertical</span><span class="o">=</span><span class="n">level</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">360</span><span class="o">-</span><span class="mi">145</span><span class="p">,</span> <span class="mi">360</span><span class="o">-</span><span class="mi">50</span><span class="p">))</span>
+<span class="n">smooth_tmpc</span> <span class="o">=</span> <span class="p">(</span><a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.smooth_n_point.html#metpy.calc.smooth_n_point" title="View documentation for metpy.calc.smooth_n_point"><span class="n">mpcalc</span><span class="o">.</span><span class="n">smooth_n_point</span></a><span class="p">(</span><span class="n">tmpk</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;degC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-difax-replication">
+<h2>Create DIFAX Replication<a class="headerlink" href="#create-difax-replication" title="Permalink to this headline">¶</a></h2>
+<p>Plot the observational data and contours on a Lambert Conformal map and
+add features that resemble the historic DIFAX maps.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up map coordinate reference system</span>
+<span class="n">mapcrs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span>
+    <span class="n">central_latitude</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">central_longitude</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">standard_parallels</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+
+<span class="c1"># Set up station locations for plotting observations</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="View documentation for numpy.ndarray"><span class="n">point_locs</span></a> <span class="o">=</span> <span class="n">mapcrs</span><span class="o">.</span><span class="n">transform_points</span><span class="p">(</span>
+    <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Start figure and set graphics extent</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">mapcrs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>
+
+<span class="c1"># Add map features for geographic reference</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot plus signs every degree lat/lon</span>
+<span class="n">plus_lat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">plus_lon</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">other_lat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">other_lon</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">hght</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">values</span><span class="p">[::</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">hght</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">values</span><span class="p">[::</span><span class="mi">2</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">plus_lon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">plus_lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">other_lon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">other_lat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">other_lon</span><span class="p">,</span> <span class="n">other_lat</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+           <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">plus_lon</span><span class="p">,</span> <span class="n">plus_lat</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+           <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Add gridlines for every 5 degree lat/lon</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">ylocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">xlocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">49</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Start the station plot by specifying the axes to draw on, as well as the</span>
+<span class="c1"># lon/lat of the stations (with transform). We also the fontsize to 10 pt.</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">stationplot</span></a> <span class="o">=</span> <a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">StationPlot</span></a><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Plot the temperature and dew point to the upper and lower left, respectively, of</span>
+<span class="c1"># the center point.</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">stationplot</span></a><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;NW&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">stationplot</span></a><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;SW&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># A more complex example uses a custom formatter to control how the geopotential height</span>
+<span class="c1"># values are plotted. This is set in an earlier if-statement to work appropriate for</span>
+<span class="c1"># different levels.</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">stationplot</span></a><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;NE&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">formatter</span><span class="o">=</span><span class="n">hght_format</span><span class="p">)</span>
+
+<span class="c1"># Add wind barbs</span>
+<a href="https://unidata.github.io/MetPy/latest/api/generated/metpy.plots.StationPlot.html#metpy.plots.StationPlot" title="View documentation for metpy.plots.StationPlot"><span class="n">stationplot</span></a><span class="o">.</span><span class="n">plot_barb</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">],</span> <span class="n">length</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">pivot</span><span class="o">=</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot Solid Contours of Geopotential Height</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">hght</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">hght</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">smooth_hght</span><span class="p">,</span>
+                <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="n">cint</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">clabels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">inline_spacing</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">use_clabeltext</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Contour labels with black boxes and white text</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">clabels</span><span class="p">:</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">set_bbox</span><span class="p">({</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">set_fontweight</span><span class="p">(</span><span class="s1">&#39;heavy&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot Dashed Contours of Temperature</span>
+<span class="n">cs2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">hght</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">hght</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">smooth_tmpc</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+                 <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">clabels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs2</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">inline_spacing</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">use_clabeltext</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Set longer dashes than default</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cs2</span><span class="o">.</span><span class="n">collections</span><span class="p">:</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))])</span>
+
+<span class="c1"># Contour labels with black boxes and white text</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">clabels</span><span class="p">:</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">set_bbox</span><span class="p">({</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">set_fontweight</span><span class="p">(</span><span class="s1">&#39;heavy&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot filled circles for Radiosonde Obs</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+           <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Use definition to plot H/L symbols</span>
+<span class="n">plot_maxmin_points</span><span class="p">(</span><span class="n">hght</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">hght</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">smooth_hght</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span>
+                   <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">plot_maxmin_points</span><span class="p">(</span><span class="n">hght</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">hght</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">smooth_hght</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span>
+                   <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Add titles</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Upper-air Observations at </span><span class="si">{}</span><span class="s1">-hPa Analysis Heights/Temperature&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">level</span><span class="p">),</span>
+          <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Valid: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">date</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/sphx_glr_Upperair_Obs_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_Upperair_Obs_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/metpy/plots/station_plot.py:300: RuntimeWarning: invalid value encountered in less
+  u, v = self.ax.projection.transform_vectors(trans, self.x, self.y, u, v)
+/home/travis/miniconda/envs/gallery/lib/python3.7/site-packages/metpy/plots/station_plot.py:300: RuntimeWarning: invalid value encountered in greater
+  u, v = self.ax.projection.transform_vectors(trans, self.x, self.y, u, v)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.132 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-obs-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/aca0dc835969f10819aec7f0798b809a/Upperair_Obs.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Upperair_Obs.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/2ef878a3cd9be2d83b7b89e56544e1af/Upperair_Obs.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Upperair_Obs.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mapping_GOES16_TrueColor.html" class="btn btn-neutral float-right" title="GOES-16: True Color Recipe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="miller_composite.html" class="btn btn-neutral float-left" title="Miller Composite Chart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, UCAR/Unidata
+      <span class="lastupdated">
+        Last updated on Dec 24, 2019 at 16:47:31.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you find this gallery useful?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
