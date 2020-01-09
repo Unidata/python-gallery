@@ -1,4 +1,8 @@
 # Unidata Python Gallery
+
+**THIS REPOSITORY IS NO LONGER MAINTAINED**
+It has been replaced by [Unidata's Python Training](https://github.com/Unidata/python-training) repository.
+
 This is a collection of examples published in the Unidata
 [blogs](https://www.unidata.ucar.edu/blogs/developer/) or just contributed. In
 addition to viewing them on the blog you can view them rendered at the [web gallery](http://unidata.github.io/python-gallery),
